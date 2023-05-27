@@ -30,6 +30,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["@headlessui/react", "virtual:fd3e5e22479bc32ccbf79fd34ace5501ab44ee42422114db7beae7062b1c40689b932e7ee04ae21220b36c9558abc1bb43e71ed7f798cedbdd5ea0bcc751b7b6#npm:1.7.14"],\
             ["@heroicons/react", "virtual:fd3e5e22479bc32ccbf79fd34ace5501ab44ee42422114db7beae7062b1c40689b932e7ee04ae21220b36c9558abc1bb43e71ed7f798cedbdd5ea0bcc751b7b6#npm:2.0.18"],\
+            ["@tailwindcss/forms", "virtual:fd3e5e22479bc32ccbf79fd34ace5501ab44ee42422114db7beae7062b1c40689b932e7ee04ae21220b36c9558abc1bb43e71ed7f798cedbdd5ea0bcc751b7b6#npm:0.5.3"],\
             ["@types/react", "npm:18.2.7"],\
             ["@types/react-dom", "npm:18.2.4"],\
             ["@vitejs/plugin-react", "virtual:fd3e5e22479bc32ccbf79fd34ace5501ab44ee42422114db7beae7062b1c40689b932e7ee04ae21220b36c9558abc1bb43e71ed7f798cedbdd5ea0bcc751b7b6#npm:4.0.0"],\
@@ -848,6 +849,29 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@remix-run-router-npm-1.6.2-8dfac997df-5969d313bf.zip/node_modules/@remix-run/router/",\
           "packageDependencies": [\
             ["@remix-run/router", "npm:1.6.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@tailwindcss/forms", [\
+        ["npm:0.5.3", {\
+          "packageLocation": "./.yarn/cache/@tailwindcss-forms-npm-0.5.3-4d75c0dfda-9eddb4dbd0.zip/node_modules/@tailwindcss/forms/",\
+          "packageDependencies": [\
+            ["@tailwindcss/forms", "npm:0.5.3"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:fd3e5e22479bc32ccbf79fd34ace5501ab44ee42422114db7beae7062b1c40689b932e7ee04ae21220b36c9558abc1bb43e71ed7f798cedbdd5ea0bcc751b7b6#npm:0.5.3", {\
+          "packageLocation": "./.yarn/__virtual__/@tailwindcss-forms-virtual-5a500f1909/0/cache/@tailwindcss-forms-npm-0.5.3-4d75c0dfda-9eddb4dbd0.zip/node_modules/@tailwindcss/forms/",\
+          "packageDependencies": [\
+            ["@tailwindcss/forms", "virtual:fd3e5e22479bc32ccbf79fd34ace5501ab44ee42422114db7beae7062b1c40689b932e7ee04ae21220b36c9558abc1bb43e71ed7f798cedbdd5ea0bcc751b7b6#npm:0.5.3"],\
+            ["@types/tailwindcss", null],\
+            ["mini-svg-data-uri", "npm:1.4.4"],\
+            ["tailwindcss", "npm:3.3.2"]\
+          ],\
+          "packagePeers": [\
+            "@types/tailwindcss",\
+            "tailwindcss"\
           ],\
           "linkType": "HARD"\
         }]\
@@ -2950,6 +2974,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["mini-svg-data-uri", [\
+        ["npm:1.4.4", {\
+          "packageLocation": "./.yarn/cache/mini-svg-data-uri-npm-1.4.4-929f6f1119-997f1fbd8d.zip/node_modules/mini-svg-data-uri/",\
+          "packageDependencies": [\
+            ["mini-svg-data-uri", "npm:1.4.4"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["minimatch", [\
         ["npm:3.1.2", {\
           "packageLocation": "./.yarn/cache/minimatch-npm-3.1.2-9405269906-c154e56640.zip/node_modules/minimatch/",\
@@ -3595,6 +3628,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prompt-supplies", "workspace:."],\
             ["@headlessui/react", "virtual:fd3e5e22479bc32ccbf79fd34ace5501ab44ee42422114db7beae7062b1c40689b932e7ee04ae21220b36c9558abc1bb43e71ed7f798cedbdd5ea0bcc751b7b6#npm:1.7.14"],\
             ["@heroicons/react", "virtual:fd3e5e22479bc32ccbf79fd34ace5501ab44ee42422114db7beae7062b1c40689b932e7ee04ae21220b36c9558abc1bb43e71ed7f798cedbdd5ea0bcc751b7b6#npm:2.0.18"],\
+            ["@tailwindcss/forms", "virtual:fd3e5e22479bc32ccbf79fd34ace5501ab44ee42422114db7beae7062b1c40689b932e7ee04ae21220b36c9558abc1bb43e71ed7f798cedbdd5ea0bcc751b7b6#npm:0.5.3"],\
             ["@types/react", "npm:18.2.7"],\
             ["@types/react-dom", "npm:18.2.4"],\
             ["@vitejs/plugin-react", "virtual:fd3e5e22479bc32ccbf79fd34ace5501ab44ee42422114db7beae7062b1c40689b932e7ee04ae21220b36c9558abc1bb43e71ed7f798cedbdd5ea0bcc751b7b6#npm:4.0.0"],\

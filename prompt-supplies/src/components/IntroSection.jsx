@@ -1,6 +1,7 @@
 import React from "react";
 import ChecklistItem from "./ChecklistItem";
 import businessSvg from "../assets/svgs/business_analytics.svg";
+import { CheckCircleIcon } from "@heroicons/react/24/solid";
 
 export default function IntroSection() {
   return (
@@ -29,13 +30,34 @@ export default function IntroSection() {
                   marketing solutions, specializing in:{" "}
                 </p>
                 <span className="grid grid-cols-2 gap w-3/5">
-                  <ChecklistItem listItem="promotional messages" />
-                  <ChecklistItem listItem="bulk SMS services" />
-                  <ChecklistItem listItem="bulk email services" />
-                  <ChecklistItem listItem=" API integration" />
-                  <ChecklistItem listItem="web development" />
-                  <ChecklistItem listItem=" system development" />
-                  <ChecklistItem listItem=" merchandise branding" />
+                  <ChecklistItem
+                    listItem="promotional messages"
+                    icon={<CheckCircleIcon className="h-4 w-4 text-sky-600" />}
+                  />
+                  <ChecklistItem
+                    listItem="bulk SMS services"
+                    icon={<CheckCircleIcon className="h-4 w-4 text-sky-600" />}
+                  />
+                  <ChecklistItem
+                    listItem="bulk email services"
+                    icon={<CheckCircleIcon className="h-4 w-4 text-sky-600" />}
+                  />
+                  <ChecklistItem
+                    listItem=" API integration"
+                    icon={<CheckCircleIcon className="h-4 w-4 text-sky-600" />}
+                  />
+                  <ChecklistItem
+                    listItem="web development"
+                    icon={<CheckCircleIcon className="h-4 w-4 text-sky-600" />}
+                  />
+                  <ChecklistItem
+                    listItem=" system development"
+                    icon={<CheckCircleIcon className="h-4 w-4 text-sky-600" />}
+                  />
+                  <ChecklistItem
+                    listItem=" merchandise branding"
+                    icon={<CheckCircleIcon className="h-4 w-4 text-sky-600" />}
+                  />
                 </span>
                 <p>
                   With our comprehensive range of services, we help businesses
