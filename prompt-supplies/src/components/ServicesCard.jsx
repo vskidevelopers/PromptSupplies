@@ -1,7 +1,7 @@
 import React from "react";
 import bulkSmsIcon from "../assets/svgs/bulk_sms.svg";
 
-function ServicesCards({ icon, title, description }) {
+function ServicesCard({ icon, title, description }) {
   return (
     <div>
       <div className="group relative block h-64 sm:h-80 lg:h-96">
@@ -44,4 +44,4 @@ function ServicesCards({ icon, title, description }) {
   );
 }
 
-export default ServicesCards;
+export default ServicesCard;

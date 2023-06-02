@@ -1,5 +1,4 @@
 import React from "react";
-import ServicesCards from "./ServicesCards";
 import promotionalSmsIcon from "../assets/svgs/promotional_sms.svg";
 import bulkEmailIcon from "../assets/svgs/bulk_email.svg";
 import bulkSmsIcon from "../assets/svgs/bulk_sms.svg";

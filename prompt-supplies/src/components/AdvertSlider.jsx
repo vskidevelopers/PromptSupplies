@@ -1,8 +1,9 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, A11y, Autoplay } from "swiper";
+import { Navigation, Pagination, A11y, Autoplay } from "swiper";
 
 import "swiper/css";
 import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 export default function AdvertSlider() {
   const images = [
@@ -32,14 +33,15 @@ export default function AdvertSlider() {
       </div>
 
       <section className="my-4">
-        <div className="container max-w-xl mx-auto">
+        <div className="container max-full mx-auto">
           <div className="flex flex-col items-center w-full rounded-md lg:h-full   dark:text-gray-100">
-            <div className="h-[20rem] w-full ">
+            <div className="h-[30rem] w-full ">
               <Swiper
-                modules={[Navigation, Autoplay, A11y]}
+                modules={[Navigation, Pagination, Navigation, Autoplay, A11y]}
                 spaceBetween={50}
                 slidesPerView={1}
                 navigation
+                pagination={{ clickable: true }}
                 autoplay={{
                   delay: 10000,
                   disableOnInteraction: false,

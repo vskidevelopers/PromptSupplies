@@ -22,7 +22,7 @@ export const FooterContactForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="max-w-md mx-auto bg-white shadow-md p-6"
+      className="max-w-md mr-4 mx-auto bg-white shadow-md p-6"
     >
       <div className="max-w-md">
         <div className="grid grid-cols-1 gap-2">

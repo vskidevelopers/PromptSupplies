@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 import logo from "../assets/images/goldlogo.png";
 
@@ -40,12 +40,7 @@ export default function UserNavbar() {
   }, []);
 
   return (
-    <Disclosure
-      as="nav"
-      className={`fixed top-0 z-20 w-full shadow ${
-        isScrolled ? "bg-white shadow" : "bg-transparent shadow-white/5 "
-      }`}
-    >
+    <Disclosure as="nav" className="fixed top-0 z-20 w-full shadow bg-white">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -62,7 +57,7 @@ export default function UserNavbar() {
                 </Disclosure.Button>
               </div>
 
-              <div className="flex flex-1 items-center justify-center sm:items-center sm:justify-around">
+              <div className="flex flex-1 items-center justify-start pl-10 md:justify-center sm:items-center sm:justify-around">
                 <div className="hidden sm:ml-6 sm:block w-1/2">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
@@ -70,7 +65,6 @@ export default function UserNavbar() {
                         key={item.name}
                         to={item.href}
                         className={classNames(
-                          isScrolled ? "text-gray-500" : "text-white",
                           item.current
                             ? "bg-[#FDB715] text-black"
                             : "hover:border-b-2 hover:border-[#FDB715] hover:text-gray-900",
@@ -95,11 +89,7 @@ export default function UserNavbar() {
                     src={logo}
                     alt="Your Company"
                   />
-                  <div
-                    className={`flex flex-col ${
-                      isScrolled ? "text-black" : "text-white"
-                    } `}
-                  >
+                  <div className="flex flex-col text-black">
                     <h2 className="text-2xl font-medium">Prompt Supplies</h2>
                     <p className="font-serif  text-sm italic">
                       Amplify Your Reach
