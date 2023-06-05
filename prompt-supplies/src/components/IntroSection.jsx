@@ -8,7 +8,7 @@ export default function IntroSection() {
     <div className="bg-slate-100">
       <div className="container mx-auto px-10 py-20 ">
         <div className="relative flex flex-col justify-center items-center py-10">
-          <div className="w-1/2 text-start">
+          <div className="w-full md:w-1/2 text-start">
             <h2 className="text-[#FDB715] text-md font-semibold uppercase ">
               Discover Our Story
             </h2>
@@ -17,7 +17,7 @@ export default function IntroSection() {
             </h1>
           </div>
           <div className="absolute top-0 left-0 h-full w-full flex justify-end items-center opacity-10">
-            <h1 className="text-9xl font-bold">Discover</h1>
+            <h1 className="text-7xl md:text-9xl font-bold">Discover</h1>
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -29,7 +29,7 @@ export default function IntroSection() {
                   Prompt Supplies Enterprise is a leading provider of innovative
                   marketing solutions, specializing in:{" "}
                 </p>
-                <span className="grid grid-cols-2 gap w-3/5">
+                <span className="my-5 grid grid-cols-1 md:grid-cols-2 gap w-full md:w-3/5">
                   <ChecklistItem
                     listItem="promotional messages"
                     icon={<CheckCircleIcon className="h-4 w-4 text-sky-600" />}

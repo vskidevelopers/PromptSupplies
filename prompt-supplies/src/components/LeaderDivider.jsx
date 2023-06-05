@@ -4,7 +4,7 @@ import leader from "../assets/images/leader.png";
 export default function LeaderDivider() {
   return (
     <div className="py-20 w-full bg-slate 900">
-      <div className="grid grid-cols-3 gap-4 ">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 ">
         <div>
           <img src={leader} alt="..." />
         </div>
@@ -15,7 +15,7 @@ export default function LeaderDivider() {
               <h2 className="text-[#FDB715] text-md font-semibold uppercase ">
                 Meet the Team Leader
               </h2>
-              <div className="w-3/4">
+              <div className="w-full md:w-3/4">
                 <h1 className="text-3xl font-bold ">
                   Empowering Organizations through Result-Driven Solutions
                 </h1>
@@ -23,7 +23,7 @@ export default function LeaderDivider() {
             </div>
 
             <div className="absolute top-0 left-0 h-full w-full flex justify-end items-baseline opacity-10">
-              <h1 className="text-9xl font-bold"> Leader</h1>
+              <h1 className="text-7xl md:text-9xl font-bold"> Leader</h1>
             </div>
             <div className="my-5">
               <p>

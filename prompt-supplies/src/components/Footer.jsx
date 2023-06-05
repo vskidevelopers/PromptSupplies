@@ -27,7 +27,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-gray-900 text-white py-8">
-      <div className="container mx-auto">
+      <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* Column 1 */}
           <div className="flex flex-col items-center">
@@ -49,7 +49,7 @@ export default function Footer() {
           </div>
 
           {/* Column 2 - Quick Links */}
-          <div>
+          <div className="container mx-auto px-4">
             <h4 className="text-xl font-bold mb-4">Quick Links</h4>
             <ul className="list-none flex flex-col gap-3 ">
               {links.map((link, i) => (
@@ -63,7 +63,7 @@ export default function Footer() {
           </div>
 
           {/* Column 3 - Our Services */}
-          <div>
+          <div className="container mx-auto px-4 flex flex-col justify-end items-end text-end md:block md:text-start">
             <h4 className="text-xl font-bold mb-4">Our Services</h4>
             <ul className="list-none flex flex-col gap-3">
               {services.map((service, i) => (

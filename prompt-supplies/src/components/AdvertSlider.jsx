@@ -14,10 +14,10 @@ export default function AdvertSlider() {
   ];
   return (
     <>
-      <div className="container mx-auto px-20 py-10">
+      <div className="container mx-auto px-5 md:px-20 py-10">
         {/* Title */}
         <div className="relative flex flex-col justify-center items-center py-10">
-          <div className="w-1/2 text-start">
+          <div className="w-full md:w-1/2 text-start md:text-center">
             <h2 className="text-[#FDB715] text-md font-semibold uppercase ">
               Advertise With Us
             </h2>
@@ -26,8 +26,8 @@ export default function AdvertSlider() {
               Advertising
             </h1>
           </div>
-          <div className="absolute top-0 left-0 h-full w-full flex justify-end items-center opacity-10">
-            <h1 className="text-9xl font-bold">Advertise</h1>
+          <div className="absolute top-0 left-0 h-full w-full flex justify-start items-center opacity-10">
+            <h1 className="text-7xl md:text-9xl font-bold">Advertise</h1>
           </div>
         </div>
       </div>
@@ -35,7 +35,7 @@ export default function AdvertSlider() {
       <section className="my-4">
         <div className="container max-full mx-auto">
           <div className="flex flex-col items-center w-full rounded-md lg:h-full   dark:text-gray-100">
-            <div className="h-[30rem] w-full ">
+            <div className="h-[15rem] md:h-[30rem] w-full ">
               <Swiper
                 modules={[Navigation, Pagination, Navigation, Autoplay, A11y]}
                 spaceBetween={50}
@@ -48,7 +48,7 @@ export default function AdvertSlider() {
                 }}
                 onSlideChange={() => console.log("slide change")}
                 onSwiper={(swiper) => console.log(swiper)}
-                className="h-full"
+                className="h-full px-4"
               >
                 {images.map((image, index) => (
                   <SwiperSlide key={index}>

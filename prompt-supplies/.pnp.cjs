@@ -28,6 +28,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {\
           "packageLocation": "./",\
           "packageDependencies": [\
+            ["@emailjs/browser", "npm:3.11.0"],\
             ["@headlessui/react", "virtual:fd3e5e22479bc32ccbf79fd34ace5501ab44ee42422114db7beae7062b1c40689b932e7ee04ae21220b36c9558abc1bb43e71ed7f798cedbdd5ea0bcc751b7b6#npm:1.7.14"],\
             ["@heroicons/react", "virtual:fd3e5e22479bc32ccbf79fd34ace5501ab44ee42422114db7beae7062b1c40689b932e7ee04ae21220b36c9558abc1bb43e71ed7f798cedbdd5ea0bcc751b7b6#npm:2.0.18"],\
             ["@tailwindcss/forms", "virtual:fd3e5e22479bc32ccbf79fd34ace5501ab44ee42422114db7beae7062b1c40689b932e7ee04ae21220b36c9558abc1bb43e71ed7f798cedbdd5ea0bcc751b7b6#npm:0.5.3"],\
@@ -385,6 +386,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/helper-string-parser", "npm:7.21.5"],\
             ["@babel/helper-validator-identifier", "npm:7.19.1"],\
             ["to-fast-properties", "npm:2.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@emailjs/browser", [\
+        ["npm:3.11.0", {\
+          "packageLocation": "./.yarn/cache/@emailjs-browser-npm-3.11.0-3a580335bf-fdeb780f49.zip/node_modules/@emailjs/browser/",\
+          "packageDependencies": [\
+            ["@emailjs/browser", "npm:3.11.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -3626,6 +3636,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["prompt-supplies", "workspace:."],\
+            ["@emailjs/browser", "npm:3.11.0"],\
             ["@headlessui/react", "virtual:fd3e5e22479bc32ccbf79fd34ace5501ab44ee42422114db7beae7062b1c40689b932e7ee04ae21220b36c9558abc1bb43e71ed7f798cedbdd5ea0bcc751b7b6#npm:1.7.14"],\
             ["@heroicons/react", "virtual:fd3e5e22479bc32ccbf79fd34ace5501ab44ee42422114db7beae7062b1c40689b932e7ee04ae21220b36c9558abc1bb43e71ed7f798cedbdd5ea0bcc751b7b6#npm:2.0.18"],\
             ["@tailwindcss/forms", "virtual:fd3e5e22479bc32ccbf79fd34ace5501ab44ee42422114db7beae7062b1c40689b932e7ee04ae21220b36c9558abc1bb43e71ed7f798cedbdd5ea0bcc751b7b6#npm:0.5.3"],\

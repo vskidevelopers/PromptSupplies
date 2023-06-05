@@ -46,7 +46,7 @@ export default function WhyChooseUs() {
     <div className="bg-slate-100">
       <div className="container mx-auto px-10 py-20 ">
         <div className="relative flex flex-col justify-center items-center py-10">
-          <div className="w-1/2 text-start">
+          <div className="w-full md:w-1/2 text-start">
             <h2 className="text-[#FDB715] text-md font-semibold uppercase ">
               Why Choose Us
             </h2>
@@ -56,7 +56,7 @@ export default function WhyChooseUs() {
             </h1>
           </div>
           <div className="absolute top-0 left-0 h-full w-full flex justify-end items-center opacity-10">
-            <h1 className="text-9xl font-bold">Experts</h1>
+            <h1 className="text-7xl md:text-9xl font-bold">Experts</h1>
           </div>
         </div>
 

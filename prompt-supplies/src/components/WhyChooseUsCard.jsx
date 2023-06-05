@@ -3,7 +3,7 @@ import React from "react";
 function WhyChooseUsCard({ icon, reason, description }) {
   return (
     <div>
-      <div className="flex items-start gap-4">
+      <div className="flex flex-col md:flex-row  items-start gap-4">
         <span className="shrink-0 rounded-lg bg-[#FDB715] p-4">{icon}</span>
 
         <div>

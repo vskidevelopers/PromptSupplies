@@ -2,7 +2,7 @@ import React from "react";
 
 export default function QuotationDivider() {
   return (
-    <div className="relative h-52 ">
+    <div className="relative h-64 md:h-52 ">
       {/* Background Image */}
       <div
         className="absolute inset-0 h-full w-full bg-cover bg-center"
@@ -14,10 +14,10 @@ export default function QuotationDivider() {
         {/* Black Shade Overlay */}
         <div className="absolute inset-0 h-full w-full bg-[#FDB715]/80"></div>
       </div>
-      <div className="absolute h-full w-full container mx-auto px-20 text-white ">
-        <div className="h-full w-full  flex justify-between items-center ">
-          <div className="w-3/5">
-            <h2 className="text-3xl font-bold">
+      <div className="absolute h-full w-full container mx-auto px-5 py-4 md:px-20 text-white ">
+        <div className="h-full w-full  flex flex-col md:flex-row justify-between items-baseline md:items-center ">
+          <div className="w-full md:w-3/5">
+            <h2 className="text-end md:text-start text-2xl md:text-3xl font-bold">
               You Always Get the Best Guidance
             </h2>
             <p>
@@ -27,8 +27,8 @@ export default function QuotationDivider() {
               Personalized Quote Today"
             </p>
           </div>
-          <div className="pt-5">
-            <button className="border border-white text-md text-white hover:text-black hover:border-white hover:bg-[#FDB715] py-4 px-8">
+          <div className="pt-5 w-full md:w-auto">
+            <button className="w-full bg-white md:bg-transparent text-[#FDB715] md:border md:border-white text-md md:text-white hover:text-black hover:border-white hover:bg-[#FDB715] py-4 px-8">
               Request a quote
             </button>
           </div>

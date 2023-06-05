@@ -5,7 +5,7 @@ export default function ComingSoon() {
   return (
     <div className="flex items-center justify-center h-screen bg-gradient-to-r from-sky-600 to-violet-500  backdrop-filter backdrop-blur-lg text-white">
       <div className=" p-6  rounded-lg ">
-        <h1 className="text-8xl font-bold mb-6 ">Coming Soon</h1>
+        <h1 className="text-6xl md:text-8xl font-bold mb-6 ">Coming Soon</h1>
         <div className="max-w-md grid mx-auto">
           <p className="text-lg mb-8 text-center">
             In the meantime, Sign up for our monthly newsletter to stay up to

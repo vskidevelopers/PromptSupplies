@@ -3,9 +3,9 @@ import React from "react";
 export default function Team() {
   return (
     <div>
-      <div className="container mx-auto px-20">
+      <div className="container mx-auto px-5 md:px-20">
         <div className="relative flex flex-col justify-center items-center py-10">
-          <div className="w-1/2 text-center">
+          <div className="w-full md:w-1/2 text-start md:text-center">
             <h2 className="text-[#FDB715] text-md font-semibold uppercase ">
               Meet the Team
             </h2>
@@ -13,14 +13,14 @@ export default function Team() {
               Empowering Organizations through Result-Driven Solutions
             </h1>
           </div>
-          <div className="absolute top-0 left-0 h-full w-full flex justify-start items-center opacity-10">
-            <h1 className="text-9xl font-bold">Team</h1>
+          <div className="absolute top-0 left-0 h-full w-full flex justify-end md:justify-start items-center opacity-10">
+            <h1 className="text-7xl md:text-9xl font-bold">Team</h1>
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-4 my-5">
-          <div className="flex gap-2 items-center">
-            <div className="">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-5">
+          <div className="col-span-2 md:col-span-1 flex flex-col-reverse md:flex-row gap-2 items-center">
+            <div className="w-1/2 md:w-auto  flex justify-evenly md:block">
               <p>IG</p>
               <p>FB</p>
               <p>TW</p>
@@ -57,7 +57,7 @@ export default function Team() {
           <div className="mt-5 col-span-3 border border-[#FDB715] border-bottom-2"></div>
         </div>
 
-        <div className="grid grid-cols-3 gap-4 my-5 ">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-5 ">
           <div className="col-span-2 flex items-center">
             <div className="text-end">
               <h2 className="font-bold mb-2 text-[#FDB715]">Name</h2>
@@ -74,7 +74,7 @@ export default function Team() {
             </div>
           </div>
           {/* Right Div */}
-          <div className="flex gap-2 items-center">
+          <div className="col-span-2 md:col-span-1 flex flex-col md:flex-row gap-2 items-center">
             <div>
               <div className="rounded-full overflow-clip">
                 <img
@@ -85,7 +85,7 @@ export default function Team() {
               </div>
             </div>
 
-            <div className="">
+            <div className="w-1/2 flex justify-evenly md:w-auto md:block ">
               <p>IG</p>
               <p>FB</p>
               <p>TW</p>

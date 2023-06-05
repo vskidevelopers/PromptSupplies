@@ -16,6 +16,7 @@ import Contact from "./pages/Contact";
 import Services from "./pages/Services";
 import Features from "./pages/Features";
 import About from "./pages/About";
+import Advert from "./pages/Advert";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,6 +28,7 @@ const router = createBrowserRouter(
         <Route path="features" element={<Features />} />
         <Route path="services" element={<Services />} />
         <Route path="contact" element={<Contact />} />
+        <Route path="advertise" element={<Advert />} />
       </Route>
 
       {/* Admin-Related Routes */}

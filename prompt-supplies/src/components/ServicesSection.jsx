@@ -20,10 +20,10 @@ export default function ServicesSection() {
     // Add more services as needed
   ];
   return (
-    <div className="container mx-auto px-20">
+    <div className="container mx-auto px-10 md:px-20">
       {/* Title */}
       <div className="relative flex flex-col justify-center items-center py-10">
-        <div className="w-1/2 text-end">
+        <div className="w-full md:w-1/2 md:text-end">
           <h2 className="text-[#FDB715] text-md font-semibold uppercase ">
             our services
           </h2>
@@ -32,12 +32,12 @@ export default function ServicesSection() {
           </h1>
         </div>
         <div className="absolute top-0 left-0 h-full w-full flex justify-start items-center opacity-10">
-          <h1 className="text-9xl font-bold">Services</h1>
+          <h1 className="text-7xl md:text-9xl font-bold">Services</h1>
         </div>
       </div>
 
       {/* Grid Div */}
-      <div className="grid grid-cols-3 gap-3 my-5">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 my-5">
         {services.map((service, i) => (
           <ServiceMiniCard key={i} title={service.title} icon={service.icon} />
         ))}

@@ -14,7 +14,7 @@ export default function Home() {
       <IntroSection />
       <ServicesSection />
       <QuotationDivider />
-      <AdvertSlider />
+
       <WhyChooseUs />
       <PartnersSlider />
     </div>

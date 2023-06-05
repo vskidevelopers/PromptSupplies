@@ -80,7 +80,7 @@ export default function Services() {
       />
       <div className="py-16 ">
         <div className="relative flex flex-col justify-center items-center mb-16">
-          <div className="w-1/2 text-center">
+          <div className="w-full md:w-1/2 pl-4 text-start md:text-center">
             <h2 className="text-[#FDB715] text-md font-semibold uppercase ">
               Our Services
             </h2>
@@ -89,12 +89,12 @@ export default function Services() {
             </h1>
           </div>
           <div className="absolute top-0 left-0 h-full w-full flex justify-center items-center opacity-10 ">
-            <h1 className="text-9xl font-bold ">Services</h1>
+            <h1 className="text-7xl md:text-9xl font-bold ">Services</h1>
           </div>
         </div>
 
         {/* SERVICE  GRID*/}
-        <div className="grid grid-cols-3 gap-3 container mx-auto px-20">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 container mx-auto px-5 md:px-20">
           {serviceList.map((service, i) => (
             <ServicesCard
               key={i}

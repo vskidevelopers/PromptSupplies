@@ -16,10 +16,10 @@ export default function PartnersSlider() {
     "https://cdn.dribbble.com/users/261302/screenshots/1361907/logoplaceholder.png",
   ];
   return (
-    <div className="container mx-auto px-20 my-5">
+    <div className="container mx-auto px-5 md:px-20 my-5">
       {/* Title */}
       <div className="relative flex flex-col justify-center items-center py-10">
-        <div className="w-1/2 text-end">
+        <div className="w-full md:w-1/2 text-end">
           <h2 className="text-[#FDB715] text-md font-semibold uppercase ">
             our partners
           </h2>
@@ -28,7 +28,7 @@ export default function PartnersSlider() {
           </h1>
         </div>
         <div className="absolute top-0 left-0 h-full w-full flex justify-start items-center opacity-10">
-          <h1 className="text-9xl font-bold">Partners</h1>
+          <h1 className="text-7xl md:text-9xl font-bold">Partners</h1>
         </div>
       </div>
 

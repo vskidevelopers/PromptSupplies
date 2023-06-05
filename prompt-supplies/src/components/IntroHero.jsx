@@ -35,10 +35,10 @@ export default function IntroHero() {
               {/* Black Shade Overlay */}
               <div className="absolute inset-0 h-full w-full bg-[#181b1c]/75"></div>
             </div>
-            <div className="absolute h-full w-full container mx-auto px-20 text-white ">
-              <div className="h-full w-full  flex justify-start items-center ">
-                <div className="w-3/4">
-                  <h2 className="text-7xl font-bold">
+            <div className="absolute h-full container mx-auto px-5 md:px-20 text-white ">
+              <div className="h-full flex justify-start items-center ">
+                <div className="w-full md:w-3/4">
+                  <h2 className="text-4xl md:text-7xl font-bold">
                     Choose right solution fot your business
                   </h2>
                   <p className="mt-5">
@@ -70,12 +70,12 @@ export default function IntroHero() {
               }}
             >
               {/* Black Shade Overlay */}
-              <div className="absolute inset-0 h-full w-full bg-[#181b1c]/75"></div>
+              <div className="absolute inset-0 h-full bg-[#181b1c]/75"></div>
             </div>
-            <div className="absolute h-full w-full container mx-auto px-20 text-white ">
-              <div className="h-full w-full  flex justify-start items-center ">
-                <div className="w-3/4">
-                  <h2 className="text-7xl font-bold">
+            <div className="absolute h-full container mx-auto px-5 md:px-20 text-white ">
+              <div className="h-full flex justify-start items-center ">
+                <div className="w-full md:w-3/4">
+                  <h2 className="text-4xl md:text-7xl font-bold">
                     We will help you to grow your business
                   </h2>
                   <p className="mt-5">

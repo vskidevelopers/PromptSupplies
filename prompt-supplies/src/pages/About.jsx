@@ -22,9 +22,9 @@ function About() {
         image="https://images.pexels.com/photos/1181415/pexels-photo-1181415.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
       />
       <div className="py-16 relative">
-        <div className="container mx-auto px-20">
-          <div className="absolute -top-32 left-10 container">
-            <div className=" flex flex-row justify-between gap gap-3">
+        <div className="container mx-auto px-5 md:px-20">
+          <div className="initial md:absolute -top-32 left-10 container">
+            <div className=" flex flex-col md:flex-row justify-between gap gap-3">
               <FloatingCards
                 basis="basis-1/3"
                 title="Our Mission"

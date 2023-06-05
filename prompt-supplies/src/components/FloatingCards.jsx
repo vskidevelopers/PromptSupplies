@@ -12,7 +12,7 @@ export default function FloatingCards({
   return (
     <div className={`${basis} h-64`}>
       <div className="h-full border border-[#FDB715] bg-white p-4 shadow-xl sm:p-6 lg:p-8">
-        <div className="flex items-center">
+        <div className="flex items-end justify-center md:justify-start">
           {icon}
 
           <h3 className="mt-3 text-lg font-bold  sm:text-xl">{title}</h3>
