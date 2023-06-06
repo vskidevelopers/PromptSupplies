@@ -16,7 +16,7 @@ export default function LeaderDivider() {
                 Meet the Team Leader
               </h2>
               <div className="w-full md:w-3/4">
-                <h1 className="text-3xl font-bold ">
+                <h1 className="text-3xl font-bold capitalize">
                   Empowering Organizations through Result-Driven Solutions
                 </h1>
               </div>

@@ -23,7 +23,7 @@ export default function PartnersSlider() {
           <h2 className="text-[#FDB715] text-md font-semibold uppercase ">
             our partners
           </h2>
-          <h1 className="text-3xl font-bold">
+          <h1 className="text-3xl font-bold capitalize">
             Powerful Collaborations: Trusted Partnerships for Success
           </h1>
         </div>

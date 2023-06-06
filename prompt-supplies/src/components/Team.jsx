@@ -9,7 +9,7 @@ export default function Team() {
             <h2 className="text-[#FDB715] text-md font-semibold uppercase ">
               Meet the Team
             </h2>
-            <h1 className="text-3xl font-bold">
+            <h1 className="text-3xl font-bold capitalize">
               Empowering Organizations through Result-Driven Solutions
             </h1>
           </div>

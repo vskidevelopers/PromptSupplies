@@ -24,13 +24,13 @@ function ServicesCard({ icon, title, description }) {
               />
             </svg> */}
             <img src={icon} alt={icon} />
-            <h2 className="mt-4 text-xl font-medium sm:text-2xl text-[#FDB715]">
+            <h2 className="mt-4 text-xl font-medium sm:text-2xl text-[#FDB715] capitalize">
               {title}
             </h2>
           </div>
 
           <div className="absolute p-4 opacity-0 transition-opacity group-hover:relative group-hover:opacity-100 sm:p-6 lg:p-8">
-            <h3 className="mt-4 text-xl font-medium sm:text-2xl text-[#FDB715]">
+            <h3 className="mt-4 text-xl font-medium sm:text-2xl text-[#FDB715] capitalize">
               {title}
             </h3>
 

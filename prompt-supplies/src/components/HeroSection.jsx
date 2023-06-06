@@ -17,7 +17,7 @@ const HeroSection = ({ tagline, image, title }) => {
       </div>
       {/* Heading Tag */}
       <div className="absolute inset-0 flex pl-10 flex-col justify-center items-start text-white">
-        <h1 className="text-5xl md:text-6xl font-bold  font-serif">
+        <h1 className="text-5xl md:text-6xl font-bold  font-serif capitalize">
           {tagline ? tagline : title}
         </h1>
         {/* Breadcrumb */}

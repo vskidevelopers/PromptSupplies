@@ -17,7 +17,7 @@ export default function QuotationDivider() {
       <div className="absolute h-full w-full container mx-auto px-5 py-4 md:px-20 text-white ">
         <div className="h-full w-full  flex flex-col md:flex-row justify-between items-baseline md:items-center ">
           <div className="w-full md:w-3/5">
-            <h2 className="text-end md:text-start text-2xl md:text-3xl font-bold">
+            <h2 className="text-end md:text-start text-2xl md:text-3xl font-bold capitalize">
               You Always Get the Best Guidance
             </h2>
             <p>

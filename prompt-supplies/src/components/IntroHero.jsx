@@ -38,14 +38,14 @@ export default function IntroHero() {
             <div className="absolute h-full container mx-auto px-5 md:px-20 text-white ">
               <div className="h-full flex justify-start items-center ">
                 <div className="w-full md:w-3/4">
-                  <h2 className="text-4xl md:text-7xl font-bold">
-                    Choose right solution fot your business
+                  <h2 className="text-4xl md:text-7xl font-bold capitalize">
+                    Choose right solution for your business
                   </h2>
                   <p className="mt-5">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                    Iusto neque aut facere saepe dicta sit nemo voluptatem,
-                    ipsum mollitia minus suscipit fuga non quisquam? Fugit
-                    quidem maxime possimus reprehenderit dolorem?
+                    Unlock Business Potential with Effective Solutions:
+                    Seamlessly integrate Bulk SMS, Promotional SMS, Bulk
+                    Emailing, and more to elevate customer engagement and propel
+                    business growth
                   </p>
                   <div className="pt-5">
                     <button className="border border-[#FDB715] text-md text-[#FDB715] hover:text-black hover:border-white hover:bg-[#FDB715] py-4 px-8">
@@ -75,14 +75,13 @@ export default function IntroHero() {
             <div className="absolute h-full container mx-auto px-5 md:px-20 text-white ">
               <div className="h-full flex justify-start items-center ">
                 <div className="w-full md:w-3/4">
-                  <h2 className="text-4xl md:text-7xl font-bold">
+                  <h2 className="text-4xl md:text-7xl font-bold capitalize">
                     We will help you to grow your business
                   </h2>
                   <p className="mt-5">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                    Iusto neque aut facere saepe dicta sit nemo voluptatem,
-                    ipsum mollitia minus suscipit fuga non quisquam? Fugit
-                    quidem maxime possimus reprehenderit dolorem?
+                    Bridge the Gap between Technologies with Web Development,
+                    System Development, and API Integration, empowering
+                    businesses to thrive in the digital landscape
                   </p>
                   <div className="pt-5">
                     <button className="border border-[#FDB715] text-md text-[#FDB715] hover:text-black hover:border-white hover:bg-[#FDB715] py-4 px-8">

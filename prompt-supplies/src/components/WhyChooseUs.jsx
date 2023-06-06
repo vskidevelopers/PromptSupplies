@@ -50,7 +50,7 @@ export default function WhyChooseUs() {
             <h2 className="text-[#FDB715] text-md font-semibold uppercase ">
               Why Choose Us
             </h2>
-            <h1 className="text-3xl font-bold">
+            <h1 className="text-3xl font-bold capitalize">
               Experience the Difference: Elevate Your Business with Our
               Expertise
             </h1>
