@@ -60,20 +60,21 @@ export default function UserNavbar() {
               <div className="flex flex-1 items-center justify-end pl-10 md:justify-center sm:items-center sm:justify-around">
                 <div className="hidden sm:ml-6 sm:block w-1/2">
                   <div className="flex space-x-4">
-                    {navigation.map((item) => (
-                      <Link
-                        key={item.name}
-                        to={item.href}
-                        className={classNames(
-                          item.current
-                            ? "bg-[#FDB715] text-black"
-                            : "hover:border-b-2 hover:border-[#FDB715] hover:text-gray-900",
-                          "rounded-md px-3 py-2 text-sm font-medium "
-                        )}
-                        aria-current={item.current ? "page" : undefined}
-                      >
-                        {item.name}
-                      </Link>
+                    {navigation.map((item, i) => (
+                      <span key={i}>
+                        <Link
+                          to={item.href}
+                          className={classNames(
+                            item.current
+                              ? "bg-[#FDB715] text-black"
+                              : "hover:border-b-2 hover:border-[#FDB715] hover:text-gray-900",
+                            "rounded-md px-3 py-2 text-sm font-medium "
+                          )}
+                          aria-current={item.current ? "page" : undefined}
+                        >
+                          {item.name}
+                        </Link>
+                      </span>
                     ))}
                   </div>
                 </div>
@@ -191,11 +192,11 @@ export default function UserNavbar() {
                 {navigation.map((item) => (
                   <Disclosure.Button
                     key={item.name}
-                    as="a"
-                    href={item.href}
+                    as={Link}
+                    to={item.href}
                     className={classNames(
                       item.current
-                        ? "text-gray-700 "
+                        ? "text-gray-700"
                         : "text-gray-600 hover:bg-gray-700 hover:text-white",
                       "block rounded-md px-3 py-2 text-base font-medium border-b border-[#FDB715]"
                     )}
