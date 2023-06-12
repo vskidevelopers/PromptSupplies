@@ -1,4 +1,3 @@
-import React from "react";
 import promotionalSmsIcon from "../assets/svgs/promotional_sms.svg";
 import bulkEmailIcon from "../assets/svgs/bulk_email.svg";
 import bulkSmsIcon from "../assets/svgs/bulk_sms.svg";
@@ -10,13 +9,48 @@ import ServiceMiniCard from "./ServiceMiniCard";
 
 export default function ServicesSection() {
   const services = [
-    { icon: promotionalSmsIcon, title: "Promotional Messages" },
-    { icon: bulkSmsIcon, title: "Bulk SMS Services" },
-    { icon: bulkEmailIcon, title: "Bulk Email Services" },
-    { icon: apiIntergrationIcon, title: "API Integrations" },
-    { icon: webDevIcon, title: "Web Development" },
-    { icon: systemDevIcon, title: "System Development" },
-    { icon: merchandiseIcon, title: "Merchandise Branding" },
+    {
+      icon: promotionalSmsIcon,
+      title: "Promotional Messages",
+      image:
+        "https://img.freepik.com/premium-photo/hand-businessman-using-smartphone-email-with-notification-alert_112554-914.jpg?w=740",
+    },
+    {
+      icon: bulkSmsIcon,
+      title: "Bulk SMS Services",
+      image:
+        "https://img.freepik.com/free-photo/social-media-marketing-concept-marketing-with-applications_23-2150063130.jpg?w=740&t=st=1686594005~exp=1686594605~hmac=dc30519a238aa14179d195e0e48b60a718214d3ae2cb6a7017ef66dff7ae8d09",
+    },
+    {
+      icon: bulkEmailIcon,
+      title: "Bulk Email Services",
+      image:
+        "https://img.freepik.com/premium-photo/electronic-communication-graphics-concept-business-using-laptop-with-email-icon-email-inbox_27634-686.jpg?w=740",
+    },
+    {
+      icon: apiIntergrationIcon,
+      title: "API Integrations",
+      image:
+        "https://img.freepik.com/premium-photo/api-application-programming-interface-development-technology-concept_524876-487.jpg?w=740",
+    },
+    {
+      icon: webDevIcon,
+      title: "Web Development",
+      image:
+        "https://img.freepik.com/free-photo/programming-background-with-person-working-with-codes-computer_23-2150010125.jpg?w=740&t=st=1686600660~exp=1686601260~hmac=94bfbcdfb20f83c4be63906361a2562554b6c9b7566574d27cd5505ee59c1e93",
+    },
+    {
+      icon: systemDevIcon,
+      title: "System Development",
+      image:
+        "https://img.freepik.com/free-photo/rpa-concept-with-blurry-hand-touching-screen_23-2149311914.jpg?w=740&t=st=1686594335~exp=1686594935~hmac=5d79a70781dcdf090fba8f888346aebb6ead279dc5be5fbd488de8d089fe7a61",
+    },
+    {
+      icon: merchandiseIcon,
+      title: "Merchandise Branding",
+      image:
+        "https://img.freepik.com/premium-photo/illustration-colorful-bulb-with-splash-colors-white-background-creativity-eureka-imagination-inspiration-generative-ai-idea-solution-concept_620624-6732.jpg?w=740",
+    },
     // Add more services as needed
   ];
   return (
@@ -39,7 +73,12 @@ export default function ServicesSection() {
       {/* Grid Div */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3 my-5">
         {services.map((service, i) => (
-          <ServiceMiniCard key={i} title={service.title} icon={service.icon} />
+          <ServiceMiniCard
+            key={i}
+            title={service.title}
+            icon={service.icon}
+            backgroundImage={service.image}
+          />
         ))}
       </div>
     </div>

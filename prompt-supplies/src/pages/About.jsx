@@ -13,6 +13,10 @@ function About() {
     "Collaboration",
     "Results-Driven",
     "Adaptability",
+    "Reliability ",
+    "Privacy and data security Transparency ",
+    "Compliance ",
+    "Quality Assurance",
   ];
   return (
     <>
@@ -26,7 +30,7 @@ function About() {
           <div className="initial md:absolute -top-32 left-10 container">
             <div className=" flex flex-col md:flex-row justify-between gap gap-3">
               <FloatingCards
-                basis="basis-1/3"
+                basis="basis-1/4"
                 title="Our Mission"
                 description="Empowering businesses through innovative marketing solutions for
           enhanced brand visibility, customer engagement, and accelerated
@@ -34,13 +38,13 @@ function About() {
                 icon={<StarIcon className="h-8 w-8 text-[#FDB715] mr-5" />}
               />
               <FloatingCards
-                basis="basis-1/3"
+                basis="basis-1/4"
                 title="Our Vision"
                 description="To be a global leader in transformative marketing solutions, revolutionizing the industry with innovative strategies and technologies. We are committed to delivering outstanding results, fostering excellence, and sustainable growth."
                 icon={<EyeIcon className="h-8 w-8 text-[#FDB715] mr-5" />}
               />
               <FloatingCards
-                basis="basis-1/3"
+                basis="basis-1/2"
                 list={true}
                 title="Our Core Values"
                 description={coreValues}

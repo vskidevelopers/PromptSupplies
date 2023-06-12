@@ -1,9 +1,44 @@
-import React from "react";
+import { motion, useViewportScroll, useTransform } from "framer-motion";
 import ChecklistItem from "./ChecklistItem";
 import businessSvg from "../assets/svgs/business_analytics.svg";
 import { CheckCircleIcon } from "@heroicons/react/24/solid";
 
 export default function IntroSection() {
+  const specialty = [
+    {
+      listItem: "promotional messages",
+      icon: <CheckCircleIcon className="h-4 w-4 text-sky-600" />,
+    },
+    {
+      listItem: "bulk SMS services",
+      icon: <CheckCircleIcon className="h-4 w-4 text-sky-600" />,
+    },
+    {
+      listItem: "bulk email services",
+      icon: <CheckCircleIcon className="h-4 w-4 text-sky-600" />,
+    },
+    {
+      listItem: "API integration",
+      icon: <CheckCircleIcon className="h-4 w-4 text-sky-600" />,
+    },
+    {
+      listItem: "web development",
+      icon: <CheckCircleIcon className="h-4 w-4 text-sky-600" />,
+    },
+    {
+      listItem: "system development",
+      icon: <CheckCircleIcon className="h-4 w-4 text-sky-600" />,
+    },
+    {
+      listItem: "merchandise branding",
+      icon: <CheckCircleIcon className="h-4 w-4 text-sky-600" />,
+    },
+  ];
+
+  const { scrollYProgress } = useViewportScroll();
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [0, 1]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], [0.5, 1]);
+
   return (
     <div className="bg-slate-100">
       <div className="container mx-auto px-10 py-20 ">
@@ -30,34 +65,14 @@ export default function IntroSection() {
                   marketing solutions, specializing in:{" "}
                 </p>
                 <span className="my-5 grid grid-cols-1 md:grid-cols-2 gap w-full md:w-3/5">
-                  <ChecklistItem
-                    listItem="promotional messages"
-                    icon={<CheckCircleIcon className="h-4 w-4 text-sky-600" />}
-                  />
-                  <ChecklistItem
-                    listItem="bulk SMS services"
-                    icon={<CheckCircleIcon className="h-4 w-4 text-sky-600" />}
-                  />
-                  <ChecklistItem
-                    listItem="bulk email services"
-                    icon={<CheckCircleIcon className="h-4 w-4 text-sky-600" />}
-                  />
-                  <ChecklistItem
-                    listItem=" API integration"
-                    icon={<CheckCircleIcon className="h-4 w-4 text-sky-600" />}
-                  />
-                  <ChecklistItem
-                    listItem="web development"
-                    icon={<CheckCircleIcon className="h-4 w-4 text-sky-600" />}
-                  />
-                  <ChecklistItem
-                    listItem=" system development"
-                    icon={<CheckCircleIcon className="h-4 w-4 text-sky-600" />}
-                  />
-                  <ChecklistItem
-                    listItem=" merchandise branding"
-                    icon={<CheckCircleIcon className="h-4 w-4 text-sky-600" />}
-                  />
+                  {specialty.map((item) => (
+                    <ChecklistItem
+                      key={item.listItem}
+                      listItem={item.listItem}
+                      icon={item.icon}
+                      py="py-2"
+                    />
+                  ))}
                 </span>
                 <p>
                   With our comprehensive range of services, we help businesses
@@ -69,9 +84,9 @@ export default function IntroSection() {
           </div>
 
           {/* Right Svg/Image */}
-          <div className="h-full ">
+          <motion.div style={{ opacity, scale }} className="h-full">
             <img src={businessSvg} alt=".." height="500px" />
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>

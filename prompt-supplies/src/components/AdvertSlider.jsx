@@ -7,10 +7,10 @@ import "swiper/css/pagination";
 
 export default function AdvertSlider() {
   const images = [
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiguBneqOgOx1MUqJ3lq9kJhJGodCTB-5bcDQiheOVeZWThRtalkAsZCr7mbRDTeJ4Wm0",
-    "https://thememiles.com/blog/wp-content/uploads/2020/05/go-for-better-advertise-with-us-840x740-1.jpg",
-    "https://thumbs.dreamstime.com/b/cropped-view-business-partners-shaking-hands-background-cropped-view-investor-businessman-shaking-hands-208074434.jpg",
-    "https://media.tegna-media.com/assets/WOI/images/8b9a0239-cae0-4e66-81ba-6b3b65c324ac/8b9a0239-cae0-4e66-81ba-6b3b65c324ac_750x422.png",
+    "https://img.freepik.com/free-psd/horizontal-banner-template-black-friday-clearance_23-2148745446.jpg?w=900&t=st=1686608963~exp=1686609563~hmac=ab842d50f5dcde032164ac300b7fb54935328fe0e0ae5e4b770603218aeeb02d",
+    "https://img.freepik.com/free-psd/banner-corporate-ad-template_23-2148788938.jpg?w=900&t=st=1686609116~exp=1686609716~hmac=dc5c1b22d8386ac42b7f8e13ac7aa614c8c263f81d4ca2167b95229cade85761",
+    "https://img.freepik.com/free-psd/business-company-banner-template_23-2148924998.jpg?w=900&t=st=1686609158~exp=1686609758~hmac=27806a2bfe6d9422dc4b7ee7923df6bddf37d70de22fb801dc22c3b5ce0f7d40",
+    "https://img.freepik.com/free-vector/creative-hiring-landing-page-template_52683-44620.jpg?w=740&t=st=1686609279~exp=1686609879~hmac=35dd40078e71f2d29f0c8f79c1ef1f1d7b1bf676cb1fdfd9f4f4100456b17b01",
   ];
   return (
     <>

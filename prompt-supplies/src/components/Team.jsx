@@ -1,4 +1,3 @@
-import React from "react";
 import sales from "../assets/images/sales.jpg";
 import insta from "../assets/svgs/insta.svg";
 import fb from "../assets/svgs/fb.svg";
@@ -13,7 +12,6 @@ export default function Team() {
             <h2 className="text-[#FDB715] text-md font-semibold uppercase ">
               Meet the Team
             </h2>
-            x
             <h1 className="text-3xl font-bold capitalize">
               Empowering Organizations through Result-Driven Solutions
             </h1>
@@ -51,12 +49,12 @@ export default function Team() {
                 sales@promptsupplies.co.ke
               </h2>
               <h2>
-                Priscah is a seasoned sales and marketing professional with a
+                Prisca is a seasoned sales and marketing professional with a
                 strong track record of driving business growth and exceeding
                 targets. With several years of experience in the industry, she
                 possesses a deep understanding of various sales and marketing
-                strategies, customer acquisition, and market analysis. Priscah
-                is highly skilled in developing and implementing effective sales
+                strategies, customer acquisition, and market analysis. Prisca is
+                highly skilled in developing and implementing effective sales
                 plans, creating innovative marketing campaigns, and building
                 strong relationships with clients and stakeholders. Her
                 exceptional communication and negotiation abilities, coupled
@@ -78,14 +76,19 @@ export default function Team() {
                 developer@promptsupplies.co.ke
               </h2>
               <h2 className="text-start">
-                I'm Ben, a dedicated full-stack web developer and software
-                engineer with three years of hands-on experience. My expertise
-                lies in utilizing the power of React and Django to create robust
-                and efficient systems. I am passionate about crafting innovative
-                solutions that meet the unique needs of businesses. Working
-                alongside clients and stakeholders, I aim to build strong and
-                lasting relationships while driving the success of their
-                projects.
+                Bernard holds a Bachelor&apos;s degree in Business Information
+                Technology, a highly skilled and dedicated developer. With a
+                passion for technology and a keen eye for detail, Bernard brings
+                a unique blend of technical expertise and business acumen to
+                every project he undertakes. His commitment to excellence and
+                continuous learning has enabled him to stay at the forefront of
+                technological advancements, making him a valuable asset in the
+                ever-evolving digital landscape. His educational background has
+                equipped him with a solid foundation in programming languages,
+                database management, systems analysis, and software development
+                methodologies. This multidisciplinary approach allows him to
+                bridge the gap between technical complexities and organizational
+                objectives.
               </h2>
             </div>
           </div>

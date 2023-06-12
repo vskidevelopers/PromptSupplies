@@ -19,10 +19,11 @@ export default function FloatingCards({
         </div>
 
         {list ? (
-          <span className="grid grid-cols-2 gap gap-2">
+          <span className="grid grid-cols-3 gap gap-2">
             {description.map((item, i) => (
               <ChecklistItem
                 key={i}
+                py="py-1"
                 listItem={item}
                 icon={<CheckCircleIcon className="h-4 w-4 text-[#FDB715]" />}
               />
