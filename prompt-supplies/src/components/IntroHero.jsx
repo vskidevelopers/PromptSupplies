@@ -1,10 +1,6 @@
 import React, { useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, A11y, Autoplay } from "swiper";
+import { motion } from "framer-motion";
 import background from "../assets/videos/background.mp4";
-
-import "swiper/css";
-import "swiper/css/navigation";
 
 export default function IntroHero() {
   const [isLoading, setIsLoading] = useState(true);
@@ -15,94 +11,6 @@ export default function IntroHero() {
 
   return (
     <div className="h-screen">
-      {/* <Swiper
-        modules={[Navigation, Autoplay, A11y]}
-        spaceBetween={50}
-        slidesPerView={1}
-        autoplay={{
-          delay: 10000,
-          disableOnInteraction: false,
-        }}
-        navigation
-        onSlideChange={() => console.log("slide change")}
-        onSwiper={(swiper) => console.log(swiper)}
-        className="h-full"
-      >
-        <SwiperSlide>
-          {" "}
-          <div className="relative h-full ">
-            
-            <div
-              className="absolute inset-0 h-full w-full bg-cover bg-center"
-              style={{
-                backgroundImage:
-                  "url('https://t3.ftcdn.net/jpg/02/18/65/58/360_F_218655870_yaQvQxD9n4mFIUFIx082pmhP4PqC4Elt.jpg')",
-              }}
-            >
-              
-              <div className="absolute inset-0 h-full w-full bg-[#181b1c]/75"></div>
-            </div>
-            <div className="absolute h-full container mx-auto px-5 md:px-20 text-white ">
-              <div className="h-full flex justify-start items-center ">
-                <div className="w-full md:w-3/4">
-                  <h2 className="text-4xl md:text-7xl font-bold capitalize">
-                    Choose right solution for your business
-                  </h2>
-                  <p className="mt-5">
-                    Unlock Business Potential with Effective Solutions:
-                    Seamlessly integrate Bulk SMS, Promotional SMS, Bulk
-                    Emailing, and more to elevate customer engagement and propel
-                    business growth
-                  </p>
-                  <div className="pt-5">
-                    <button className="border border-[#FDB715] text-md text-[#FDB715] hover:text-black hover:border-white hover:bg-[#FDB715] py-4 px-8">
-                      Read More
-                    </button>
-                  </div>
-                </div>
-                <div className="w-1/4"></div>
-              </div>
-            </div>{" "}
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          {" "}
-          <div className="relative h-full ">
-            <div
-              className="absolute inset-0 h-full w-full bg-cover bg-center"
-              style={{
-                backgroundImage:
-                  "url('https://img.freepik.com/premium-photo/portrait-young-businessman-with-disability-participating-meeting-with-managers_236854-41118.jpg')",
-              }}
-            >
-
-              <div className="absolute inset-0 h-full bg-[#181b1c]/75"></div>
-            </div>
-            <div className="absolute h-full container mx-auto px-5 md:px-20 text-white ">
-              <div className="h-full flex justify-start items-center ">
-                <div className="w-full md:w-3/4">
-                  <h2 className="text-4xl md:text-7xl font-bold capitalize">
-                    We will help you to grow your business
-                  </h2>
-                  <p className="mt-5">
-                    Bridge the Gap between Technologies with Web Development,
-                    System Development, and API Integration, empowering
-                    businesses to thrive in the digital landscape
-                  </p>
-                  <div className="pt-5">
-                    <button className="border border-[#FDB715] text-md text-[#FDB715] hover:text-black hover:border-white hover:bg-[#FDB715] py-4 px-8">
-                      Read More
-                    </button>
-                  </div>
-                </div>
-                <div className="w-1/4"></div>
-              </div>
-            </div>{" "}
-          </div>
-        </SwiperSlide>
-      </Swiper> */}
-
-      {/* <h2 className="font-bold text-5xl mt-20">Hello world</h2> */}
       <div className="relative h-full">
         {/* Video Background */}
         <div className="absolute inset-0 h-full w-full">
@@ -134,7 +42,7 @@ export default function IntroHero() {
         </div>
 
         {/* Content */}
-        <div className="absolute h-full container mx-auto px-5 md:px-20 text-white">
+        {/* <div className="absolute h-full container mx-auto px-5 md:px-20 text-white">
           <div className="h-full flex justify-start items-center">
             <div className="w-full md:w-3/4">
               <h2 className="text-4xl md:text-7xl font-bold capitalize">
@@ -150,6 +58,36 @@ export default function IntroHero() {
                   Read More
                 </button>
               </div>
+            </div>
+            <div className="w-1/4"></div>
+          </div>
+        </div> */}
+        <div className="absolute h-full container mx-auto px-5 md:px-20 text-white">
+          <div className="h-full flex justify-start items-center">
+            <div className="w-full md:w-3/4">
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                animate={{
+                  scale: [1, 2, 2, 1, 1],
+                  rotate: [0, 0, 270, 270, 0],
+                  borderRadius: ["20%", "20%", "50%", "50%", "20%"],
+                }}
+                transition={{ duration: 0.8 }}
+              >
+                <h2 className="text-4xl md:text-7xl font-bold capitalize">
+                  Choose the right solution for your business
+                </h2>
+                <p className="mt-5">
+                  Unlock Business Potential with Effective Solutions: Seamlessly
+                  integrate Bulk SMS, Promotional SMS, Bulk Emailing, and more
+                  to elevate customer engagement and propel business growth
+                </p>
+                <div className="pt-5">
+                  <button className="border border-[#FDB715] text-md text-[#FDB715] hover:text-black hover:border-white hover:bg-[#FDB715] py-4 px-8">
+                    Read More
+                  </button>
+                </div>
+              </motion.div>
             </div>
             <div className="w-1/4"></div>
           </div>

@@ -40,6 +40,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-react", "virtual:fd3e5e22479bc32ccbf79fd34ace5501ab44ee42422114db7beae7062b1c40689b932e7ee04ae21220b36c9558abc1bb43e71ed7f798cedbdd5ea0bcc751b7b6#npm:7.32.2"],\
             ["eslint-plugin-react-hooks", "virtual:fd3e5e22479bc32ccbf79fd34ace5501ab44ee42422114db7beae7062b1c40689b932e7ee04ae21220b36c9558abc1bb43e71ed7f798cedbdd5ea0bcc751b7b6#npm:4.6.0"],\
             ["eslint-plugin-react-refresh", "virtual:fd3e5e22479bc32ccbf79fd34ace5501ab44ee42422114db7beae7062b1c40689b932e7ee04ae21220b36c9558abc1bb43e71ed7f798cedbdd5ea0bcc751b7b6#npm:0.3.5"],\
+            ["framer-motion", "virtual:fd3e5e22479bc32ccbf79fd34ace5501ab44ee42422114db7beae7062b1c40689b932e7ee04ae21220b36c9558abc1bb43e71ed7f798cedbdd5ea0bcc751b7b6#npm:10.12.16"],\
             ["postcss", "npm:8.4.23"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:fd3e5e22479bc32ccbf79fd34ace5501ab44ee42422114db7beae7062b1c40689b932e7ee04ae21220b36c9558abc1bb43e71ed7f798cedbdd5ea0bcc751b7b6#npm:18.2.0"],\
@@ -395,6 +396,25 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@emailjs-browser-npm-3.11.0-3a580335bf-fdeb780f49.zip/node_modules/@emailjs/browser/",\
           "packageDependencies": [\
             ["@emailjs/browser", "npm:3.11.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@emotion/is-prop-valid", [\
+        ["npm:0.8.8", {\
+          "packageLocation": "./.yarn/cache/@emotion-is-prop-valid-npm-0.8.8-261a0f2426-bb7ec6d48c.zip/node_modules/@emotion/is-prop-valid/",\
+          "packageDependencies": [\
+            ["@emotion/is-prop-valid", "npm:0.8.8"],\
+            ["@emotion/memoize", "npm:0.7.4"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@emotion/memoize", [\
+        ["npm:0.7.4", {\
+          "packageLocation": "./.yarn/cache/@emotion-memoize-npm-0.7.4-5648cf11b8-4e3920d4ec.zip/node_modules/@emotion/memoize/",\
+          "packageDependencies": [\
+            ["@emotion/memoize", "npm:0.7.4"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -2116,6 +2136,34 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["framer-motion", [\
+        ["npm:10.12.16", {\
+          "packageLocation": "./.yarn/cache/framer-motion-npm-10.12.16-15fa41631a-0ba346fd6e.zip/node_modules/framer-motion/",\
+          "packageDependencies": [\
+            ["framer-motion", "npm:10.12.16"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:fd3e5e22479bc32ccbf79fd34ace5501ab44ee42422114db7beae7062b1c40689b932e7ee04ae21220b36c9558abc1bb43e71ed7f798cedbdd5ea0bcc751b7b6#npm:10.12.16", {\
+          "packageLocation": "./.yarn/__virtual__/framer-motion-virtual-2d10d52479/0/cache/framer-motion-npm-10.12.16-15fa41631a-0ba346fd6e.zip/node_modules/framer-motion/",\
+          "packageDependencies": [\
+            ["framer-motion", "virtual:fd3e5e22479bc32ccbf79fd34ace5501ab44ee42422114db7beae7062b1c40689b932e7ee04ae21220b36c9558abc1bb43e71ed7f798cedbdd5ea0bcc751b7b6#npm:10.12.16"],\
+            ["@emotion/is-prop-valid", "npm:0.8.8"],\
+            ["@types/react", "npm:18.2.7"],\
+            ["@types/react-dom", "npm:18.2.4"],\
+            ["react", "npm:18.2.0"],\
+            ["react-dom", "virtual:fd3e5e22479bc32ccbf79fd34ace5501ab44ee42422114db7beae7062b1c40689b932e7ee04ae21220b36c9558abc1bb43e71ed7f798cedbdd5ea0bcc751b7b6#npm:18.2.0"],\
+            ["tslib", "npm:2.5.3"]\
+          ],\
+          "packagePeers": [\
+            "@types/react-dom",\
+            "@types/react",\
+            "react-dom",\
+            "react"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["fs-minipass", [\
         ["npm:2.1.0", {\
           "packageLocation": "./.yarn/cache/fs-minipass-npm-2.1.0-501ef87306-1b8d128dae.zip/node_modules/fs-minipass/",\
@@ -3648,6 +3696,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-react", "virtual:fd3e5e22479bc32ccbf79fd34ace5501ab44ee42422114db7beae7062b1c40689b932e7ee04ae21220b36c9558abc1bb43e71ed7f798cedbdd5ea0bcc751b7b6#npm:7.32.2"],\
             ["eslint-plugin-react-hooks", "virtual:fd3e5e22479bc32ccbf79fd34ace5501ab44ee42422114db7beae7062b1c40689b932e7ee04ae21220b36c9558abc1bb43e71ed7f798cedbdd5ea0bcc751b7b6#npm:4.6.0"],\
             ["eslint-plugin-react-refresh", "virtual:fd3e5e22479bc32ccbf79fd34ace5501ab44ee42422114db7beae7062b1c40689b932e7ee04ae21220b36c9558abc1bb43e71ed7f798cedbdd5ea0bcc751b7b6#npm:0.3.5"],\
+            ["framer-motion", "virtual:fd3e5e22479bc32ccbf79fd34ace5501ab44ee42422114db7beae7062b1c40689b932e7ee04ae21220b36c9558abc1bb43e71ed7f798cedbdd5ea0bcc751b7b6#npm:10.12.16"],\
             ["postcss", "npm:8.4.23"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:fd3e5e22479bc32ccbf79fd34ace5501ab44ee42422114db7beae7062b1c40689b932e7ee04ae21220b36c9558abc1bb43e71ed7f798cedbdd5ea0bcc751b7b6#npm:18.2.0"],\
@@ -4328,6 +4377,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/ts-interface-checker-npm-0.1.13-0c7b064494-20c29189c2.zip/node_modules/ts-interface-checker/",\
           "packageDependencies": [\
             ["ts-interface-checker", "npm:0.1.13"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["tslib", [\
+        ["npm:2.5.3", {\
+          "packageLocation": "./.yarn/cache/tslib-npm-2.5.3-7756051e02-88902b309a.zip/node_modules/tslib/",\
+          "packageDependencies": [\
+            ["tslib", "npm:2.5.3"]\
           ],\
           "linkType": "HARD"\
         }]\
