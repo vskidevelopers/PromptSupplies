@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
 
+import { Link } from "react-router-dom";
+
 function ServicesCard({ icon, title, description, backgroundImage }) {
   return (
     <div>
@@ -33,7 +35,9 @@ function ServicesCard({ icon, title, description, backgroundImage }) {
 
             <p className="mt-4 text-sm sm:text-base">{description}</p>
 
-            <p className="mt-8 font-bold text-[#FDB715]">Read more</p>
+            <Link to="/service-detail">
+              <p className="mt-8 font-bold text-[#FDB715]">Read more</p>
+            </Link>
           </div>
         </div>
       </div>

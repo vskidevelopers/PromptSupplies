@@ -1,5 +1,7 @@
-import React from "react";
+/* eslint-disable react/prop-types */
+
 import { Link } from "react-router-dom";
+import Typewriter from "typewriter-effect";
 
 const HeroSection = ({ tagline, image, title }) => {
   return (
@@ -17,9 +19,24 @@ const HeroSection = ({ tagline, image, title }) => {
       </div>
       {/* Heading Tag */}
       <div className="absolute inset-0 flex pl-10 flex-col justify-center items-start text-white">
-        <h1 className="text-5xl md:text-6xl font-bold  font-serif capitalize">
-          {tagline ? tagline : title}
-        </h1>
+        {/* <Typewriter
+          options={{
+            // strings: "amplify your reach",
+            autoStart: true,
+            loop: true,
+          }}
+          className="text-5xl md:text-6xl font-bold font-serif capitalize"
+        /> */}
+        <Typewriter
+          options={{
+            wrapperClassName:
+              "text-5xl md:text-6xl font-bold font-serif capitalize",
+            cursorClassName: "text-5xl md:text-6xl font-bold font-serif",
+            strings: [tagline ? tagline : title],
+            autoStart: true,
+            loop: true,
+          }}
+        />
         {/* Breadcrumb */}
         <div className="py-2 text-[#FDB715] ">
           <Link to="/" className="text-white">

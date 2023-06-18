@@ -17,6 +17,7 @@ import Services from "./pages/Services";
 import Features from "./pages/Features";
 import About from "./pages/About";
 import Advert from "./pages/Advert";
+import ServiceDetail from "./pages/ServiceDetail";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,6 +30,7 @@ const router = createBrowserRouter(
         <Route path="services" element={<Services />} />
         <Route path="contact" element={<Contact />} />
         <Route path="advertise" element={<Advert />} />
+        <Route path="service-detail" element={<ServiceDetail />} />
       </Route>
 
       {/* Admin-Related Routes */}

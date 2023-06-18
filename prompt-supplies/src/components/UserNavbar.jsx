@@ -55,7 +55,7 @@ export default function UserNavbar() {
                   </div>
                 </div>
 
-                <div className=" flex flex-shrink-0 items-center w-full sm:w-1/2">
+                <div className="flex flex-shrink-0 items-center w-full sm:w-1/2 animate-pulse">
                   <img
                     className="block h-12 w-auto lg:hidden"
                     src={logo}
@@ -68,7 +68,7 @@ export default function UserNavbar() {
                   />
                   <div className="flex flex-col text-black">
                     <h2 className="text-2xl font-medium">Prompt Supplies</h2>
-                    <p className="font-serif  text-sm italic">
+                    <p className="font-serif text-sm italic">
                       Amplify Your Reach
                     </p>
                   </div>
@@ -79,9 +79,12 @@ export default function UserNavbar() {
                 <Link
                   type="button"
                   to="advertise"
-                  className="hidden sm:block rounded bg-[#FDB715] py-2 px-2 text-gray-700 hover:text-black focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                  className=" w-full rounded border border-[#FDB715] bg-white hover:bg-[#FDB715] py-2 px-2 text-[#FDB715] hover:text-white"
                 >
-                  <span className="">Advertise with Us</span>
+                  <div className="relative flex justify-end">
+                    {/* <span className="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-[#d79b10] opacity-75"></span> */}
+                    <span className="">Advertise with Us</span>
+                  </div>
                 </Link>
 
                 {/* Profile dropdown */}
@@ -111,9 +114,12 @@ export default function UserNavbar() {
                 <Link
                   type="button"
                   to="advertise"
-                  className="w-full rounded bg-[#FDB715] py-2 px-2 text-white "
+                  className=" w-full rounded bg-[#FDB715] py-2 px-2 text-white "
                 >
-                  <span className="">Advertise with Us</span>
+                  <div className="relative">
+                    <span className="animate-ping inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                    <span className="">Advertise with Us</span>
+                  </div>
                 </Link>
               </div>
             </div>

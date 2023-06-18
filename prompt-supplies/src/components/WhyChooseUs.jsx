@@ -1,4 +1,5 @@
-import React from "react";
+import { motion } from "framer-motion";
+import { InView } from "react-intersection-observer";
 import WhyChooseUsCard from "./WhyChooseUsCard";
 
 import {
@@ -45,20 +46,42 @@ export default function WhyChooseUs() {
   return (
     <div className="bg-slate-100">
       <div className="container mx-auto px-10 py-20 ">
-        <div className="relative flex flex-col justify-center items-center py-10">
-          <div className="w-full md:w-1/2 text-start">
-            <h2 className="text-[#FDB715] text-md font-semibold uppercase ">
-              Why Choose Us
-            </h2>
-            <h1 className="text-3xl font-bold capitalize">
-              Experience the Difference: Elevate Your Business with Our
-              Expertise
-            </h1>
-          </div>
-          <div className="absolute top-0 left-0 h-full w-full flex justify-end items-center opacity-10">
-            <h1 className="text-7xl md:text-9xl font-bold">Experts</h1>
-          </div>
-        </div>
+        <InView triggerOnce>
+          {({ inView, ref }) => (
+            <div
+              className="relative flex flex-col justify-center items-center py-10"
+              ref={ref}
+            >
+              <div className="w-full md:w-1/2 text-start">
+                <h2 className="text-[#FDB715] text-md font-semibold uppercase ">
+                  Why Choose Us
+                </h2>
+                <h1 className="text-3xl font-bold capitalize">
+                  Experience the Difference: Elevate Your Business with Our
+                  Expertise
+                </h1>
+              </div>
+              <div className="absolute top-0 left-0 h-full w-full flex justify-end items-center opacity-10">
+                <motion.h1
+                  initial={{ x: -500, opacity: 0 }}
+                  animate={inView ? { x: 0, opacity: 1 } : {}}
+                  transition={{
+                    type: "spring",
+                    bounce: 0.5,
+                    delay: 0.5,
+                    duration: 1.5,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                    repeatDelay: 3,
+                  }}
+                  className="text-7xl md:text-9xl font-bold"
+                >
+                  Experts
+                </motion.h1>
+              </div>
+            </div>
+          )}
+        </InView>
 
         <div className="mt-8 grid grid-cols-1 gap-8 md:mt-16 md:grid-cols-2 md:gap-12 lg:grid-cols-3">
           {reasons.map((reason, i) => (
