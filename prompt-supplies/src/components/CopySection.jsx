@@ -1,4 +1,4 @@
-export default function Copyright() {
+export default function CopySection() {
   return (
     <div className="bg-gray-800 py-4 text-gray-300 text-sm text-center">
       <div className="container mx-auto">

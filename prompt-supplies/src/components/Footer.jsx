@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import ChecklistItem from "./ChecklistItem";
 import { EnvelopeIcon, MapPinIcon, PhoneIcon } from "@heroicons/react/24/solid";
 import { FooterContactForm } from "./ContactForm";
-import Copyright from "./copyright";
+import CopySection from "./CopySection";
 
 export default function Footer() {
   const links = [
@@ -86,7 +86,7 @@ export default function Footer() {
           </div>
         </div>
       </footer>
-      <Copyright />
+      <CopySection />
     </>
   );
 }
