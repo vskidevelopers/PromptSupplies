@@ -1,11 +1,13 @@
 import React from "react";
-// import leader from "../assets/images/leader.png";
+import leader from "../assets/images/leader.png";
 
 export default function LeaderDivider() {
   return (
     <div className="py-20 w-full bg-slate 900">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 ">
-        <div>{/* <img src={leader} alt="..." /> */}</div>
+        <div>
+          <img src={leader} alt="..." />
+        </div>
 
         <div className="col-span-2">
           <div className="relative flex flex-col justify-center items-center py-10">
