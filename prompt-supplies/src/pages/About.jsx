@@ -14,7 +14,8 @@ function About() {
     "Results-Driven",
     "Adaptability",
     "Reliability ",
-    "Privacy and data security Transparency ",
+    "Privacy and data security",
+    "Transparency ",
     "Compliance ",
     "Quality Assurance",
   ];

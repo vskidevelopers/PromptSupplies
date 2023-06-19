@@ -44,7 +44,9 @@ export default function Team() {
           <div className="col-span-2 flex items-center">
             <div>
               <h2 className="font-bold mb-2 text-[#FDB715] ">Prisca Mutahi</h2>
-              <h2 className="font-serif  mb-1 font-medium">position</h2>
+              <h2 className="font-serif  mb-1 font-medium">
+                Sales and Marketing
+              </h2>
               <h2 className="font-serif  italic mb-1 font-medium underline">
                 sales@promptsupplies.co.ke
               </h2>

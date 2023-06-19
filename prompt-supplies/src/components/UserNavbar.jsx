@@ -7,7 +7,7 @@ export default function UserNavbar() {
   const navigation = [
     { name: "Home", href: "/", current: true },
     { name: "About Us", href: "about", current: false },
-    { name: "Features", href: "features", current: false },
+    { name: "Insights", href: "features", current: false },
     { name: "Services", href: "services", current: false },
   ];
 
@@ -83,7 +83,7 @@ export default function UserNavbar() {
                 >
                   <div className="relative flex justify-end">
                     {/* <span className="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-[#d79b10] opacity-75"></span> */}
-                    <span className="">Advertise with Us</span>
+                    <span className="">Efficient Service</span>
                   </div>
                 </Link>
 

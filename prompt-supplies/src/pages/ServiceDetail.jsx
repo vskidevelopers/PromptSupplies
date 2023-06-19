@@ -9,13 +9,13 @@ function ServiceDetail() {
       />
       <section>
         <div className="bg-slate-800 text-white py-8">
-          <div className="container mx-auto flex flex-col items-start md:flex-row my-12 md:my-24">
-            <div className="flex flex-col w-full sticky md:top-36 lg:w-1/3 mt-2 md:mt-12 px-8">
+          <div className="container mx-auto flex flex-col  my-12 md:my-24">
+            <div className="flex flex-col w-full md:top-36  mt-2 md:mt-12 px-8">
               <p className="ml-2 text-[#FDB715] uppercase tracking-loose">
                 Bulk Sms
               </p>
               <p className="text-3xl font-bold md:text-4xl leading-normal md:leading-relaxed mb-2">
-                What is Bulk Sms
+                What is Bulk Sms ?
               </p>
               <p className="text-sm md:text-base text-gray-50 mb-4">
                 Bulk SMS messaging is a legacy description for
@@ -23,15 +23,9 @@ function ServiceDetail() {
                 specifically to the sending of large number of SMS messages to
                 the mobile phones of a predetermined group of recipients.
               </p>
-              <a
-                href="#"
-                className="bg-transparent mr-auto hover:bg-[#FDB715] text-[#FDB715] hover:text-white rounded shadow hover:shadow-lg py-2 px-4 border border-[#FDB715] hover:border-transparent"
-              >
-                Explore Now
-              </a>
             </div>
 
-            <div className="ml-0 md:ml-12 lg:w-2/3 sticky">
+            <div className="ml-0 md:ml-12  sticky mt-5">
               <div className="container mx-auto w-full h-full">
                 <div className="flex w-full justify-center">
                   <h3 className="mb-3 font-bold text-lg md:text-4xl text-[#FDB715]">
@@ -158,6 +152,14 @@ function ServiceDetail() {
                   src="https://user-images.githubusercontent.com/54521023/116968861-ef21a000-acd2-11eb-95ac-a34b5b490265.png"
                 />
               </div>
+            </div>
+            <div className="flex justify-center items-center py-10 px-10 mt-5">
+              <button
+                className=" bg-yellow-400 text-white py-3 px-6 shadow-lg hover:bg-transparent hover:border hover:border-[#FDB715] "
+                // onClick={openModal}
+              >
+                Request Advert
+              </button>
             </div>
           </div>
         </div>
