@@ -1,7 +1,9 @@
-import React from "react";
+/* eslint-disable react/prop-types */
+
 import { Outlet } from "react-router-dom";
 import UserNavbar from "../components/UserNavbar";
 import Footer from "../components/Footer";
+import { services } from "../utils/services";
 
 export default function UserUi() {
   return (
@@ -10,7 +12,7 @@ export default function UserUi() {
       <div className="">
         <Outlet />
       </div>
-      <Footer />
+      <Footer services={services} />
     </div>
   );
 }

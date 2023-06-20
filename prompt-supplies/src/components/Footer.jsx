@@ -1,4 +1,5 @@
-import React from "react";
+/* eslint-disable react/prop-types */
+
 import logo from "../assets/images/logo.png";
 import { Link } from "react-router-dom";
 import ChecklistItem from "./ChecklistItem";
@@ -6,7 +7,7 @@ import { EnvelopeIcon, MapPinIcon, PhoneIcon } from "@heroicons/react/24/solid";
 import { FooterContactForm } from "./ContactForm";
 import CopySection from "./CopySection";
 
-export default function Footer() {
+export default function Footer({ services }) {
   const links = [
     { name: "Home", href: "/" },
     { name: "About Us", href: "about" },
@@ -14,16 +15,6 @@ export default function Footer() {
     { name: "Services", href: "services" },
     { name: "Contact Us", href: "contact" },
     { name: "Request a quote", href: "quote" },
-  ];
-
-  const services = [
-    "Promotional Messages",
-    "Bulk SMS Services",
-    "Bulk Email Services",
-    "API Integrations",
-    "Web Development",
-    "System Development",
-    "Merchandise Branding",
   ];
 
   return (
@@ -69,9 +60,12 @@ export default function Footer() {
               <h4 className="text-xl font-bold mb-4">Our Services</h4>
               <ul className="list-none flex flex-col gap-3">
                 {services.map((service, i) => (
-                  <span key={i}>
-                    <Link to="services" className="hover:text-[#FDB715]">
-                      {service}
+                  <span key={i} id={i}>
+                    <Link
+                      to={`/service-detail/${i}`}
+                      className="hover:text-[#FDB715]"
+                    >
+                      {service?.title}
                     </Link>
                   </span>
                 ))}
