@@ -1,27 +1,213 @@
+/* eslint-disable react/prop-types */
+import { useParams } from "react-router-dom";
 import HeroSection from "../components/HeroSection";
+import RightSideSection from "../components/RightSideSection";
+import LeftSideSection from "../components/LeftSideection";
+import { useForm } from "react-hook-form";
+import { Fragment, useState } from "react";
+import { Dialog, Transition } from "@headlessui/react";
 
-function ServiceDetail() {
+function ServiceDetail({ serviceList }) {
+  let [isOpen, setIsOpen] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const { id } = useParams();
+
+  // Find the service based on the id parameter
+  const service = serviceList[id];
+
+  console.log("Service ==>", service);
+
+  if (!service) {
+    // Handle invalid service id
+    return <div>Service not found</div>;
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  const onSubmit = (data) => {
+    // Handle form submission and quote request here
+    console.log(data);
+  };
+
   return (
     <>
       <HeroSection
-        title="Bulk Sms"
+        // eslint-disable-next-line react/prop-types
+        title={service?.title}
         image="https://images.pexels.com/photos/67112/pexels-photo-67112.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
       />
       <section>
+        <Transition appear show={isOpen} as={Fragment}>
+          <Dialog as="div" className="relative z-50" onClose={closeModal}>
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <div className="fixed inset-0 bg-black bg-opacity-25" />
+            </Transition.Child>
+
+            <div className="fixed inset-0 overflow-y-auto">
+              <div className="flex min-h-full items-center justify-center p-4 text-center">
+                <Transition.Child
+                  as={Fragment}
+                  enter="ease-out duration-300"
+                  enterFrom="opacity-0 scale-95"
+                  enterTo="opacity-100 scale-100"
+                  leave="ease-in duration-200"
+                  leaveFrom="opacity-100 scale-100"
+                  leaveTo="opacity-0 scale-95"
+                >
+                  <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                    <div className="flex justify-end">
+                      <button
+                        type="button"
+                        onClick={closeModal}
+                        className="text-gray-600 hover:text-gray-900 focus:outline-none"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-6 w-6"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M6 18L18 6M6 6l12 12"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+
+                    <Dialog.Title
+                      as="h3"
+                      className="text-lg font-medium leading-6 text-gray-900"
+                    >
+                      Enter your details and we&apos;ll reach back
+                    </Dialog.Title>
+                    <form
+                      onSubmit={handleSubmit(onSubmit)}
+                      className="max-w-md mx-auto"
+                    >
+                      <div className="mb-4">
+                        <label
+                          htmlFor="name"
+                          className="block text-sm font-bold mb-2"
+                        >
+                          Name:
+                        </label>
+                        <input
+                          type="text"
+                          id="name"
+                          {...register("name", { required: true })}
+                          className="w-full border border-yellow-400 rounded py-2 px-3"
+                        />
+                        {errors.name && (
+                          <span className="text-red-500">
+                            This field is required
+                          </span>
+                        )}
+                      </div>
+                      <div className="mb-4">
+                        <label
+                          htmlFor="email"
+                          className="block text-sm font-bold mb-2"
+                        >
+                          Email:
+                        </label>
+                        <input
+                          type="email"
+                          id="email"
+                          {...register("email", { required: true })}
+                          className="w-full border border-yellow-400 rounded py-2 px-3"
+                        />
+                        {errors.email && (
+                          <span className="text-red-500">
+                            This field is required
+                          </span>
+                        )}
+                      </div>
+                      <div className="mb-4">
+                        <label
+                          htmlFor="phone"
+                          className="block text-sm font-bold mb-2"
+                        >
+                          Phone Number:
+                        </label>
+                        <input
+                          type="tel"
+                          id="phone"
+                          {...register("phone", { required: true })}
+                          className="w-full border border-yellow-400 rounded py-2 px-3"
+                        />
+                        {errors.phone && (
+                          <span className="text-red-500">
+                            This field is required
+                          </span>
+                        )}
+                      </div>
+                      <div className="mb-4">
+                        <label
+                          htmlFor="message"
+                          className="block text-sm font-bold mb-2"
+                        >
+                          Message:
+                        </label>
+                        <textarea
+                          id="message"
+                          {...register("message", { required: true })}
+                          className="w-full border border-yellow-400 rounded py-2 px-3"
+                        ></textarea>
+                        {errors.message && (
+                          <span className="text-red-500">
+                            This field is required
+                          </span>
+                        )}
+                      </div>
+                      <div className="text-right">
+                        <button
+                          type="submit"
+                          className="bg-yellow-400 text-white py-2 px-4 rounded"
+                        >
+                          Submit
+                        </button>
+                      </div>
+                    </form>
+                  </Dialog.Panel>
+                </Transition.Child>
+              </div>
+            </div>
+          </Dialog>
+        </Transition>
         <div className="bg-slate-800 text-white py-8">
           <div className="container mx-auto flex flex-col  my-12 md:my-24">
             <div className="flex flex-col w-full md:top-36  mt-2 md:mt-12 px-8">
               <p className="ml-2 text-[#FDB715] uppercase tracking-loose">
-                Bulk Sms
+                {service?.title}
               </p>
               <p className="text-3xl font-bold md:text-4xl leading-normal md:leading-relaxed mb-2">
-                What is Bulk Sms ?
+                {`What is ${service?.title} ?`}
               </p>
               <p className="text-sm md:text-base text-gray-50 mb-4">
-                Bulk SMS messaging is a legacy description for
-                application-to-person SMS messaging services. It refers
-                specifically to the sending of large number of SMS messages to
-                the mobile phones of a predetermined group of recipients.
+                {service?.definition}
               </p>
             </div>
 
@@ -29,123 +215,32 @@ function ServiceDetail() {
               <div className="container mx-auto w-full h-full">
                 <div className="flex w-full justify-center">
                   <h3 className="mb-3 font-bold text-lg md:text-4xl text-[#FDB715]">
-                    Why Bulk Sms{" "}
+                    {`Why ${service?.title}`}
                   </h3>
                 </div>
                 <div className="relative wrap overflow-hidden p-10 h-full">
                   <div className="border-2-2 border-yellow-555 absolute h-full border border-[#FFC100] rounded right-1/2"></div>
                   <div className="border-2-2 border-yellow-555 absolute h-full border border-[#FFC100] rounded left-1/2"></div>
 
-                  <div className="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
-                    <div className="order-1 w-5/12"></div>
-                    <div className="order-1 w-5/12 px-1 py-4 text-right">
-                      <p className="mb-3 text-lg  text-[#FDB715] underline">
-                        Instant and Direct Communication
-                      </p>
-
-                      <p className="text-sm md:text-base leading-snug text-gray-50 text-opacity-100">
-                        Bulk SMS allows businesses to reach their target
-                        audience instantly and directly. SMS messages have a
-                        high open and read rate, often within minutes of
-                        delivery. This immediacy ensures that your message
-                        reaches the recipients promptly and increases the
-                        chances of them taking the desired action.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="mb-8 flex justify-between items-center w-full right-timeline">
-                    <div className="order-1 w-5/12"></div>
-                    <div className="order-1  w-5/12 px-1 py-4 text-left">
-                      <p className="mb-3 text-lg  text-[#FDB715] underline">
-                        Wide Reach
-                      </p>
-                      <p className="text-sm md:text-base leading-snug text-gray-50 text-opacity-100">
-                        SMS messages can be sent to a large number of recipients
-                        simultaneously, making it an effective tool for reaching
-                        a wide audience. Whether you need to communicate with
-                        existing customers, potential leads, or members of an
-                        organization, bulk SMS service allows you to deliver
-                        your message efficiently and cost-effectively.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
-                    <div className="order-1 w-5/12"></div>
-                    <div className="order-1 w-5/12 px-1 py-4 text-right">
-                      <p className="mb-3 text-lg  text-[#FDB715] underline">
-                        {" "}
-                        High Open and Read Rates
-                      </p>
-                      <p className="text-sm md:text-base leading-snug text-gray-50 text-opacity-100">
-                        Compared to other communication channels like emails or
-                        social media posts, SMS messages have exceptionally high
-                        open and read rates. Studies have shown that SMS
-                        messages have an open rate of over 95% and a read rate
-                        of approximately 98%. This makes SMS an effective means
-                        of ensuring that your message is seen and read by the
-                        recipients.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="mb-8 flex justify-between items-center w-full right-timeline">
-                    <div className="order-1 w-5/12"></div>
-
-                    <div className="order-1  w-5/12 px-1 py-4">
-                      <p className="mb-3 text-lg  text-[#FDB715] underline">
-                        Personalized Messaging
-                      </p>
-                      <p className="text-sm md:text-base leading-snug text-gray-50 text-opacity-100">
-                        Bulk SMS services often provide the option to
-                        personalize your messages by addressing recipients by
-                        their names or including relevant details.
-                        Personalization helps to establish a connection with the
-                        recipients, making them more likely to engage with the
-                        message and take the desired action
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
-                    <div className="order-1 w-5/12"></div>
-                    <div className="order-1 w-5/12 px-1 py-4 text-right">
-                      <p className="mb-3 text-lg  text-[#FDB715] underline">
-                        {" "}
-                        Cost-Effective
-                      </p>
-                      <p className="text-sm md:text-base leading-snug text-gray-50 text-opacity-100">
-                        Bulk SMS services are generally affordable, especially
-                        when compared to traditional marketing methods such as
-                        print advertising or direct mail campaigns. The low cost
-                        per message makes it a cost-effective solution for
-                        businesses of all sizes, allowing them to reach a large
-                        audience without breaking the bank.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="mb-8 flex justify-between items-center w-full right-timeline">
-                    <div className="order-1 w-5/12"></div>
-
-                    <div className="order-1  w-5/12 px-1 py-4">
-                      <p className="mb-3 font-bold  text-lg  text-[#FDB715]">
-                        Versatility and Integration
-                      </p>
-
-                      <p className="text-sm md:text-base leading-snug text-gray-50 text-opacity-100">
-                        Bulk SMS services can be easily integrated into existing
-                        marketing and communication strategies. They can be used
-                        for various purposes, such as sending promotional
-                        offers, event reminders, transactional notifications,
-                        customer support updates, and more. Integration with
-                        other platforms and systems, such as customer
-                        relationship management (CRM) software, allows for
-                        streamlined and automated communication workflows.
-                      </p>
-                    </div>
-                  </div>
+                  {service?.reasons?.map((reason, index) => {
+                    if (index % 2 === 0) {
+                      return (
+                        <RightSideSection
+                          key={index}
+                          title={reason?.reason_title}
+                          description={reason?.reason_description}
+                        />
+                      );
+                    } else {
+                      return (
+                        <LeftSideSection
+                          key={index}
+                          title={reason.reason_title}
+                          description={reason.reason_description}
+                        />
+                      );
+                    }
+                  })}
                 </div>
                 <img
                   className="mx-auto -mt-36 md:-mt-36"
@@ -155,10 +250,10 @@ function ServiceDetail() {
             </div>
             <div className="flex justify-center items-center py-10 px-10 mt-5">
               <button
-                className=" bg-yellow-400 text-white py-3 px-6 shadow-lg hover:bg-transparent hover:border hover:border-[#FDB715] "
-                // onClick={openModal}
+                onClick={openModal}
+                className="border border-[#FDB715] text-[#FDB715] hover:bg-[#FDB715] hover:text-white py-5 px-8"
               >
-                Request Advert
+                Request Quote
               </button>
             </div>
           </div>

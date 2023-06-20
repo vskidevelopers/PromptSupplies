@@ -18,19 +18,29 @@ import Features from "./pages/Features";
 import About from "./pages/About";
 import Advert from "./pages/Advert";
 import ServiceDetail from "./pages/ServiceDetail";
+import { services } from "./utils/services";
+
+const serviceList = services;
+console.log("Service List from router >>>", serviceList);
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
       {/* User-Related Routes */}
       <Route path="/" element={<UserUi />}>
-        <Route index element={<Home />} />
+        <Route index element={<Home services={serviceList} />} />
         <Route path="about" element={<About />} />
         <Route path="features" element={<Features />} />
-        <Route path="services" element={<Services />} />
+        <Route
+          path="services"
+          element={<Services serviceList={serviceList} />}
+        />
         <Route path="contact" element={<Contact />} />
         <Route path="advertise" element={<Advert />} />
-        <Route path="service-detail" element={<ServiceDetail />} />
+        <Route
+          path="service-detail/:id"
+          element={<ServiceDetail serviceList={serviceList} />}
+        />
       </Route>
 
       {/* Admin-Related Routes */}

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import IntroHero from "../components/IntroHero";
 import IntroSection from "../components/IntroSection";
 // import ServicesSection from "../components/ServicesSection";
@@ -6,11 +7,11 @@ import WhyChooseUs from "../components/WhyChooseUs";
 import PartnersSlider from "../components/PartnersSlider";
 import AdvertSlider from "../components/AdvertSlider";
 
-export default function Home() {
+export default function Home({ services }) {
   return (
     <div>
       <IntroHero />
-      <IntroSection />
+      <IntroSection services={services} />
       {/* <ServicesSection /> */}
       <AdvertSlider />
       <QuotationDivider />

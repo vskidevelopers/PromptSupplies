@@ -1,4 +1,3 @@
-import React from "react";
 import HeroSection from "../components/HeroSection";
 import FloatingCards from "../components/FloatingCards";
 import { StarIcon, EyeIcon, LightBulbIcon } from "@heroicons/react/24/outline";

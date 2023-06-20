@@ -2,7 +2,7 @@
 
 import { Link } from "react-router-dom";
 
-function ServicesCard({ icon, title, description, backgroundImage }) {
+function ServicesCard({ id, icon, title, description, backgroundImage }) {
   return (
     <div>
       <div className="group relative block h-64 sm:h-80 lg:h-96">
@@ -35,7 +35,7 @@ function ServicesCard({ icon, title, description, backgroundImage }) {
 
             <p className="mt-4 text-sm sm:text-base">{description}</p>
 
-            <Link to="/service-detail">
+            <Link to={`/service-detail/${id}`}>
               <p className="mt-8 font-bold text-[#FDB715]">Read more</p>
             </Link>
           </div>
