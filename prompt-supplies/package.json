@@ -13,6 +13,7 @@
     "@headlessui/react": "^1.7.14",
     "@heroicons/react": "^2.0.18",
     "@tailwindcss/forms": "^0.5.3",
+    "firebase": "^9.22.2",
     "framer-motion": "^10.12.16",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -35,5 +36,8 @@
     "postcss": "^8.4.23",
     "tailwindcss": "^3.3.2",
     "vite": "^4.3.2"
-  }
+  },
+  "tags": [
+    "swiper"
+  ]
 }
