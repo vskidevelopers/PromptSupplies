@@ -21,16 +21,6 @@ function Advert() {
   const { uploadServicePoster, handlePostServiceData, imageURL } =
     useCallUsServicesFunctions();
 
-  const handleImageUpload = async (file) => {
-    if (!file) {
-      console.log("No Image Selected");
-      return;
-    }
-    await uploadServicePoster(file);
-    console.log("Image Uploaded!");
-    console.log("Image URL >>", imageURL);
-  };
-
   const handleImageDrop = (acceptedFiles) => {
     if (acceptedFiles && acceptedFiles.length > 0) {
       const file = acceptedFiles[0];
@@ -62,13 +52,23 @@ function Advert() {
     setIsOpen(true);
   }
 
+  const handleImageUpload = async (file) => {
+    if (!file) {
+      console.log("No Image Selected");
+      return;
+    }
+    await uploadServicePoster(file);
+    console.log("Image Uploaded!");
+    console.log("Image URL >>", imageURL);
+  };
+
   const onSubmit = (data) => {
     console.log(data);
     console.log("data.imagePoster >>", data.imagePoster.path);
 
     handleImageUpload(data.imagePoster.path);
 
-    if (imageURL) {
+    if (imageURL != null) {
       console.log("Image Url >>", imageURL);
       const serviceData = {
         name: data.name,
