@@ -19,6 +19,9 @@ import About from "./pages/About";
 import Advert from "./pages/Advert";
 import ServiceDetail from "./pages/ServiceDetail";
 import { services } from "./utils/services";
+import AdminProfiles from "./components/admin/AdminProfiles";
+import AdminAdverts from "./components/admin/AdminAdverts";
+import AdminServices from "./components/admin/AdminServices";
 
 const serviceList = services;
 console.log("Service List from router >>>", serviceList);
@@ -45,6 +48,9 @@ const router = createBrowserRouter(
 
       {/* Admin-Related Routes */}
       <Route path="admin" element={<AdminUi />}>
+        <Route index element={<AdminProfiles />} />
+        <Route path="admin-adverts" element={<AdminAdverts />} />
+        <Route path="admin-services" element={<AdminServices />} />
         {/* Nested User Routes */}
       </Route>
     </Route>

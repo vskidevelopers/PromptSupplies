@@ -8,6 +8,7 @@ import { InView } from "react-intersection-observer";
 import { useDropzone } from "react-dropzone";
 import CallUsAdvertSwiper from "../components/CallUsAdvertSwiper";
 import { useCallUsServicesFunctions } from "../utils/firebase";
+
 function Advert() {
   const {
     register,

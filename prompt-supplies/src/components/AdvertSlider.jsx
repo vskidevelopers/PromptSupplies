@@ -1,20 +1,10 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, {
-  Navigation,
-  Pagination,
-  A11y,
-  Autoplay,
-  EffectFade,
-} from "swiper";
 import { motion } from "framer-motion";
 import { InView } from "react-intersection-observer";
-import "swiper/swiper-bundle.css";
 import { useDropzone } from "react-dropzone";
 import { Fragment, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Dialog, Transition } from "@headlessui/react";
-
-SwiperCore.use([Navigation, Pagination, EffectFade, Autoplay, A11y]);
+import VipSlider from "./VipSlider";
 
 export default function AdvertSlider() {
   const {
@@ -51,12 +41,6 @@ export default function AdvertSlider() {
   function openModal() {
     setIsOpen(true);
   }
-  const images = [
-    "https://img.freepik.com/free-psd/horizontal-banner-template-black-friday-clearance_23-2148745446.jpg?w=900&t=st=1686608963~exp=1686609563~hmac=ab842d50f5dcde032164ac300b7fb54935328fe0e0ae5e4b770603218aeeb02d",
-    "https://img.freepik.com/free-psd/banner-corporate-ad-template_23-2148788938.jpg?w=900&t=st=1686609116~exp=1686609716~hmac=dc5c1b22d8386ac42b7f8e13ac7aa614c8c263f81d4ca2167b95229cade85761",
-    "https://img.freepik.com/free-psd/business-company-banner-template_23-2148924998.jpg?w=900&t=st=1686609158~exp=1686609758~hmac=27806a2bfe6d9422dc4b7ee7923df6bddf37d70de22fb801dc22c3b5ce0f7d40",
-    "https://img.freepik.com/free-vector/creative-hiring-landing-page-template_52683-44620.jpg?w=740&t=st=1686609279~exp=1686609879~hmac=35dd40078e71f2d29f0c8f79c1ef1f1d7b1bf676cb1fdfd9f4f4100456b17b01",
-  ];
 
   return (
     <>
@@ -264,53 +248,13 @@ export default function AdvertSlider() {
         </Transition>
       </div>
 
-      <section className="my-4">
+      <section className="py-20 bg-slate-200">
         <div className="container max-full mx-auto">
           <div className="flex flex-col items-center w-full rounded-md lg:h-full   dark:text-gray-100">
             <div className="h-[15rem] md:h-[30rem] w-full">
-              <Swiper
-                spaceBetween={50}
-                effect="fade"
-                slidesPerView={1}
-                pagination={{ clickable: true }}
-                autoplay={{
-                  delay: 5000,
-                  disableOnInteraction: false,
-                }}
-                onSlideChange={() => console.log("slide change")}
-                onSwiper={(swiper) => console.log(swiper)}
-                className="h-full px-4"
-                wrapperTag="ul"
-                transition={{
-                  fadeEffect: {
-                    crossFade: true,
-                  },
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                  repeatDelay: 3,
-                }}
-                onTransitionEnd={(swiper) => {
-                  const slides = swiper.slides;
-                  slides.forEach((slide, index) => {
-                    const overlay = slide.querySelector(".overlay");
-                    overlay.style.transition = "opacity 0.5s";
-                    overlay.style.opacity =
-                      index === swiper.activeIndex ? "0" : "0.6";
-                  });
-                }}
-              >
-                {images.map((image, index) => (
-                  <SwiperSlide key={index}>
-                    <div className="relative h-full">
-                      <div
-                        className="absolute inset-0 h-full w-full bg-cover bg-center"
-                        style={{ backgroundImage: `url(${image})` }}
-                      ></div>
-                      <div className="absolute inset-0 bg-white opacity-0 overlay"></div>
-                    </div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
+              <div className="h-full w-full flex justify-center items-center">
+                <VipSlider />
+              </div>
             </div>
           </div>
         </div>

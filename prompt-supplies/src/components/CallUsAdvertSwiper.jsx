@@ -8,6 +8,7 @@ import SwiperCore, {
 } from "swiper";
 
 // Import Swiper styles
+
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
@@ -147,7 +148,7 @@ function CallUsAdvertSwiper() {
         slidesPerView="auto"
         autoplay={{
           delay: 5000,
-          disableOnInteraction: true,
+          disableOnInteraction: false,
         }}
         coverflowEffect={{
           rotate: 50,
