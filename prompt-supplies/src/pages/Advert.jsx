@@ -19,8 +19,13 @@ function Advert() {
     reset,
   } = useForm();
 
-  const { uploadServicePoster, handlePostServiceData, imageURL } =
-    useCallUsServicesFunctions();
+  const {
+    uploadServicePoster,
+    handlePostServiceData,
+    imageURL,
+    loading,
+    uploadProgress,
+  } = useCallUsServicesFunctions();
 
   const handleImageDrop = (acceptedFiles) => {
     if (acceptedFiles && acceptedFiles.length > 0) {
@@ -35,41 +40,22 @@ function Advert() {
     onDrop: handleImageDrop,
   });
 
-  // const handleFileSelection = (selectedFile) => {
-  //   setFile(selectedFile[0]);
-  // };
-
-  // const { getRootProps, getInputProps } = useDropzone({
-  //   onDrop: handleFileSelection,
-  // });
-
   let [isOpen, setIsOpen] = useState(false);
 
   function closeModal() {
     setIsOpen(false);
+    location.reload();
   }
 
   function openModal() {
     setIsOpen(true);
   }
 
-  const handleImageUpload = async (file) => {
-    if (!file) {
-      console.log("No Image Selected");
-      return;
-    }
-    await uploadServicePoster(file);
-    console.log("Image Uploaded!");
-    console.log("Image URL >>", imageURL);
-  };
-
   const onSubmit = (data) => {
     console.log(data);
-    console.log("data.imagePoster >>", data.imagePoster.path);
+    console.log("data.imagePoster >>", data.imagePoster.name);
 
-    handleImageUpload(data.imagePoster.path);
-
-    if (imageURL != null) {
+    if (imageURL) {
       console.log("Image Url >>", imageURL);
       const serviceData = {
         name: data.name,
@@ -79,6 +65,8 @@ function Advert() {
         description: data.description,
         location: data.location,
         jobTitle: data.jobTitle,
+        approved: false,
+        vip: false,
       };
       console.log("service Data to upload >>", serviceData);
       handlePostServiceData(serviceData);
@@ -88,6 +76,9 @@ function Advert() {
       alert(
         "An error occured during image upload. Try submitting the form again"
       );
+      if (data.imagePoster) {
+        uploadServicePoster(data.imagePoster);
+      }
     }
   };
 
@@ -253,7 +244,7 @@ function Advert() {
                           {...getRootProps()}
                           className="w-full border border-yellow-400 rounded py-2 px-3 cursor-pointer"
                         >
-                          <input {...getInputProps()} />
+                          <input {...getInputProps()} type="file" />
                           <p>
                             {getValues("imagePoster")?.name ||
                               "Drag and drop an image here or click to browse"}
@@ -278,10 +269,13 @@ function Advert() {
                       </div>
                       <div className="text-right">
                         <button
+                          disabled={loading}
                           type="submit"
                           className="bg-yellow-400 text-white py-2 px-4 rounded"
                         >
-                          Submit
+                          {loading
+                            ? `${uploadProgress} % Image uploading ...`
+                            : "Submit"}
                         </button>
                       </div>
                     </form>
