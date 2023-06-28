@@ -62,7 +62,7 @@ const AdminUi = () => {
 
       {/* Content */}
       <div
-        className={`flex-grow h-screen w-full py-20 px-20 transition-transform duration-500 bg-sky-600 ${
+        className={`flex-grow h-full w-full py-20  transition-transform duration-500 px-20  ${
           isMenuOpen ? "ml-64" : "ml-0"
         }`}
       >

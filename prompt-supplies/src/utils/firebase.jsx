@@ -14,6 +14,8 @@ import {
   getFirestore,
   getDocs,
   getDoc,
+  query,
+  where,
 } from "firebase/firestore";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -41,19 +43,56 @@ export const useCallUsServicesFunctions = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [imageURL, setImageURL] = useState(null);
-  const [serviceItems, setServiceItems] = useState([]);
+  const [allServiceItems, setAllServiceItems] = useState([]);
+  const [pendingServiceItems, setPendingServiceItems] = useState([]);
+  const [approvedServiceItems, setApprovedServiceItems] = useState([]);
+  const [vipServiceItems, setVipServiceItems] = useState([]);
   const [serviceDetails, setServiceDetails] = useState(null);
   const [uploadProgress, setUploadProgress] = useState(0);
 
   const fetchServiceItems = async () => {
-    const serviceItems = await getDocs(collection(db, "CallUsServices"));
-    const serviceItemsData = serviceItems.docs.map((doc) => ({
+    const serviceItemsRef = collection(db, "CallUsServices");
+    const serviceSnapshot = await getDocs(serviceItemsRef);
+
+    // fetchAllAds
+    const serviceItemsData = serviceSnapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
     }));
+
+    // fetchApprovedAds
+    const approved = query(serviceItemsRef, where("approved", "==", true));
+    const approvedQuerySnapshot = await getDocs(approved);
+    const approvedItemsData = approvedQuerySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    // fetchPendingAds
+    const pending = query(serviceItemsRef, where("approved", "==", false));
+    const pendingQuerySnapshot = await getDocs(pending);
+    const pendingItemsData = pendingQuerySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    // fetchVipAds
+    const vip = query(serviceItemsRef, where("vip", "==", true));
+    const vipQuerySnapshot = await getDocs(vip);
+    const vipItemsData = vipQuerySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
     console.log("setting doc items into serviceItemsData. ..");
-    setServiceItems(serviceItemsData);
+    setAllServiceItems(serviceItemsData);
+    setApprovedServiceItems(approvedItemsData);
+    setPendingServiceItems(pendingItemsData);
+    setVipServiceItems(vipItemsData);
     console.log("complete! serviceItemsData >>", serviceItemsData);
+    console.log("complete! approvedServiceItemsData >>", approvedItemsData);
+    console.log("complete! pendingServiceItemsData >>", pendingItemsData);
+    console.log("complete! vipServiceItemsData >>", vipItemsData);
   };
 
   useEffect(() => {
@@ -156,7 +195,10 @@ export const useCallUsServicesFunctions = () => {
     success,
     error,
     loading,
-    serviceItems,
+    allServiceItems,
+    approvedServiceItems,
+    pendingServiceItems,
+    vipServiceItems,
     uploadProgress,
   };
 };

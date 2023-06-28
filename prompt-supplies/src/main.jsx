@@ -25,6 +25,7 @@ import AdminServices from "./components/admin/AdminServices";
 import AllAdverts from "./components/admin/AllAdverts";
 import PendingAdverts from "./components/admin/PendingAdverts";
 import ApprovedAdverts from "./components/admin/ApprovedAdverts";
+import VipAdverts from "./components/admin/VipAdverts";
 
 const serviceList = services;
 console.log("Service List from router >>>", serviceList);
@@ -56,6 +57,7 @@ const router = createBrowserRouter(
           <Route index element={<AllAdverts />} />
           <Route path="approved" element={<ApprovedAdverts />} />
           <Route path="pending" element={<PendingAdverts />} />
+          <Route path="vip" element={<VipAdverts />} />
         </Route>
         <Route path="admin-services" element={<AdminServices />} />
         {/* Nested User Routes */}

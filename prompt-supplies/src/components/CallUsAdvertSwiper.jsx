@@ -21,7 +21,7 @@ SwiperCore.use([EffectCoverflow, Pagination, Autoplay, A11y]);
 function CallUsAdvertSwiper() {
   let [isOpen, setIsOpen] = useState(false);
   const [modalData, setModalData] = useState({});
-  const { serviceItems } = useCallUsServicesFunctions();
+  const { allServiceItems } = useCallUsServicesFunctions();
   const swiperRef = useRef(null);
 
   const handleSlideChange = () => {
@@ -39,7 +39,7 @@ function CallUsAdvertSwiper() {
     setModalData(item);
     console.log("Modal Data >>", modalData);
   }
-  console.log("Services Items >>", serviceItems);
+  console.log("Services Items >>", allServiceItems);
 
   return (
     <>
@@ -164,7 +164,7 @@ function CallUsAdvertSwiper() {
         pagination={{ clickable: true }}
         className="mySwiper"
       >
-        {serviceItems?.map((item, i) => (
+        {allServiceItems?.map((item, i) => (
           <SwiperSlide key={i}>
             <div className="relative h-full">
               <div

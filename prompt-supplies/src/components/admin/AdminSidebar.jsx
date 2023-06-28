@@ -35,18 +35,23 @@ const AdminSidebar = () => {
       subItems: [
         {
           id: 31,
+          label: "All",
+          href: "admin-adverts",
+        },
+        {
+          id: 32,
           label: "Approved",
           href: "admin-adverts/approved",
         },
         {
-          id: 32,
+          id: 33,
           label: "Pending",
           href: "admin-adverts/pending",
         },
         {
-          id: 33,
-          label: "All",
-          href: "admin-adverts/all",
+          id: 34,
+          label: "Vip",
+          href: "admin-adverts/vip",
         },
       ],
     },
@@ -79,14 +84,13 @@ const AdminSidebar = () => {
           {showAdvertSubItems && item.label === "Adverts" && (
             <div className="pl-6 py-2">
               {item.subItems.map((subItem) => (
-                <div
+                <Link
+                  to={subItem.href}
                   key={subItem.id}
-                  className="flex items-center py-2 hover:bg-gray-900"
+                  className="flex items-center pl-4 py-2 hover:bg-gray-900"
                 >
-                  <Link to={subItem.href}>
-                    <span>{subItem.label}</span>
-                  </Link>
-                </div>
+                  <span>{subItem.label}</span>
+                </Link>
               ))}
             </div>
           )}

@@ -1,5 +1,15 @@
-import React from "react";
+import { useCallUsServicesFunctions } from "../../utils/firebase";
+import AdvertTable from "./AdvertTable";
 
 export default function AllAdverts() {
-  return <div>AllAdverts</div>;
+  const { allServiceItems } = useCallUsServicesFunctions();
+  console.log("all Services >> ", allServiceItems);
+
+  return (
+    <div>
+      <div className="overflow-x-auto">
+        <AdvertTable serviceItems={allServiceItems} />
+      </div>
+    </div>
+  );
 }
