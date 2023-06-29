@@ -19,6 +19,7 @@ import About from "./pages/About";
 import Advert from "./pages/Advert";
 import ServiceDetail from "./pages/ServiceDetail";
 import { services } from "./utils/services";
+import { projects } from "./utils/webProjects";
 import AdminProfiles from "./components/admin/AdminProfiles";
 import AdminAdverts from "./components/admin/AdminAdverts";
 import AdminServices from "./components/admin/AdminServices";
@@ -26,6 +27,7 @@ import AllAdverts from "./components/admin/AllAdverts";
 import PendingAdverts from "./components/admin/PendingAdverts";
 import ApprovedAdverts from "./components/admin/ApprovedAdverts";
 import VipAdverts from "./components/admin/VipAdverts";
+import Projects from "./pages/Projects";
 
 const serviceList = services;
 console.log("Service List from router >>>", serviceList);
@@ -43,6 +45,7 @@ const router = createBrowserRouter(
           element={<Services serviceList={serviceList} />}
         />
         <Route path="contact" element={<Contact />} />
+        <Route path="projects" element={<Projects projects={projects} />} />
         <Route path="advertise" element={<Advert />} />
         <Route
           path="service-detail/:id"

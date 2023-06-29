@@ -5,6 +5,7 @@ import apiIntergrationIcon from "../assets/svgs/api_intergration.svg";
 import webDevIcon from "../assets/svgs/web_development.svg";
 import systemDevIcon from "../assets/svgs/system_development.svg";
 import merchandiseIcon from "../assets/svgs/merchandise.svg";
+import transactionaSmsIcon from "../assets/svgs/transactional_sms.svg";
 
 export const services = [
   {
@@ -311,9 +312,52 @@ export const services = [
           "Branded merchandise sets your business apart from competitors. It allows you to showcase your unique brand identity, values, and personality through the design and messaging on the merchandise. By offering distinct and appealing branded items, you create a competitive advantage and enhance your brand's perceived value.",
       },
       {
-        reason_title: ". Cost-Effective Marketing",
+        reason_title: " Cost-Effective Marketing",
         reason_description:
-          ": Branded merchandise can be a cost-effective marketing tool compared to traditional advertising methods. It offers long-lasting exposure, as items like pens, mugs, or calendars are used or kept for an extended period. Additionally, the cost per impression (CPI) of branded merchandise is often lower than other advertising channels, making it a cost-efficient option.",
+          "Branded merchandise can be a cost-effective marketing tool compared to traditional advertising methods. It offers long-lasting exposure, as items like pens, mugs, or calendars are used or kept for an extended period. Additionally, the cost per impression (CPI) of branded merchandise is often lower than other advertising channels, making it a cost-efficient option.",
+      },
+    ],
+  },
+
+  {
+    icon: transactionaSmsIcon,
+    title: "Transactional SMS ",
+    image:
+      "https://img.freepik.com/premium-photo/illustration-colorful-bulb-with-splash-colors-white-background-creativity-eureka-imagination-inspiration-generative-ai-idea-solution-concept_620624-6732.jpg?w=740",
+    excerpt:
+      "Experience seamless communication with our Transactional SMS service. Whether it's sending important notifications, order confirmations, or account updates, we provide reliable and secure messaging solutions. Our dedicated team ensures that your transactional messages are delivered promptly, keeping your customers informed and engaged. Trust us to deliver your critical information with precision and professionalism.",
+    definition:
+      "Transactional SMS refers to the type of text messages that are sent to individuals with whom a business has an existing relationship or has engaged in a transaction. These messages are typically non-promotional and contain information related to the specific transaction or account activity.",
+    reasons: [
+      {
+        reason_title: "Account Notifications",
+        reason_description:
+          "Transactional SMS can be used to send important notifications to customers regarding their accounts, such as balance updates, transaction confirmations, password resets, account alerts, and other similar information.",
+      },
+      {
+        reason_title: "Brand Order Status Updates",
+        reason_description:
+          ": E-commerce businesses often use transactional SMS to keep customers informed about their order status. Messages can be sent at various stages, including order confirmation, shipping updates, and delivery notifications.",
+      },
+      {
+        reason_title: "Appointment Reminders",
+        reason_description:
+          "Service-based businesses like healthcare providers, salons, or fitness centers use transactional SMS to send appointment reminders to their customers. These messages help reduce no-shows and improve customer satisfaction.",
+      },
+      {
+        reason_title: "OTP and Authentication",
+        reason_description:
+          "Transactional SMS is commonly used for one-time passwords (OTPs) and authentication purposes. When users sign up or log in to online platforms, they may receive an SMS with a unique code to verify their identity.",
+      },
+      {
+        reason_title: "Important Alerts",
+        reason_description:
+          "Businesses can send transactional SMS to communicate critical information to their customers, such as emergency alerts, service disruptions, or important policy updates.",
+      },
+      {
+        reason_title: "Banking and Financial Services",
+        reason_description:
+          "Banks and financial institutions use transactional SMS for sending account balance updates, transaction notifications, and security alerts to their customers.",
       },
     ],
   },

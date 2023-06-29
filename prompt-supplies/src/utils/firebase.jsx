@@ -16,6 +16,8 @@ import {
   getDoc,
   query,
   where,
+  deleteDoc,
+  updateDoc,
 } from "firebase/firestore";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -186,10 +188,52 @@ export const useCallUsServicesFunctions = () => {
     }
   };
 
+  const handleDeleteServiceItem = async (id) => {
+    try {
+      setLoading(true);
+      await deleteDoc(doc(db, "CallUsServices", id));
+      setLoading(false);
+      setSuccess(true);
+    } catch (err) {
+      setError(err);
+    }
+  };
+
+  const handleApproveServiceItem = async (id) => {
+    try {
+      setLoading(true);
+      const serviceItemRef = doc(db, "CallUsServices", id);
+      await updateDoc(serviceItemRef, {
+        approved: true,
+      });
+      setLoading(false);
+    } catch (err) {
+      console.log("The folowing error occured >> ", err);
+      setError(err);
+    }
+  };
+
+  const handleMakeVip = async (id) => {
+    try {
+      setLoading(true);
+      const serviceItemRef = doc(db, "CallUsServices", id);
+      await updateDoc(serviceItemRef, {
+        vip: true,
+      });
+      setLoading(false);
+    } catch (err) {
+      console.log("The folowing error occured >> ", err);
+      setError(err);
+    }
+  };
+
   return {
     uploadServicePoster,
     handlePostServiceData,
     fetchServiceDetails,
+    handleDeleteServiceItem,
+    handleApproveServiceItem,
+    handleMakeVip,
     serviceDetails,
     imageURL,
     success,

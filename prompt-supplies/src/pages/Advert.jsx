@@ -44,7 +44,6 @@ function Advert() {
 
   function closeModal() {
     setIsOpen(false);
-    location.reload();
   }
 
   function openModal() {
@@ -70,6 +69,7 @@ function Advert() {
       };
       console.log("service Data to upload >>", serviceData);
       handlePostServiceData(serviceData);
+      alert("We have recieved your request. we'll be in touch shortly");
       reset();
     } else {
       console.log("No Image  ");

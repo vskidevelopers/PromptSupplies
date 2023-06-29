@@ -7,7 +7,7 @@ export default function VipAdverts() {
   return (
     <div>
       <div className="overflow-x-auto">
-        <AdvertTable serviceItems={vipServiceItems} />
+        <AdvertTable serviceItems={vipServiceItems} vipView={true} />
       </div>
     </div>
   );

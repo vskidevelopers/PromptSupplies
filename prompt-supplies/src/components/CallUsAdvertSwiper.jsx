@@ -41,6 +41,10 @@ function CallUsAdvertSwiper() {
   }
   console.log("Services Items >>", allServiceItems);
 
+  const approvedServiceItems = allServiceItems.filter(
+    (service) => service.approved === true
+  );
+
   return (
     <>
       <div>
@@ -164,7 +168,7 @@ function CallUsAdvertSwiper() {
         pagination={{ clickable: true }}
         className="mySwiper"
       >
-        {allServiceItems?.map((item, i) => (
+        {approvedServiceItems?.map((item, i) => (
           <SwiperSlide key={i}>
             <div className="relative h-full">
               <div

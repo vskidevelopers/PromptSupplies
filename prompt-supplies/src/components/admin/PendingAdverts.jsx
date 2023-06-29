@@ -11,6 +11,7 @@ export default function PendingAdverts() {
           serviceItems={pendingServiceItems}
           actions={true}
           pendingView={true}
+          vipView={false}
         />
       </div>
     </div>
