@@ -1,50 +1,41 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
+import { useForm } from "react-hook-form";
 
 export const FooterContactForm = () => {
-  const footerContactForm = useRef();
-  const footerContactFormInitialState = {
-    fullName: "",
-    phoneNumber: "",
-    email: "",
-    message: "",
-  };
+  const form = useRef();
+  const [loading, setLoading] = useState(false);
+  const { register, handleSubmit, reset } = useForm();
 
-  const [footerContactFormData, setFooterContactFormData] = useState(
-    footerContactFormInitialState
-  );
-
-  const handleChange = (e) => {
-    setFooterContactFormData({
-      ...footerContactFormData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const sendContactEmail = (e) => {
-    e.preventDefault();
+  const onSubmit = (data) => {
+    // Send contact email logic goes here
+    setLoading(true);
     const serviceId = "service_urxlxif";
     const templateId = "template_h6mg67k";
+
+    console.log("Data >>", data);
+    console.log("form.current >>", form.current);
 
     try {
       emailjs
         .sendForm(
           serviceId,
           templateId,
-          footerContactForm.current,
+          form.current,
           "user_hsMArHFGXfNN1qy7Tm7VS"
         )
         .then(
           (result) => {
             console.log(result.text);
             alert("Your message has been sent!");
-            setFooterContactFormData(footerContactFormInitialState);
+            reset();
           },
           (error) => {
             console.log(error.text);
             alert;
           }
         );
+      setLoading(false);
     } catch (error) {
       console.error("An error occured while sending email >>", error);
     }
@@ -52,8 +43,8 @@ export const FooterContactForm = () => {
 
   return (
     <form
-      ref={footerContactForm}
-      onSubmit={sendContactEmail}
+      ref={form}
+      onSubmit={handleSubmit(onSubmit)}
       className="max-w-md mr-4 mx-auto bg-white shadow-md p-6"
     >
       <div className="max-w-md">
@@ -61,9 +52,7 @@ export const FooterContactForm = () => {
           <label className="block">
             <input
               type="text"
-              name="fullName"
-              value={footerContactFormData.fullName}
-              onChange={handleChange}
+              {...register("fullName")}
               className="
                       mt-0
                       block
@@ -74,14 +63,13 @@ export const FooterContactForm = () => {
                       bg-white text-gray-600
                     "
               placeholder="Full Name"
+              name="full_name"
             />
           </label>
           <label className="block">
             <input
               type="tel"
-              name="phoneNumber"
-              value={footerContactFormData.phoneNumber}
-              onChange={handleChange}
+              {...register("phoneNumber")}
               placeholder="Phone Number"
               className="mt-0
                 block
@@ -90,14 +78,13 @@ export const FooterContactForm = () => {
                 border-0 border-b-2 border-gray-200
                 focus:ring-0 focus:border-[#FDB715]
                 bg-white text-gray-600"
+              name="phone_number"
             />
           </label>
           <label className="block">
             <input
               type="email"
-              name="email"
-              value={footerContactFormData.email}
-              onChange={handleChange}
+              {...register("email")}
               placeholder="Email"
               className="mt-0
                 block
@@ -106,13 +93,12 @@ export const FooterContactForm = () => {
                 border-0 border-b-2 border-gray-200
                 focus:ring-0 focus:border-[#FDB715]
                 bg-white text-gray-600"
+              name="email"
             />
           </label>
           <label className="block">
             <textarea
-              name="message"
-              value={footerContactFormData.message}
-              onChange={handleChange}
+              {...register("message")}
               placeholder="Message"
               className="mt-0
                 block
@@ -121,15 +107,19 @@ export const FooterContactForm = () => {
                 border-0 border-b-2 border-gray-200
                 focus:ring-0 focus:border-[#FDB715]
                 bg-white text-gray-600"
+              name="message"
             ></textarea>
           </label>
         </div>
       </div>
       <button
+        disabled={loading}
         type="submit"
-        className="mt-4 text-[#FDB715] font-bold py-2 px-4 bg-white border border-[#FDB715] hover:bg-[#FDB715] hover:text-white"
+        className={` ${
+          loading ? "bg-[#FDB715]" : "bg-white"
+        } mt-4 text-[#FDB715] font-bold py-2 px-4 bg-white border border-[#FDB715] hover:bg-[#FDB715] hover:text-white  `}
       >
-        Submit
+        {loading ? "Sending ... " : "Submit"}
       </button>
     </form>
   );

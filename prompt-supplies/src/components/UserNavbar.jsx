@@ -9,6 +9,7 @@ export default function UserNavbar() {
     { name: "About Us", href: "about", current: false },
     { name: "Insights", href: "features", current: false },
     { name: "Services", href: "services", current: false },
+    { name: "Our Work", href: "projects", current: false },
   ];
 
   function classNames(...classes) {

@@ -1,9 +1,12 @@
 import { useForm } from "react-hook-form";
 import { Dialog, Transition } from "@headlessui/react";
-import { useState, Fragment } from "react";
+import { useState, Fragment, useRef } from "react";
+import emailjs from "@emailjs/browser";
 
 export default function QuotationDivider() {
   let [isOpen, setIsOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const form = useRef();
 
   function closeModal() {
     setIsOpen(false);
@@ -16,12 +19,41 @@ export default function QuotationDivider() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
   const onSubmit = (data) => {
     // Handle form submission and quote request here
     console.log(data);
+    const serviceId = "service_urxlxif";
+    const templateId = "template_ayxmemh";
+
+    try {
+      setLoading(true);
+      emailjs
+        .sendForm(
+          serviceId,
+          templateId,
+          form.current,
+          "user_hsMArHFGXfNN1qy7Tm7VS"
+        )
+        .then(
+          (result) => {
+            console.log(result.text);
+            alert("Your message has been sent!");
+            reset();
+            closeModal();
+          },
+          (error) => {
+            console.log(error.text);
+            alert;
+          }
+        );
+      setLoading(false);
+    } catch (error) {
+      console.error("An error occured while sending email >>", error);
+    }
   };
 
   return (
@@ -116,6 +148,7 @@ export default function QuotationDivider() {
                     Enter your details and we&apos;ll reach back
                   </Dialog.Title>
                   <form
+                    ref={form}
                     onSubmit={handleSubmit(onSubmit)}
                     className="max-w-md mx-auto"
                   >
@@ -128,8 +161,8 @@ export default function QuotationDivider() {
                       </label>
                       <input
                         type="text"
-                        id="name"
-                        {...register("name", { required: true })}
+                        name="full_name"
+                        {...register("full_name", { required: true })}
                         className="w-full border border-yellow-400 rounded py-2 px-3"
                       />
                       {errors.name && (
@@ -147,7 +180,7 @@ export default function QuotationDivider() {
                       </label>
                       <input
                         type="email"
-                        id="email"
+                        name="email"
                         {...register("email", { required: true })}
                         className="w-full border border-yellow-400 rounded py-2 px-3"
                       />
@@ -166,8 +199,8 @@ export default function QuotationDivider() {
                       </label>
                       <input
                         type="tel"
-                        id="phone"
-                        {...register("phone", { required: true })}
+                        name="phone_number"
+                        {...register("phone_number", { required: true })}
                         className="w-full border border-yellow-400 rounded py-2 px-3"
                       />
                       {errors.phone && (
@@ -184,7 +217,7 @@ export default function QuotationDivider() {
                         Message:
                       </label>
                       <textarea
-                        id="message"
+                        name="message"
                         {...register("message", { required: true })}
                         className="w-full border border-yellow-400 rounded py-2 px-3"
                       ></textarea>
@@ -196,10 +229,11 @@ export default function QuotationDivider() {
                     </div>
                     <div className="text-right">
                       <button
+                        disabled={loading}
                         type="submit"
                         className="bg-yellow-400 text-white py-2 px-4 rounded"
                       >
-                        Submit
+                        {loading ? "Please Wait..." : "Submit"}
                       </button>
                     </div>
                   </form>
