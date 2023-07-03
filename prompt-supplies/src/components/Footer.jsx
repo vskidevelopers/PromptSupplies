@@ -3,7 +3,7 @@
 import logo from "../assets/images/logo.png";
 import { Link } from "react-router-dom";
 import ChecklistItem from "./ChecklistItem";
-import { EnvelopeIcon, MapPinIcon, PhoneIcon } from "@heroicons/react/24/solid";
+import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/solid";
 import { FooterContactForm } from "./ContactForm";
 import CopySection from "./CopySection";
 import fb from "../assets/svgs/fb.svg";
