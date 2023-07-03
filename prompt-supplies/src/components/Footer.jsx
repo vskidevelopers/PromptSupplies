@@ -38,6 +38,7 @@ export default function Footer({ services }) {
                 />
                 <ChecklistItem
                   listItem="Prompt Supplies"
+                  social={true}
                   icon={<img src={fb} alt="" className="h-5 text-white" />}
                 />
               </div>
