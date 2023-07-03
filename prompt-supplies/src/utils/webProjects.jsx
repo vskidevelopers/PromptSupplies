@@ -1,7 +1,6 @@
 import mduka from "../assets/images/projectImages/mduka.png";
 import iowa from "../assets/images/projectImages/iowa.png";
 import safari from "../assets/images/projectImages/safari.png";
-import dusstech from "../assets/images/projectImages/dusstech.png";
 import predictions from "../assets/images/projectImages/predictions.png";
 import rehoboth from "../assets/images/projectImages/rehoboth.png";
 
