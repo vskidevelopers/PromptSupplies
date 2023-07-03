@@ -9,7 +9,7 @@ export default function UserNavbar() {
     { name: "About Us", href: "about", current: false },
     { name: "Insights", href: "features", current: false },
     { name: "Services", href: "services", current: false },
-    { name: "Our Work", href: "projects", current: false },
+    { name: "Our Projects", href: "projects", current: false },
   ];
 
   function classNames(...classes) {
@@ -76,7 +76,7 @@ export default function UserNavbar() {
                 </div>
               </div>
 
-              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+              <div className="hidden md:flex absolute inset-y-0 right-0  items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <Link
                   type="button"
                   to="advertise"
@@ -118,8 +118,8 @@ export default function UserNavbar() {
                   className=" w-full rounded bg-[#FDB715] py-2 px-2 text-white "
                 >
                   <div className="relative">
-                    <span className="animate-ping inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-                    <span className="">Advertise with Us</span>
+                    {/* <span className="animate-ping inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span> */}
+                    <span className="">Efficient Services</span>
                   </div>
                 </Link>
               </div>

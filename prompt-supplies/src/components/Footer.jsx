@@ -6,6 +6,7 @@ import ChecklistItem from "./ChecklistItem";
 import { EnvelopeIcon, MapPinIcon, PhoneIcon } from "@heroicons/react/24/solid";
 import { FooterContactForm } from "./ContactForm";
 import CopySection from "./CopySection";
+import fb from "../assets/svgs/fb.svg";
 
 export default function Footer({ services }) {
   const links = [
@@ -25,18 +26,19 @@ export default function Footer({ services }) {
             {/* Column 1 */}
             <div className="flex flex-col items-center">
               <img src={logo} alt="Brand Logo" className="w-full h-auto mr-2" />
-              <div className="mt-3">
+              <div className="mt-3 flex flex-col gap-5 ">
                 <ChecklistItem
                   listItem="info@promptsupplies.co.ke"
                   icon={<EnvelopeIcon className="h-4 text-white" />}
                 />
                 <ChecklistItem
-                  listItem="+254 (0)72 365 7856"
+                  list={true}
+                  listItem={["+254 758 416 787", "+254 751 550 015"]}
                   icon={<PhoneIcon className="h-4 text-white" />}
                 />
                 <ChecklistItem
-                  listItem="1372 Willy Jimmy rd, Nanyuki"
-                  icon={<MapPinIcon className="h-4 text-white" />}
+                  listItem="Prompt Supplies"
+                  icon={<img src={fb} alt="" className="h-5 text-white" />}
                 />
               </div>
             </div>

@@ -28,16 +28,6 @@ export const projects = [
   },
 
   {
-    title: "Dusstech Branding Shop",
-    ongoing: false,
-    description:
-      "A full stack website offers a seamless and captivating user experience, inviting visitors to explore the world of merchandise branding. It utilizes state-of-the-art facilities and cutting-edge techniques to ensure the highest level of craftsmanship in every order. ",
-    technology_stack: ["React JS", "PostgreSQL", "Django", "Rest Framework"],
-    githubLink: null,
-    liveLink: "https://dusstech.vercel.app/",
-    imageUrl: dusstech,
-  },
-  {
     title: "Malikale Safaris Kenya",
     ongoing: false,
     description:
