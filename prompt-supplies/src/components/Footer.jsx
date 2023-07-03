@@ -6,7 +6,9 @@ import ChecklistItem from "./ChecklistItem";
 import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/solid";
 import { FooterContactForm } from "./ContactForm";
 import CopySection from "./CopySection";
-import fb from "../assets/svgs/fb.svg";
+import FacebookIcon from "../assets/svgs/faceBookIcon";
+import TwitterIcon from "../assets/svgs/twitterIcon";
+import InstagramIcon from "../assets/svgs/instagramIcon";
 
 export default function Footer({ services }) {
   const links = [
@@ -39,7 +41,17 @@ export default function Footer({ services }) {
                 <ChecklistItem
                   listItem="Prompt Supplies"
                   social={true}
-                  icon={<img src={fb} alt="" className="h-5 text-white" />}
+                  icon={<FacebookIcon fill="#fff" height="24px" />}
+                />
+                <ChecklistItem
+                  listItem="@prompt_supplies"
+                  social={true}
+                  icon={<InstagramIcon fill="#fff" height="24px" />}
+                />
+                <ChecklistItem
+                  listItem="Prompt Supplies"
+                  social={true}
+                  icon={<TwitterIcon fill="#fff" height="24px" />}
                 />
               </div>
             </div>

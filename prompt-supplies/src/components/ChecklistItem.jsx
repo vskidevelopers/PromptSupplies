@@ -2,7 +2,7 @@
 
 export default function ChecklistItem({ icon, listItem, py, list, social }) {
   return (
-    <div className={`flex items-center ${py}`}>
+    <div className={`flex items-center ${py ? py : ""}`}>
       <div className="mr-3">{icon}</div>
 
       {social ? (

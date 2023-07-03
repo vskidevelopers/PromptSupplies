@@ -1,7 +1,7 @@
 import sales from "../assets/images/sales.jpg";
-import insta from "../assets/svgs/insta.svg";
-import fb from "../assets/svgs/fb.svg";
-import tweet from "../assets/svgs/tweet.svg";
+import FacebookIcon from "../assets/svgs/faceBookIcon";
+import TwitterIcon from "../assets/svgs/twitterIcon.jsx";
+import InstagramIcon from "../assets/svgs/instagramIcon.jsx";
 
 export default function Team() {
   return (
@@ -24,9 +24,9 @@ export default function Team() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-2 my-5">
           <div className="col-span-2 md:col-span-1 flex flex-col-reverse md:flex-row gap-2 items-center">
             <div className="w-1/2 md:w-auto  flex justify-evenly md:block gap-5">
-              <img src={insta} alt="" className="h-5" />
-              <img src={fb} alt="" className="h-5" />
-              <img src={tweet} alt="" className="h-5" />
+              <InstagramIcon fill="#000" color="blue" className="h-5" />
+              <FacebookIcon fill="#000" color="blue" className="h-5" />
+              <TwitterIcon fill="#000" color="blue" className="h-5" />
             </div>
 
             <div>
@@ -107,9 +107,9 @@ export default function Team() {
             </div>
 
             <div className="w-1/2 flex justify-evenly md:w-auto md:block ">
-              <img src={insta} alt="" className="h-5" />
-              <img src={fb} alt="" className="h-5" />
-              <img src={tweet} alt="" className="h-5" />
+              <InstagramIcon fill="#000" color="blue" className="h-5" />
+              <FacebookIcon fill="#000" color="blue" className="h-5" />
+              <TwitterIcon fill="#000" color="blue" className="h-5" />
             </div>
           </div>
           <div className="mt-5 col-span-3 border border-[#FDB715] border-bottom-2"></div>
