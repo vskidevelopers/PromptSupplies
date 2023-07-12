@@ -16,7 +16,7 @@ import Contact from "./pages/Contact";
 import Services from "./pages/Services";
 import Features from "./pages/Features";
 import About from "./pages/About";
-// import Advert from "./pages/Advert";
+
 import ServiceDetail from "./pages/ServiceDetail";
 import { services } from "./utils/services";
 import { projects } from "./utils/webProjects";
@@ -28,8 +28,8 @@ import PendingAdverts from "./components/admin/PendingAdverts";
 import ApprovedAdverts from "./components/admin/ApprovedAdverts";
 import Projects from "./pages/Projects";
 import EfficientServices from "./pages/EfficientServices";
-import PopularAdverts from "./components/admin/popularAdverts";
-import FeaturedAdverts from "./components/admin/featuredAdverts";
+import PopularAdverts from "./components/admin/PopularAdverts";
+import FeaturedAdverts from "./components/admin/FeaturedAdverts";
 import OfferAdverts from "./components/admin/OfferAdverts";
 import SaleAdverts from "./components/admin/SaleAdverts";
 
