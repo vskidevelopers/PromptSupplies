@@ -1,20 +1,19 @@
 import { useCallUsServicesFunctions } from "../../utils/firebase";
-import AdvertTable from "./AdvertTable";
+
+import AdvertTableSection from "./AdvertTableSection";
 
 export default function ApprovedAdverts() {
   const { approvedServiceItems } = useCallUsServicesFunctions();
-  console.log("all Services >> ", approvedServiceItems);
-  const nonVip = approvedServiceItems.filter(
-    (service) => service.vip === false
-  );
+  console.log("approved Adverts >> ", approvedServiceItems);
+
   return (
     <div>
-      <div className="overflow-x-auto">
-        <AdvertTable
-          serviceItems={nonVip}
-          actions={true}
-          pendingView={false}
-          vipView={false}
+      <div className="overflow-auto">
+        <AdvertTableSection
+          sectionTitle="Approved Adverts"
+          advertItems={approvedServiceItems}
+          secondary={true}
+          approved={true}
         />
       </div>
     </div>

@@ -47,6 +47,7 @@ function CallUsAdvertSwiper() {
 
   return (
     <>
+      lorem
       <div>
         <Transition appear show={isOpen} as={Fragment}>
           <Dialog as="div" className="relative z-50" onClose={closeModal}>

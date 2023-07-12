@@ -27,10 +27,9 @@ export default function ServiceMiniCard({ id, icon, title, backgroundImage }) {
           }`}
           style={{ backgroundImage: `url(${backgroundImage})` }}
         ></div>
-        {/* <div className="absolute inset-0 h-full bg-gray-900/70"></div> */}
         <div
           className={`absolute inset-0 h-full bg-black transition-opacity ${
-            isHovered ? "opacity-60" : "opacity-0"
+            isHovered ? "opacity-80" : "opacity-70"
           }`}
         ></div>
         <div className="rounded-lg overflow-hidden z-10">

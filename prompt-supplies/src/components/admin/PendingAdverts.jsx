@@ -1,17 +1,17 @@
 import { useCallUsServicesFunctions } from "../../utils/firebase";
-import AdvertTable from "./AdvertTable";
+import AdvertTableSection from "./AdvertTableSection";
 
 export default function PendingAdverts() {
   const { pendingServiceItems } = useCallUsServicesFunctions();
-  console.log("all Services >> ", pendingServiceItems);
+  console.log("pending Adverts>> ", pendingServiceItems);
   return (
     <div>
-      <div className="overflow-x-auto">
-        <AdvertTable
-          serviceItems={pendingServiceItems}
-          actions={true}
-          pendingView={true}
-          vipView={false}
+      <div className="overflow-auto">
+        <AdvertTableSection
+          sectionTitle="Pending Adverts"
+          advertItems={pendingServiceItems}
+          secondary={true}
+          approved={false}
         />
       </div>
     </div>

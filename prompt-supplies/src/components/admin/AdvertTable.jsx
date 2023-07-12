@@ -4,7 +4,7 @@ import { useCallUsServicesFunctions } from "../../utils/firebase";
 
 /* eslint-disable react/prop-types */
 export default function AdvertTable({
-  serviceItems,
+  advertItems,
   actions,
   pendingView,
   vipView,
@@ -118,7 +118,10 @@ export default function AdvertTable({
       )}
 
       {showApproveModal.open && (
-        <div className="absolute  bg-gray-800/80  h-full w-full flex justify-center items-center ">
+        <div
+          onClick={handleOnCancel}
+          className="absolute  bg-gray-800/80  h-full w-full flex justify-center items-center "
+        >
           <div className="bg-slate-900 border border-green-600 rounded shadow py-4 px-5 ">
             <p className="text-green-600">
               Are you sure you want to Approve this Ad?
@@ -144,7 +147,10 @@ export default function AdvertTable({
       )}
 
       {showMakeVipModal.open && (
-        <div className="absolute  bg-gray-800/80  h-full w-full flex justify-center items-center ">
+        <div
+          onClick={handleOnCancel}
+          className="absolute  bg-gray-800/80  h-full w-full flex justify-center items-center "
+        >
           <div className="bg-slate-900 border border-purple-700 rounded shadow py-4 px-5 ">
             <p className="text-indigo-600">
               Are you sure you want to make this Ad VIP?
@@ -296,7 +302,7 @@ export default function AdvertTable({
         </thead>
 
         <tbody className="divide-y divide-gray-200">
-          {serviceItems.map((item, index) => (
+          {advertItems.map((item, index) => (
             <tr key={index} className="odd:bg-white even:bg-slate-50">
               <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                 {item.name}
@@ -352,18 +358,32 @@ export default function AdvertTable({
                   )
                 ) : (
                   <td className="whitespace-nowrap px-4 py-2 flex gap-4 ">
-                    <button
-                      onClick={() => handleOnMakeVip(item?.id)}
-                      className="py-2 px-4 bg-emerald-800 text-white"
-                    >
-                      Vip
-                    </button>
-                    <button
-                      onClick={() => handleOnDelete(item?.id)}
-                      className="py-2 px-4 bg-red-800 text-white"
-                    >
-                      Delete
-                    </button>
+                    <div className="grid gap-2 grid-cols-2 h-full ">
+                      <button
+                        onClick={() => handleOnMakeVip(item?.id)}
+                        className="py-2 px-4 bg-rose-800 text-white"
+                      >
+                        Featured
+                      </button>
+                      <button
+                        onClick={() => handleOnMakeVip(item?.id)}
+                        className="py-2 px-4 bg-cyan-800 text-white"
+                      >
+                        Popular
+                      </button>
+                      <button
+                        onClick={() => handleOnMakeVip(item?.id)}
+                        className="py-2 px-4 bg-emerald-800 text-white"
+                      >
+                        Deals
+                      </button>
+                      <button
+                        onClick={() => handleOnDelete(item?.id)}
+                        className="py-2 px-4 bg-red-800 text-white"
+                      >
+                        Delete
+                      </button>
+                    </div>
                   </td>
                 )
               ) : (

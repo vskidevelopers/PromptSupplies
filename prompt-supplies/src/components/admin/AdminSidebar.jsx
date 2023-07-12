@@ -1,11 +1,12 @@
 import {
+  ArrowLeftOnRectangleIcon,
   HomeIcon,
   NewspaperIcon,
   ServerStackIcon,
   UserCircleIcon,
 } from "@heroicons/react/24/solid";
 import { Fragment, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const AdminSidebar = () => {
   const [showAdvertSubItems, setShowAdvertSubItems] = useState(false);
@@ -50,8 +51,23 @@ const AdminSidebar = () => {
         },
         {
           id: 34,
-          label: "Vip",
-          href: "admin-adverts/vip",
+          label: "Popular",
+          href: "admin-adverts/popular",
+        },
+        {
+          id: 35,
+          label: "Featured",
+          href: "admin-adverts/featured",
+        },
+        {
+          id: 36,
+          label: "Offer",
+          href: "admin-adverts/offer",
+        },
+        {
+          id: 37,
+          label: "Sale",
+          href: "admin-adverts/sale",
         },
       ],
     },
@@ -67,19 +83,27 @@ const AdminSidebar = () => {
     },
   ];
 
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/");
+  };
+
   return (
-    <div className="py-4 px-2 bg-gray-800 text-white">
+    <div className="py-4 px-2 bg-gray-800 text-white relative h-full">
       {menuItems.map((item) => (
         <Fragment key={item.id}>
-          <div
-            className="flex items-center py-2 pb-5 border-b border-b-white/30 bg-gray-700/10 hover:bg-gray-900"
-            onClick={item.label === "Adverts" ? handleAdvertsClick : null}
-          >
-            {item.icon}
-            <Link to={item.href}>
+          <Link to={item.href}>
+            <div
+              className="flex items-center py-2 pb-5 border-b border-b-white/30 bg-gray-700/10 hover:bg-gray-900"
+              onClick={item.label === "Adverts" ? handleAdvertsClick : null}
+            >
+              {item.icon}
+
               <span>{item.label}</span>
-            </Link>
-          </div>
+            </div>
+          </Link>
 
           {showAdvertSubItems && item.label === "Adverts" && (
             <div className="pl-6 py-2">
@@ -96,6 +120,15 @@ const AdminSidebar = () => {
           )}
         </Fragment>
       ))}
+      <div
+        className=" absolute w-3/4 bottom-4 flex items-center py-2 pb-5 border-b border-b-white/30 bg-gray-700/10 hover:bg-gray-900"
+        onClick={handleLogout}
+      >
+        <ArrowLeftOnRectangleIcon className="h-4 w-4 mr-4" />
+        <Link to={menuItems[0].href}>
+          <span className="font-bold">Logout </span>
+        </Link>
+      </div>
     </div>
   );
 };

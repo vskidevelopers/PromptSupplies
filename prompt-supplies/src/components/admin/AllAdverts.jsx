@@ -1,5 +1,5 @@
 import { useCallUsServicesFunctions } from "../../utils/firebase";
-import AdvertTable from "./AdvertTable";
+import AdvertTableSection from "./AdvertTableSection";
 
 export default function AllAdverts() {
   const { allServiceItems } = useCallUsServicesFunctions();
@@ -7,8 +7,13 @@ export default function AllAdverts() {
 
   return (
     <div>
-      <div className="overflow-x-auto">
-        <AdvertTable serviceItems={allServiceItems} />
+      <div className=" ">
+        <AdvertTableSection
+          sectionTitle="All Call Us Adverts"
+          advertItems={allServiceItems}
+          secondary={true}
+          approved={false}
+        />
       </div>
     </div>
   );

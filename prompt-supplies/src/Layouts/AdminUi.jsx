@@ -11,7 +11,7 @@ const AdminUi = () => {
   };
 
   return (
-    <div className="flex">
+    <div className="flex bg-slate-300 w-full">
       {/* Slidable Menu */}
       <div
         className={`fixed inset-y-0 left-0 z-50 flex-shrink-0 w-80 bg-gray-800 transition-transform duration-300 transform ${
@@ -20,7 +20,7 @@ const AdminUi = () => {
       >
         {/* Menu Button */}
         <button
-          className="absolute top-0 -right-16 w-16 h-16 flex items-center justify-center bg-gray-900 text-white transition-transform duration-300 transform"
+          className="absolute top-0 -right-16 w-16 h-16 flex items-center justify-center bg-gray-600 text-white transition-transform duration-300 transform"
           onClick={toggleMenu}
         >
           {isMenuOpen ? (
@@ -62,7 +62,7 @@ const AdminUi = () => {
 
       {/* Content */}
       <div
-        className={`flex-grow h-full w-full py-20  transition-transform duration-500 px-20  ${
+        className={`flex-grow h-full w-full py-10  transition-transform duration-500 px-20 overflow-clip  ${
           isMenuOpen ? "ml-64" : "ml-0"
         }`}
       >

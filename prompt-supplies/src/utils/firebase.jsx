@@ -48,7 +48,10 @@ export const useCallUsServicesFunctions = () => {
   const [allServiceItems, setAllServiceItems] = useState([]);
   const [pendingServiceItems, setPendingServiceItems] = useState([]);
   const [approvedServiceItems, setApprovedServiceItems] = useState([]);
-  const [vipServiceItems, setVipServiceItems] = useState([]);
+  const [popularServiceItems, setPopularServiceItems] = useState([]);
+  const [featuredServiceItems, setFeaturedServiceItems] = useState([]);
+  const [offerServiceItems, setOfferServiceItems] = useState([]);
+  const [salesServiceItems, setSalesServiceItems] = useState([]);
   const [serviceDetails, setServiceDetails] = useState(null);
   const [uploadProgress, setUploadProgress] = useState(0);
 
@@ -63,9 +66,48 @@ export const useCallUsServicesFunctions = () => {
     }));
 
     // fetchApprovedAds
-    const approved = query(serviceItemsRef, where("approved", "==", true));
+    const approved = query(
+      serviceItemsRef,
+      where("approved", "==", true),
+      where("offer", "==", false),
+      where("sale", "==", false),
+      where("popular", "==", false),
+      where("featured", "==", false)
+    );
     const approvedQuerySnapshot = await getDocs(approved);
     const approvedItemsData = approvedQuerySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    // fetchPopularAds
+    const popular = query(serviceItemsRef, where("popular", "==", true));
+    const popularQuerySnapshot = await getDocs(popular);
+    const popularItemsData = popularQuerySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    // fetchFeaturedAds
+    const featured = query(serviceItemsRef, where("featured", "==", true));
+    const featuredQuerySnapshot = await getDocs(featured);
+    const featuredItemsData = featuredQuerySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    // fetchOfferAds
+    const offer = query(serviceItemsRef, where("offer", "==", true));
+    const offerQuerySnapshot = await getDocs(offer);
+    const offerItemsData = offerQuerySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    // fetchSalesAds
+    const sales = query(serviceItemsRef, where("sales", "==", true));
+    const salesQuerySnapshot = await getDocs(sales);
+    const salesItemsData = salesQuerySnapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
     }));
@@ -78,23 +120,18 @@ export const useCallUsServicesFunctions = () => {
       ...doc.data(),
     }));
 
-    // fetchVipAds
-    const vip = query(serviceItemsRef, where("vip", "==", true));
-    const vipQuerySnapshot = await getDocs(vip);
-    const vipItemsData = vipQuerySnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
-
     console.log("setting doc items into serviceItemsData. ..");
     setAllServiceItems(serviceItemsData);
     setApprovedServiceItems(approvedItemsData);
     setPendingServiceItems(pendingItemsData);
-    setVipServiceItems(vipItemsData);
+    setFeaturedServiceItems(featuredItemsData);
+    setPopularServiceItems(popularItemsData);
+    setOfferServiceItems(offerItemsData);
+    setSalesServiceItems(salesItemsData);
     console.log("complete! serviceItemsData >>", serviceItemsData);
     console.log("complete! approvedServiceItemsData >>", approvedItemsData);
     console.log("complete! pendingServiceItemsData >>", pendingItemsData);
-    console.log("complete! vipServiceItemsData >>", vipItemsData);
+    console.log("complete! popularServiceItemsData >>", popularItemsData);
   };
 
   useEffect(() => {
@@ -213,12 +250,54 @@ export const useCallUsServicesFunctions = () => {
     }
   };
 
-  const handleMakeVip = async (id) => {
+  const handleMakePopular = async (id) => {
     try {
       setLoading(true);
       const serviceItemRef = doc(db, "CallUsServices", id);
       await updateDoc(serviceItemRef, {
-        vip: true,
+        popular: true,
+      });
+      setLoading(false);
+    } catch (err) {
+      console.log("The folowing error occured >> ", err);
+      setError(err);
+    }
+  };
+
+  const handleMakeFeatured = async (id) => {
+    try {
+      setLoading(true);
+      const serviceItemRef = doc(db, "CallUsServices", id);
+      await updateDoc(serviceItemRef, {
+        featured: true,
+      });
+      setLoading(false);
+    } catch (err) {
+      console.log("The folowing error occured >> ", err);
+      setError(err);
+    }
+  };
+
+  const handleMakeSale = async (id) => {
+    try {
+      setLoading(true);
+      const serviceItemRef = doc(db, "CallUsServices", id);
+      await updateDoc(serviceItemRef, {
+        sales: true,
+      });
+      setLoading(false);
+    } catch (err) {
+      console.log("The folowing error occured >> ", err);
+      setError(err);
+    }
+  };
+
+  const handleMakeOffer = async (id) => {
+    try {
+      setLoading(true);
+      const serviceItemRef = doc(db, "CallUsServices", id);
+      await updateDoc(serviceItemRef, {
+        offer: true,
       });
       setLoading(false);
     } catch (err) {
@@ -233,7 +312,10 @@ export const useCallUsServicesFunctions = () => {
     fetchServiceDetails,
     handleDeleteServiceItem,
     handleApproveServiceItem,
-    handleMakeVip,
+    handleMakeFeatured,
+    handleMakeOffer,
+    handleMakeSale,
+    handleMakePopular,
     serviceDetails,
     imageURL,
     success,
@@ -242,7 +324,10 @@ export const useCallUsServicesFunctions = () => {
     allServiceItems,
     approvedServiceItems,
     pendingServiceItems,
-    vipServiceItems,
+    popularServiceItems,
+    featuredServiceItems,
+    offerServiceItems,
+    salesServiceItems,
     uploadProgress,
   };
 };

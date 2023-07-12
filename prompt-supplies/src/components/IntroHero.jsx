@@ -95,31 +95,6 @@ export default function IntroHero() {
           <div className="absolute inset-0 h-full bg-[#181b1c]/25"></div>
         </div>
 
-        {/* Content */}
-        {/* <div className="absolute h-full container mx-auto px-5 md:px-20 text-white">
-          <div className="h-full flex justify-start items-center">
-            <div className="w-full md:w-3/4">
-              <h2 className="text-4xl md:text-7xl font-bold capitalize">
-                Choose the right solution for your business
-              </h2>
-              <p className="mt-5">
-                Unlock Business Potential with Effective Solutions: Seamlessly
-                integrate Bulk SMS, Promotional SMS, Bulk Emailing, and more to
-                elevate customer engagement and propel business growth
-              </p>
-              <div className="pt-5">
-                <Link
-                  to="about"
-                  className="border border-[#FDB715] text-md text-[#FDB715] hover:text-black hover:border-white hover:bg-[#FDB715] py-4 px-8"
-                >
-                  Read More
-                </Link>
-              </div>
-            </div>
-            <div className="w-1/4"></div>
-          </div>
-        </div> */}
-
         <div className="absolute h-full container mx-auto px-5 md:px-20 text-white">
           <motion.div
             className="h-full flex justify-start items-center"
