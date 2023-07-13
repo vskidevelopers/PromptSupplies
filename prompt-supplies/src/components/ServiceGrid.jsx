@@ -22,6 +22,7 @@ function ServiceGrid({ sliderItems }) {
 
   const lastCount = itemOffset + itemsPerPage;
   console.log(currentItems);
+  console.log("Last Count >>", lastCount);
 
   return (
     <div className="w-full my-8">
@@ -35,8 +36,8 @@ function ServiceGrid({ sliderItems }) {
           </div>
 
           <div className="grid grid-cols-4 gap-4">
-            {sliderItems?.map((sliderItem, index) => (
-              <div key={index}>
+            {sliderItems?.map((sliderItem) => (
+              <div key={sliderItem.id}>
                 <ServiceSliderCards sliderItem={sliderItem} />
               </div>
             ))}

@@ -49,7 +49,7 @@ export default function EfficientServices() {
 
   const dealsItems = [...offerServiceItems, ...salesServiceItems];
 
-  console.log("Deals Items >>", dealsItems);
+  console.log("Deals Items >>", dealsItems.length);
 
   const handleImageDrop = (acceptedFiles) => {
     if (acceptedFiles && acceptedFiles.length > 0) {
