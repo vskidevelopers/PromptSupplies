@@ -3,22 +3,13 @@ import { Dialog, Transition } from "@headlessui/react";
 import { PhoneArrowUpRightIcon } from "@heroicons/react/24/outline";
 import { Fragment, useState } from "react";
 
-export default function ServiceSliderCards({ image }) {
+export default function ServiceSliderCards({ sliderItem }) {
   let [isOpen, setIsOpen] = useState(false);
+  let [modalData, setModalData] = useState({});
 
-  const modalData = {
-    jobTitle: "Service Title",
-    description:
-      "lorem IpusmLorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem ipsa architecto expedita ad quaerat nemo, dolorem praesentium magnam",
-    email: "email@example.com",
-    phone: "+86-(1)734-xxxxxxx",
-    location: "location",
-  };
-
-  function openModal() {
+  function openModal(itemParam) {
     setIsOpen(true);
-    // setModalData(item);
-    // console.log("Modal Data >>", modalData);
+    setModalData(itemParam);
   }
 
   function closeModal() {
@@ -26,9 +17,9 @@ export default function ServiceSliderCards({ image }) {
   }
 
   return (
-    <div>
+    <div className="mr-5">
       <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-50" onClose={closeModal}>
+        <Dialog as="div" className="relative z-50 my-4" onClose={closeModal}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -41,7 +32,7 @@ export default function ServiceSliderCards({ image }) {
             <div className="fixed w-screen h-screen inset-0 bg-black bg-opacity-50" />
           </Transition.Child>
 
-          <div className="fixed inset-0 overflow-y-auto">
+          <div className="fixed inset-0 overflow-y-auto ">
             <div className="flex min-h-full items-center justify-center p-4 text-center">
               <Transition.Child
                 as={Fragment}
@@ -123,14 +114,14 @@ export default function ServiceSliderCards({ image }) {
           </div>
         </Dialog>
       </Transition>
-      <div className="relative h-72 w-72  mr-4">
+      <div className="relative h-64 w-64 md:h-72 md:w-72  mx-auto">
         <div
           className="absolute inset-0 h-full w-full bg-cover bg-center"
-          style={{ backgroundImage: `url(${image})` }}
+          style={{ backgroundImage: `url(${sliderItem?.poster})` }}
         ></div>
         <div className="absolute inset-0 bg-gray-900/10 hover:bg-gray-900/50 w-full h-full flex justify-center items-center transition duration-300">
           <button
-            onClick={() => openModal()}
+            onClick={() => openModal(sliderItem)}
             className="border border-[#FDB715] hover:bg-[#FDB714] py-4 px-6 grid grid-cols-2 text-white"
           >
             <div className="w-full h-full">

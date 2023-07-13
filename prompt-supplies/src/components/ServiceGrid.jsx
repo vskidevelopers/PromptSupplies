@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import Pagination from "./Pagination";
 import ServiceSliderCards from "./ServiceSliderCards";
 
-function ServiceGrid() {
+function ServiceGrid({ sliderItems }) {
   const [items, setItems] = useState([]);
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
@@ -11,14 +12,8 @@ function ServiceGrid() {
 
   const itemsPerPage = 9;
 
-  const productItems = [];
-
   useEffect(() => {
-    for (let i = 1; i < 100; i++) {
-      productItems.push(i);
-    }
-    console.log(productItems);
-    setItems(productItems);
+    setItems(sliderItems);
     const endOffset = itemOffset + itemsPerPage;
     console.log(`Loading items from ${itemOffset} to ${endOffset}`);
     setCurrentItems(items.slice(itemOffset, endOffset));
@@ -40,13 +35,11 @@ function ServiceGrid() {
           </div>
 
           <div className="grid grid-cols-4 gap-4">
-            <ServiceSliderCards image="https://img.freepik.com/free-vector/general-square-business-flyer-template_23-2148924498.jpg" />
-            <ServiceSliderCards image="https://img.freepik.com/free-vector/general-square-business-flyer-template_23-2148924498.jpg" />
-            <ServiceSliderCards image="https://img.freepik.com/free-vector/general-square-business-flyer-template_23-2148924498.jpg" />
-            <ServiceSliderCards image="https://img.freepik.com/free-vector/general-square-business-flyer-template_23-2148924498.jpg" />
-            <ServiceSliderCards image="https://img.freepik.com/free-vector/general-square-business-flyer-template_23-2148924498.jpg" />
-            <ServiceSliderCards image="https://img.freepik.com/free-vector/general-square-business-flyer-template_23-2148924498.jpg" />
-            <ServiceSliderCards image="https://img.freepik.com/free-vector/general-square-business-flyer-template_23-2148924498.jpg" />
+            {sliderItems?.map((sliderItem, index) => (
+              <div key={index}>
+                <ServiceSliderCards sliderItem={sliderItem} />
+              </div>
+            ))}
           </div>
 
           <div>

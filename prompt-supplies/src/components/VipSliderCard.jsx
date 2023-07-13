@@ -13,7 +13,7 @@ function VipSliderCard({ sliderIndex, image }) {
         {/* <div className="absolute inset-0 h-full w-full bg-[#181b1c]/75"></div> */}
         <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-black via-[#181b1c]/75 to-transparent"></div>
       </div>
-      <div className=" absolute container mx-auto  px-20  ">
+      <div className=" absolute container mx-auto px-5 md:px-20  ">
         <div className="py-12 h-96 w-full flex items-center">
           <div className="max-w-xl pl-10">
             {" "}

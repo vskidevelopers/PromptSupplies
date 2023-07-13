@@ -26,24 +26,25 @@ function HeroSlider() {
   };
 
   return (
-    <div className="">
+    <div className=" ">
       <div className="relative ">
-        <div className="absolute  h-96 w-full !flex items-center justify-between px-2">
+        <div className="absolute  h-96 w-full !flex items-center justify-between px-4 md:px-2">
           <button
             onClick={() => gotoNext()}
-            className="z-10 bg-white py-4 px-4 rounded-full shadow-md text-black"
+            className="z-10 bg-white py-2 px-2 md:py-4 md:px-4 rounded-full shadow-md text-black"
           >
             <ChevronLeftIcon className="h-6 w-6  text-slate-950" />
           </button>
           <button
             onClick={() => gotoPrev()}
-            className="z-10 bg-white py-4 px-4 rounded-full shadow-md text-black"
+            className="z-10 bg-white py-2 px-2 md:py-4 md:px-4  rounded-full shadow-md text-black"
           >
             <ChevronRightIcon className="h-6 w-6  text-slate-950" />
           </button>
         </div>
+
         <Slider {...settings} ref={vipSliderRef}>
-          <div className="h-96 w-full ">
+          <div className="h-96 w-4/5">
             <VipSliderCard
               image="https://blog.depositphotos.com/wp-content/uploads/2017/07/Soothing-nature-backgrounds-2.jpg.webp"
               sliderIndex={0}

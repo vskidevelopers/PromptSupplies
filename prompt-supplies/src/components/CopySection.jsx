@@ -7,7 +7,7 @@ export default function CopySection() {
         <div className="flex ">
           <div className="w-1/2 flex justify-end">
             <p>
-              &copy; 2023 <Link to="/admin"> Prompt Supplies. </Link> All rights
+              &copy; 2023 <Link to="admin"> Prompt Supplies. </Link> All rights
               Preserved.
             </p>
           </div>

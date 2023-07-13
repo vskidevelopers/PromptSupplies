@@ -129,6 +129,7 @@ export const useCallUsServicesFunctions = () => {
     setOfferServiceItems(offerItemsData);
     setSalesServiceItems(salesItemsData);
     console.log("complete! serviceItemsData >>", serviceItemsData);
+    console.log("complete! serviceItemsData >>", typeof serviceItemsData);
     console.log("complete! approvedServiceItemsData >>", approvedItemsData);
     console.log("complete! pendingServiceItemsData >>", pendingItemsData);
     console.log("complete! popularServiceItemsData >>", popularItemsData);

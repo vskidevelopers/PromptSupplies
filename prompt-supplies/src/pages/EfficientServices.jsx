@@ -26,7 +26,30 @@ export default function EfficientServices() {
     imageURL,
     loading,
     uploadProgress,
+    approvedServiceItems,
+    popularServiceItems,
+    featuredServiceItems,
+    offerServiceItems,
+    salesServiceItems,
+    allServiceItems,
   } = useCallUsServicesFunctions();
+
+  console.log(
+    "Approved Ads from the Efficient Page >>",
+    typeof approvedServiceItems
+  );
+  console.log("All Ads from the Efficient Page >>", popularServiceItems);
+  console.log(
+    "All Ads from the Efficient Page >>",
+    Array.isArray(allServiceItems)
+  );
+  console.log("Approved Ads from the Efficient Page >>", featuredServiceItems);
+  console.log("Approved Ads from the Efficient Page >>", offerServiceItems);
+  console.log("Approved Ads from the Efficient Page >>", salesServiceItems);
+
+  const dealsItems = [...offerServiceItems, ...salesServiceItems];
+
+  console.log("Deals Items >>", dealsItems);
 
   const handleImageDrop = (acceptedFiles) => {
     if (acceptedFiles && acceptedFiles.length > 0) {
@@ -65,7 +88,10 @@ export default function EfficientServices() {
         location: data.location,
         jobTitle: data.jobTitle,
         approved: false,
-        vip: false,
+        featured: false,
+        popular: false,
+        offer: false,
+        sale: false,
       };
       console.log("service Data to upload >>", serviceData);
       handlePostServiceData(serviceData);
@@ -91,6 +117,7 @@ export default function EfficientServices() {
         <SectionServiceSlider
           sectionTitle="Popular Services"
           bgColor="bg-gray-100"
+          sliderItems={allServiceItems}
         />
 
         <div>
@@ -299,18 +326,18 @@ export default function EfficientServices() {
                   className="relative flex flex-col justify-center items-center py-10"
                   ref={ref}
                 >
-                  <div className="flex">
-                    <div className="w-full md:w-1/2 text-start md:text-center">
+                  <div className="flex flex-col gap-4 px-8 w-full md:flex-row ">
+                    <div className="w-full  md:w-1/2 text-start md:text-center">
                       <h2 className="text-[#FDB715] text-md font-semibold uppercase ">
                         Advertise With Us
                       </h2>
-                      <h1 className="text-3xl font-bold">
+                      <h1 className="text-xl md:text-3xl font-bold">
                         Amplify Your Reach: Unlock Growth Opportunities with
                         Effective Advertising
                       </h1>
                     </div>
 
-                    <div className="w-full md:w-1/2 flex justify-end items-center z-10">
+                    <div className="w-full md:w-1/2 flex justify-center md:justify-end items-center z-10">
                       <button
                         onClick={openModal}
                         className="border border-[#FDB715] text-[#FDB715] hover:bg-[#FDB715] hover:text-white py-5 px-8"
@@ -319,6 +346,7 @@ export default function EfficientServices() {
                       </button>
                     </div>
                   </div>
+
                   <div className="absolute top-0 left-0 h-full w-full flex justify-start items-center opacity-10">
                     <motion.h1
                       initial={{ x: -500, opacity: 0 }}
@@ -344,11 +372,13 @@ export default function EfficientServices() {
         </div>
 
         <SectionServiceSlider
-          sectionTitle="Featured Services"
-          bgColor="bg-gray-200"
+          sectionTitle="Popular Services"
+          bgColor="bg-gray-100"
+          sliderItems={allServiceItems}
         />
-        <DealsSectionSlider />
-        <ServiceGrid />
+
+        <DealsSectionSlider sliderItems={dealsItems} />
+        <ServiceGrid sliderItems={approvedServiceItems} />
       </div>
     </div>
   );
