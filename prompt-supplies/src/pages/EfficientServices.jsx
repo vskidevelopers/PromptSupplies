@@ -29,8 +29,7 @@ export default function EfficientServices() {
     approvedServiceItems,
     popularServiceItems,
     featuredServiceItems,
-    offerServiceItems,
-    salesServiceItems,
+    dealsServiceItems,
     allServiceItems,
   } = useCallUsServicesFunctions();
 
@@ -44,12 +43,12 @@ export default function EfficientServices() {
     Array.isArray(allServiceItems)
   );
   console.log("Approved Ads from the Efficient Page >>", featuredServiceItems);
-  console.log("Approved Ads from the Efficient Page >>", offerServiceItems);
-  console.log("Approved Ads from the Efficient Page >>", salesServiceItems);
+  console.log("Deals Ads from the Efficient Page >>", dealsServiceItems);
+  // console.log("Approved Ads from the Efficient Page >>", salesServiceItems);
 
-  const dealsItems = [...offerServiceItems, ...salesServiceItems];
+  // const dealsItems = [...offerServiceItems, ...salesServiceItems];
 
-  console.log("Deals Items >>", dealsItems.length);
+  // console.log("Deals Items >>", dealsItems.length);
 
   const handleImageDrop = (acceptedFiles) => {
     if (acceptedFiles && acceptedFiles.length > 0) {
@@ -372,12 +371,12 @@ export default function EfficientServices() {
         </div>
 
         <SectionServiceSlider
-          sectionTitle="Popular Services"
+          sectionTitle="Featured Services"
           bgColor="bg-gray-100"
           sliderItems={allServiceItems}
         />
 
-        <DealsSectionSlider sliderItems={dealsItems} />
+        <DealsSectionSlider sliderItems={dealsServiceItems} />
         <ServiceGrid sliderItems={approvedServiceItems} />
       </div>
     </div>

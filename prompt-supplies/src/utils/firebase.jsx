@@ -52,6 +52,7 @@ export const useCallUsServicesFunctions = () => {
   const [featuredServiceItems, setFeaturedServiceItems] = useState([]);
   const [offerServiceItems, setOfferServiceItems] = useState([]);
   const [salesServiceItems, setSalesServiceItems] = useState([]);
+  const [dealsServiceItems, setDealsServiceItems] = useState([]);
   const [serviceDetails, setServiceDetails] = useState(null);
   const [uploadProgress, setUploadProgress] = useState(0);
 
@@ -120,6 +121,27 @@ export const useCallUsServicesFunctions = () => {
       ...doc.data(),
     }));
 
+    // fetchDealsAds
+    const querySale = query(serviceItemsRef, where("sale", "==", true));
+    const queryOffer = query(serviceItemsRef, where("offer", "==", true));
+
+    const querySaleSnapshot = await getDocs(querySale);
+    const queryOfferSnapshot = await getDocs(queryOffer);
+    // const [querySaleSnapshot, queryOfferSnapshot] = await Promise.all([
+    //   getDocs(querySale),
+    //   getDocs(queryOffer),
+    // ]);
+
+    const dealsQuerySnapshot = [
+      ...querySaleSnapshot.docs,
+      ...queryOfferSnapshot.docs,
+    ];
+
+    const dealsItemsData = dealsQuerySnapshot.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
     console.log("setting doc items into serviceItemsData. ..");
     setAllServiceItems(serviceItemsData);
     setApprovedServiceItems(approvedItemsData);
@@ -128,11 +150,13 @@ export const useCallUsServicesFunctions = () => {
     setPopularServiceItems(popularItemsData);
     setOfferServiceItems(offerItemsData);
     setSalesServiceItems(salesItemsData);
+    setDealsServiceItems(dealsItemsData);
     console.log("complete! serviceItemsData >>", serviceItemsData);
     console.log("complete! serviceItemsData >>", typeof serviceItemsData);
     console.log("complete! approvedServiceItemsData >>", approvedItemsData);
     console.log("complete! pendingServiceItemsData >>", pendingItemsData);
     console.log("complete! popularServiceItemsData >>", popularItemsData);
+    console.log("complete! dealsServiceItemsData >>", dealsItemsData);
   };
 
   useEffect(() => {
@@ -284,7 +308,7 @@ export const useCallUsServicesFunctions = () => {
       setLoading(true);
       const serviceItemRef = doc(db, "CallUsServices", id);
       await updateDoc(serviceItemRef, {
-        sales: true,
+        sale: true,
       });
       setLoading(false);
     } catch (err) {
@@ -330,5 +354,6 @@ export const useCallUsServicesFunctions = () => {
     offerServiceItems,
     salesServiceItems,
     uploadProgress,
+    dealsServiceItems,
   };
 };

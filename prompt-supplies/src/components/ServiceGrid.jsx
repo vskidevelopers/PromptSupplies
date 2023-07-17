@@ -35,7 +35,7 @@ function ServiceGrid({ sliderItems }) {
             {items.length} results
           </div>
 
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-4  gap-4">
             {sliderItems?.map((sliderItem) => (
               <div key={sliderItem.id}>
                 <ServiceSliderCards sliderItem={sliderItem} />

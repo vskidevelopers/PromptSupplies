@@ -1,4 +1,3 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 import {
   RouterProvider,
@@ -32,6 +31,7 @@ import PopularAdverts from "./components/admin/PopularAdverts";
 import FeaturedAdverts from "./components/admin/FeaturedAdverts";
 import OfferAdverts from "./components/admin/OfferAdverts";
 import SaleAdverts from "./components/admin/SaleAdverts";
+import React from "react";
 
 const serviceList = services;
 console.log("Service List from router >>>", serviceList);

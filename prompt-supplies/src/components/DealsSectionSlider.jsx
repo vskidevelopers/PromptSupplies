@@ -2,22 +2,25 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import Slider from "react-slick";
 import ServiceSliderCards from "./ServiceSliderCards";
-import { createRef, useEffect, useState } from "react";
+import { createRef, useState } from "react";
 import CountDownTimer from "./CountDownTimer";
 import background from "../assets/videos/background.mp4";
-import SnackBar from "./SnackBar";
+// import SnackBar from "./SnackBar";
+import { useCallUsServicesFunctions } from "../utils/firebase";
 
-function DealsSectionSlider({ sliderItems }) {
-  const [loading, setLoading] = useState(true);
-  console.log("Number of items passed >>", sliderItems.length);
+function DealsSectionSlider(props) {
+  console.log("Props >>>", props);
+  // const [loading, setLoading] = useState(true);
+  const { dealsServiceItems } = useCallUsServicesFunctions();
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 3000);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setLoading(false);
+  //   }, 3000);
 
-    return () => clearTimeout(timer);
-  }, []);
+  //   return () => clearTimeout(timer);
+  // }, []);
+
   const dealsSliderRef = createRef();
   const [isLoading, setIsLoading] = useState(true);
   const handleVideoLoad = () => {
@@ -27,17 +30,10 @@ function DealsSectionSlider({ sliderItems }) {
   const settings = {
     dots: false,
     infinite: true,
-    slidesToShow: 3,
-    slidesToScroll: 2,
+    slidesToShow: 2,
+    slidesToScroll: 1,
     arrows: false,
     responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-        },
-      },
       {
         breakpoint: 600,
         settings: {
@@ -114,19 +110,25 @@ function DealsSectionSlider({ sliderItems }) {
               </button>
             </div>
 
-            <div className="slidersection">
-              {loading ? (
-                <SnackBar status="loading" />
-              ) : (
-                <Slider {...settings} ref={dealsSliderRef}>
-                  {sliderItems?.map((sliderItem, index) => (
-                    <div key={index}>
-                      <ServiceSliderCards sliderItem={sliderItem} />
-                    </div>
-                  ))}
-                </Slider>
-              )}
-            </div>
+            <Slider {...settings} ref={dealsSliderRef}>
+              {dealsServiceItems?.map((sliderItem, i) => {
+                return (
+                  <div key={i}>
+                    <ServiceSliderCards sliderItem={sliderItem} />
+                  </div>
+                );
+              })}
+            </Slider>
+
+            {/* <div className="flex gap-4">
+              {dealsServiceItems?.map((sliderItem, i) => {
+                return (
+                  <div key={i}>
+                    <ServiceSliderCards sliderItem={sliderItem} />
+                  </div>
+                );
+              })}
+            </div> */}
           </div>
         </div>
       </div>

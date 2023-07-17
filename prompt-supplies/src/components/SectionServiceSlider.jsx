@@ -96,13 +96,15 @@ function SectionServiceSlider({ sectionTitle, bgColor, sliderItems }) {
             {loading ? (
               <SnackBar status="loading" />
             ) : (
-              <Slider {...settings} ref={sectionSliderRef}>
-                {sliderItems?.map((sliderItem, index) => (
-                  <div  key={index}>
-                    <ServiceSliderCards sliderItem={sliderItem} />
-                  </div>
-                ))}
-              </Slider>
+              <div className="h-64 overflow-y-hidden">
+                <Slider {...settings} ref={sectionSliderRef}>
+                  {sliderItems?.map((sliderItem, index) => (
+                    <div key={index}>
+                      <ServiceSliderCards sliderItem={sliderItem} />
+                    </div>
+                  ))}
+                </Slider>
+              </div>
             )}
           </div>
         </div>
