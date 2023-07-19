@@ -117,7 +117,7 @@ export default function ServiceSliderCards({ sliderItem }) {
 
       <div className="relative h-64 w-64 md:h-72 md:w-72  mx-auto">
         <div
-          className="absolute inset-0 h-full w-full bg-contain bg-center"
+          className="absolute inset-0 h-full w-full bg-cover bg-center"
           style={{ backgroundImage: `url(${sliderItem?.poster})` }}
         ></div>
         <div className="absolute inset-0 bg-gray-900/10 hover:bg-gray-900/50 w-full h-full flex justify-center items-center transition duration-300">
