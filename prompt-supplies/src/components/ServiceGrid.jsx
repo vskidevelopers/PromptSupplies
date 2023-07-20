@@ -59,7 +59,7 @@ function ServiceGrid({ sliderItems }) {
             <div>
               <div className="w-full flex justify-end my-4">
                 <Pagination
-                  items={items}
+                  items={sliderItems}
                   pageCount={pageCount}
                   setItemOffset={setItemOffset}
                   itemsPerPage={itemsPerPage}
