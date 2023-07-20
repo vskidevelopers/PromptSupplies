@@ -78,6 +78,7 @@ export default function ServiceSliderCards({ sliderItem }) {
                           alt=""
                         />
                       </div>
+
                       <div className="w-full flex flex-col justify-center items-center p-4">
                         <h3 className="mb-3 text-xl font-medium  text-white">
                           {modalData?.jobTitle}

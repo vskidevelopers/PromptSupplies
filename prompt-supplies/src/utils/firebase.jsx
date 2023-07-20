@@ -359,16 +359,16 @@ export const useCallUsServicesFunctions = () => {
 };
 
 export const useVipServicesFunctions = () => {
-  const [success, setSuccess] = useState(false);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [vipSuccess, setVipSuccess] = useState(false);
+  const [vipError, setVipError] = useState(null);
+  const [vipLoading, setVipLoading] = useState(false);
   const [vipImageURL, setVipImageURL] = useState(null);
   const [allVipAdsItems, setAllVipAdsItems] = useState([]);
   const [pendingVipAdsItems, setPendingVipAdsItems] = useState([]);
   const [approvedVipAdsItems, setApprovedVipAdsItems] = useState([]);
   const [featuredVipAdsItems, setFeaturedVipAdsItems] = useState([]);
   const [vipAdvertDetails, setVipAdvertDetails] = useState([]);
-  const [uploadProgress, setUploadProgress] = useState(0);
+  const [uploadVipProgress, setUploadVipProgress] = useState(0);
 
   const fetchVipAdverts = async () => {
     const vipAdvertsRef = collection(db, "VipServices");
@@ -401,7 +401,7 @@ export const useVipServicesFunctions = () => {
     }));
 
     // fetchFeaturedAds
-    const featuredVipAds = query(vipAdvertsData, where("featured", "==", true));
+    const featuredVipAds = query(vipAdvertsRef, where("featured", "==", true));
     const featuredVipAdsQuerySnapshot = await getDocs(featuredVipAds);
     const featuredVipAdsData = featuredVipAdsQuerySnapshot.docs.map((doc) => ({
       id: doc.id,
@@ -444,17 +444,17 @@ export const useVipServicesFunctions = () => {
     };
     const vipStorageRef = ref(storage, "vipposters/" + file.name);
     try {
-      setLoading(true);
+      setVipLoading(true);
       const uploadTask = uploadBytesResumable(vipStorageRef, file, metadata);
 
       uploadTask.on(
         "state_changed",
         (snapshot) => {
           // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-          const progress =
+          const vipProgress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log("Upload is " + progress + "% done");
-          setUploadProgress(parseInt(parseFloat(progress).toFixed(0)));
+          console.log("Upload is " + vipProgress + "% done");
+          setUploadVipProgress(parseInt(parseFloat(vipProgress).toFixed(0)));
 
           switch (snapshot.state) {
             case "paused":
@@ -488,7 +488,7 @@ export const useVipServicesFunctions = () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             console.log("File available at", downloadURL);
             setVipImageURL(downloadURL);
-            setLoading(false);
+            setVipLoading(false);
           });
         }
       );
@@ -499,67 +499,67 @@ export const useVipServicesFunctions = () => {
 
   const handlePostVipAdvert = async (data) => {
     try {
-      setLoading(true);
+      setVipLoading(true);
       const vipAdvertsRef = doc(collection(db, "VipServices"));
       await setDoc(vipAdvertsRef, data);
-      setLoading(false);
-      setSuccess(true);
+      setVipLoading(false);
+      setVipSuccess(true);
     } catch (err) {
-      setError(err);
+      setVipError(err);
       console.error("An Error Occurred >>", err);
     }
   };
 
   const handleDeleteVipAdvert = async (id) => {
     try {
-      setLoading(true);
+      setVipLoading(true);
       await deleteDoc(doc(db, "VipServices", id));
-      setLoading(false);
-      setSuccess(true);
+      setVipLoading(false);
+      setVipSuccess(true);
     } catch (err) {
-      setError(err);
+      setVipError(err);
     }
   };
 
   const handleApproveVipAdvert = async (id) => {
     try {
-      setLoading(true);
+      setVipLoading(true);
       const vipAdvertRef = doc(db, "VipServices", id);
       await updateDoc(vipAdvertRef, {
         approved: true,
       });
-      setLoading(false);
+      setVipLoading(false);
     } catch (err) {
       console.log("The folowing error occured >> ", err);
-      setError(err);
+      setVipError(err);
     }
   };
 
   const handleMakeFeatured = async (id) => {
     try {
-      setLoading(true);
+      setVipLoading(true);
       const vipAdvertRef = doc(db, "VipServices", id);
       await updateDoc(vipAdvertRef, {
         featured: true,
       });
-      setLoading(false);
+      setVipLoading(false);
     } catch (err) {
       console.log("The folowing error occured >> ", err);
-      setError(err);
+      setVipError(err);
     }
   };
 
   return {
-    success,
-    error,
-    loading,
+    vipSuccess,
+    vipError,
+    vipLoading,
     vipImageURL,
     allVipAdsItems,
     featuredVipAdsItems,
     approvedVipAdsItems,
     pendingVipAdsItems,
     vipAdvertDetails,
-    uploadProgress,
+    uploadVipProgress,
     uploadVipAdvertPoster,
     handlePostVipAdvert,
     handleDeleteVipAdvert,

@@ -68,7 +68,7 @@ function SectionServiceSlider({ sectionTitle, bgColor, sliderItems }) {
             <h3 className="text-2xl font-semibold font-mono text-gray-800 ">
               {sectionTitle}
             </h3>
-            <div>
+            <div className="flex items-center">
               <button
                 onClick={() => gotoNext()}
                 className="mr-4 bg-white py-2 px-2 rounded-full shadow-md text-black"

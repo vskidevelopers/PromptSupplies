@@ -112,15 +112,13 @@ export default function UserNavbar() {
                     {item.name}
                   </Disclosure.Button>
                 ))}
+
                 <Link
                   type="button"
                   to="advertise"
-                  className=" w-full rounded bg-[#FDB715] py-2 px-2 text-white "
+                  className=" w-full rounded bg-[#FDB715] py-2  text-white "
                 >
-                  <div className="relative">
-                    {/* <span className="animate-ping inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span> */}
-                    <span className="">Efficient Services</span>
-                  </div>
+                  Efficient Services
                 </Link>
               </div>
             </div>

@@ -1,9 +1,21 @@
+/* eslint-disable react/prop-types */
 import Slider from "react-slick";
 import VipSliderCard from "./VipSliderCard";
-import { createRef } from "react";
+import { createRef, useEffect, useState } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
+import SnackBar from "./SnackBar";
 
-function HeroSlider() {
+function HeroSlider({ sliderItems }) {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   const vipSliderRef = createRef();
   const settings = {
     dots: false,
@@ -43,32 +55,19 @@ function HeroSlider() {
           </button>
         </div>
 
-        <Slider {...settings} ref={vipSliderRef}>
-          <div className="h-96 w-4/5">
-            <VipSliderCard
-              image="https://blog.depositphotos.com/wp-content/uploads/2017/07/Soothing-nature-backgrounds-2.jpg.webp"
-              sliderIndex={0}
-            />
+        {loading ? (
+          <SnackBar status="loading" />
+        ) : (
+          <div>
+            <Slider {...settings} ref={vipSliderRef}>
+              {sliderItems?.map((sliderItem, index) => (
+                <div key={index} className="h-96 w-4/5">
+                  <VipSliderCard sliderItem={sliderItem} />
+                </div>
+              ))}
+            </Slider>
           </div>
-          <div className="h-96 w-full ">
-            <VipSliderCard
-              image="https://blog.depositphotos.com/wp-content/uploads/2017/07/Soothing-nature-backgrounds-2.jpg.webp"
-              sliderIndex={1}
-            />
-          </div>
-          <div className="h-96 w-full ">
-            <VipSliderCard
-              image="https://blog.depositphotos.com/wp-content/uploads/2017/07/Soothing-nature-backgrounds-2.jpg.webp"
-              sliderIndex={2}
-            />
-          </div>
-          <div className="h-96 w-full ">
-            <VipSliderCard
-              image="https://blog.depositphotos.com/wp-content/uploads/2017/07/Soothing-nature-backgrounds-2.jpg.webp"
-              sliderIndex={3}
-            />
-          </div>
-        </Slider>
+        )}
       </div>
     </div>
   );
