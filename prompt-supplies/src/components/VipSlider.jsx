@@ -3,6 +3,11 @@ import Slider from "react-slick";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import {
+  ChevronDoubleLeftIcon,
+  ChevronDoubleRightIcon,
+} from "@heroicons/react/24/outline";
+import { createRef } from "react";
 
 function VipSlider() {
   const images = [
@@ -12,27 +17,7 @@ function VipSlider() {
     "https://img.freepik.com/free-vector/creative-hiring-landing-page-template_52683-44620.jpg?w=740&t=st=1686609279~exp=1686609879~hmac=35dd40078e71f2d29f0c8f79c1ef1f1d7b1bf676cb1fdfd9f4f4100456b17b01",
   ];
 
-  function SampleNextArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{ ...style, display: "block", background: "gray" }}
-        onClick={onClick}
-      />
-    );
-  }
-
-  function SamplePrevArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{ ...style, display: "block", background: "gray" }}
-        onClick={onClick}
-      />
-    );
-  }
+  const featuredVipSliderRef = createRef();
 
   const settings = {
     dots: true,
@@ -43,21 +28,45 @@ function VipSlider() {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 5000,
+    arrows: false,
+  };
 
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
+  const gotoNext = () => {
+    featuredVipSliderRef.current.slickNext();
+  };
+
+  const gotoPrev = () => {
+    featuredVipSliderRef.current.slickPrev();
   };
 
   return (
     <section className="">
-      <div className="h-96 w-[60vw] mb-20">
-        <Slider {...settings} className="">
-          {images.map((image, index) => (
-            <div key={index}>
-              <img src={image} />
-            </div>
-          ))}
-        </Slider>
+      <div className="relative h-full md:h-96 w-[90vw] md:w-[90vw] ">
+        <div className="absolute w-full h-48 md:h-96  flex justify-between my-6 px-5  z-10">
+          <div className="w-full flex items-center justify-between">
+            <button
+              onClick={() => gotoNext()}
+              className="mr-4 bg-white py-2 px-2 rounded-full shadow-md text-black"
+            >
+              <ChevronDoubleLeftIcon className="h-4 w-4  text-slate-950" />
+            </button>
+            <button
+              onClick={() => gotoPrev()}
+              className="mr-4 bg-white py-2 px-2 rounded-full shadow-md text-black"
+            >
+              <ChevronDoubleRightIcon className="h-4 w-4  text-slate-950" />
+            </button>
+          </div>
+        </div>
+        <div>
+          <Slider {...settings} ref={featuredVipSliderRef}>
+            {images.map((image, index) => (
+              <div key={index}>
+                <img src={image} />
+              </div>
+            ))}
+          </Slider>
+        </div>
       </div>
     </section>
   );

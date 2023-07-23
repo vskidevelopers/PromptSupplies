@@ -63,7 +63,7 @@ function AdminAdvertViewModal({ open, modalData }) {
 
                   <div className="my-0  bg-slate-950">
                     <div className="grid grid-cols-1 md:grid-cols-2">
-                      <div>
+                      <div className="flex justify-center items-center">
                         <img
                           src={modalData?.poster}
                           className="img-fluid rounded-top"

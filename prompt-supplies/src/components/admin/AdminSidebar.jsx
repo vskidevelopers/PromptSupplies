@@ -10,9 +10,18 @@ import { Link, useNavigate } from "react-router-dom";
 
 const AdminSidebar = () => {
   const [showAdvertSubItems, setShowAdvertSubItems] = useState(false);
+  const [activeSubItem, setActiveSubItem] = useState(null);
 
-  const handleAdvertsClick = () => {
+  const handleShowAdvertSubItems = () => {
     setShowAdvertSubItems(!showAdvertSubItems);
+  };
+
+  const handleShowAdvertLinks = (label) => {
+    if (activeSubItem === label) {
+      setActiveSubItem(null);
+    } else {
+      setActiveSubItem(label);
+    }
   };
 
   const menuItems = [
@@ -32,42 +41,76 @@ const AdminSidebar = () => {
       id: 3,
       label: "Adverts",
       icon: <NewspaperIcon className="h-4 mr-3 w-auto text-white" />,
-      href: "admin-adverts",
+      href: "",
       subItems: [
         {
           id: 31,
-          label: "All",
-          href: "admin-adverts",
+          label: "Vip Adverts",
+          href: "admin-adverts/vip",
+          subItems: [
+            {
+              id: 311,
+              label: "All Vip Ads",
+              href: "admin-adverts/vip",
+            },
+            {
+              id: 312,
+              label: "Approved Vip Ads",
+              href: "admin-adverts/vip/approved",
+            },
+            {
+              id: 313,
+              label: "Featured Vip Ads",
+              href: "admin-adverts/vip/featured",
+            },
+            {
+              id: 314,
+              label: "Pending Vip Ads",
+              href: "admin-adverts/vip/pending",
+            },
+          ],
         },
         {
           id: 32,
-          label: "Approved",
-          href: "admin-adverts/approved",
-        },
-        {
-          id: 33,
-          label: "Pending",
-          href: "admin-adverts/pending",
-        },
-        {
-          id: 34,
-          label: "Popular",
-          href: "admin-adverts/popular",
-        },
-        {
-          id: 35,
-          label: "Featured",
-          href: "admin-adverts/featured",
-        },
-        {
-          id: 36,
-          label: "Offer",
-          href: "admin-adverts/offer",
-        },
-        {
-          id: 37,
-          label: "Sale",
-          href: "admin-adverts/sale",
+          label: "Normal Adverts",
+          href: "admin-adverts/normal",
+          subItems: [
+            {
+              id: 321,
+              label: "All",
+              href: "admin-adverts/normal",
+            },
+            {
+              id: 322,
+              label: "Approved",
+              href: "admin-adverts/normal/approved",
+            },
+            {
+              id: 323,
+              label: "Pending",
+              href: "admin-adverts/normal/pending",
+            },
+            {
+              id: 324,
+              label: "Popular",
+              href: "admin-adverts/popular",
+            },
+            {
+              id: 325,
+              label: "Featured",
+              href: "admin-adverts/normal/featured",
+            },
+            {
+              id: 326,
+              label: "Offer",
+              href: "admin-adverts/normal/offer",
+            },
+            {
+              id: 327,
+              label: "Sale",
+              href: "admin-adverts/normal/sale",
+            },
+          ],
         },
       ],
     },
@@ -91,37 +134,78 @@ const AdminSidebar = () => {
   };
 
   return (
-    <div className="py-4 px-2 bg-gray-800 text-white relative h-full">
-      {menuItems.map((item) => (
-        <Fragment key={item.id}>
-          <Link to={item.href}>
-            <div
-              className="flex items-center py-2 pb-5 border-b border-b-white/30 bg-gray-700/10 hover:bg-gray-900"
-              onClick={item.label === "Adverts" ? handleAdvertsClick : null}
-            >
-              {item.icon}
+    <div className="flex flex-col justify-between py-4 px-2 bg-gray-800 text-white relative h-full">
+      <div className="">
+        {menuItems.map((item) => (
+          <Fragment key={item.id}>
+            {item.subItems ? (
+              <>
+                <Link to={item.href}>
+                  <div
+                    className="flex items-center py-2 pb-5 border-b border-b-white/30 bg-gray-700/10 hover:bg-gray-900"
+                    onClick={handleShowAdvertSubItems}
+                  >
+                    {item.icon}
 
-              <span>{item.label}</span>
-            </div>
-          </Link>
-
-          {showAdvertSubItems && item.label === "Adverts" && (
-            <div className="pl-6 py-2">
-              {item.subItems.map((subItem) => (
-                <Link
-                  to={subItem.href}
-                  key={subItem.id}
-                  className="flex items-center pl-4 py-2 hover:bg-gray-900"
-                >
-                  <span>{subItem.label}</span>
+                    <span>{item.label}</span>
+                  </div>
                 </Link>
-              ))}
-            </div>
-          )}
-        </Fragment>
-      ))}
+
+                {showAdvertSubItems && item.label === "Adverts" && (
+                  <div className="pl-6 py-2">
+                    {item.subItems.map((subItem) => (
+                      <div
+                        key={subItem.id}
+                        className=" items-center pl-4 py-2 hover:bg-gray-900"
+                      >
+                        <div
+                          onClick={() => handleShowAdvertLinks(subItem.label)}
+                          className="w-full h-full "
+                        >
+                          <Link to={subItem.href} className="w-full">
+                            <span>{subItem.label}</span>
+                          </Link>
+                        </div>
+                        {activeSubItem === subItem.label && (
+                          <div className="pl-6 py-2">
+                            {subItem.subItems.map((linkItem) => (
+                              <Link
+                                to={linkItem.href}
+                                key={linkItem.id}
+                                className="flex items-center pl-4 py-2 hover:bg-gray-900"
+                              >
+                                <span>{linkItem.label}</span>
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </>
+            ) : (
+              <>
+                <Link to={item.href}>
+                  <div
+                    className="flex items-center py-2 pb-5 border-b border-b-white/30 bg-gray-700/10 hover:bg-gray-900"
+                    onClick={
+                      item.label === "Adverts" ? handleShowAdvertSubItems : null
+                    }
+                  >
+                    {item.icon}
+
+                    <span>{item.label}</span>
+                  </div>
+                </Link>
+              </>
+            )}
+          </Fragment>
+        ))}
+      </div>
+
       <div
-        className=" absolute w-3/4 bottom-4 flex items-center py-2 pb-5 border-b border-b-white/30 bg-gray-700/10 hover:bg-gray-900"
+        className="  w-full bottom-4 flex items-center py-2 pb-5 border-b border-b-white/30 bg-gray-700/10 hover:bg-gray-900"
         onClick={handleLogout}
       >
         <ArrowLeftOnRectangleIcon className="h-4 w-4 mr-4" />

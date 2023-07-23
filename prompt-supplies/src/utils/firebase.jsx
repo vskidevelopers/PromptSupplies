@@ -535,7 +535,7 @@ export const useVipServicesFunctions = () => {
     }
   };
 
-  const handleMakeFeatured = async (id) => {
+  const handleMakeVipFeatured = async (id) => {
     try {
       setVipLoading(true);
       const vipAdvertRef = doc(db, "VipServices", id);
@@ -564,6 +564,6 @@ export const useVipServicesFunctions = () => {
     handlePostVipAdvert,
     handleDeleteVipAdvert,
     handleApproveVipAdvert,
-    handleMakeFeatured,
+    handleMakeVipFeatured,
   };
 };

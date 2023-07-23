@@ -53,18 +53,18 @@ export default function AdvertSlider() {
               className="relative flex flex-col justify-center items-center py-10"
               ref={ref}
             >
-              <div className="flex">
-                <div className="w-full md:w-1/2 text-start md:text-center">
+              <div className="flex flex-col md:flex-row">
+                <div className="w-full md:w-1/2 text-center my-2">
                   <h2 className="text-[#FDB715] text-md font-semibold uppercase ">
                     Advertise With Us
                   </h2>
-                  <h1 className="text-3xl font-bold">
+                  <h1 className="text-xl md:text-3xl font-bold">
                     Amplify Your Reach: Unlock Growth Opportunities with
                     Effective Advertising
                   </h1>
                 </div>
 
-                <div className="w-full md:w-1/2 flex justify-end items-center z-10">
+                <div className="w-full md:w-1/2 flex justify-center md:justify-end items-center z-10">
                   <button
                     onClick={openModal}
                     className="border border-[#FDB715] text-[#FDB715] hover:bg-[#FDB715] hover:text-white py-5 px-8"
@@ -248,7 +248,7 @@ export default function AdvertSlider() {
         </Transition>
       </div>
 
-      <section className="py-20 bg-slate-200">
+      <section className="py-5 md:py-10 bg-slate-200">
         <div className="container max-full mx-auto">
           <div className="flex flex-col items-center w-full rounded-md lg:h-full   dark:text-gray-100">
             <div className="h-[15rem] md:h-[30rem] w-full">

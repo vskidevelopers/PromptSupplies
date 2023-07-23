@@ -62,8 +62,8 @@ const AdminUi = () => {
 
       {/* Content */}
       <div
-        className={`flex-grow h-full w-full py-10  transition-transform duration-500 px-20 overflow-clip  ${
-          isMenuOpen ? "ml-64" : "ml-0"
+        className={`flex-grow h-full w-full py-5 md:py-10  transition-transform duration-500 px-3 md:px-20 overflow-clip  ${
+          isMenuOpen ? "ml-56 md:ml-64" : "ml-0"
         }`}
       >
         {/* Content from React Router */}

@@ -219,8 +219,8 @@ function ServiceDetail({ serviceList }) {
                   </h3>
                 </div>
                 <div className="relative wrap overflow-hidden p-10 h-full">
-                  <div className="border-2-2 border-yellow-555 absolute h-full border border-[#FFC100] rounded right-1/2"></div>
-                  <div className="border-2-2 border-yellow-555 absolute h-full border border-[#FFC100] rounded left-1/2"></div>
+                  <div className="border-2-2 border-yellow-555 absolute h-full border border-[#FFC100] rounded -right-5 md:right-1/2"></div>
+                  <div className="border-2-2 border-yellow-555 absolute h-full border border-[#FFC100] rounded left-5 md:left-1/2"></div>
 
                   {service?.reasons?.map((reason, index) => {
                     if (index % 2 === 0) {

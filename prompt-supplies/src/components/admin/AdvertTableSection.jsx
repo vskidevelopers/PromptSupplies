@@ -3,12 +3,15 @@ import { useEffect, useState } from "react";
 import SnackBar from "../SnackBar";
 import AdvertSecondaryTable from "./AdvertSecondaryTable";
 import AdvertPrimaryTable from "./AdvertPrimaryTable";
+import VipAdvertSecondaryTable from "./VipAdvertSecondaryTable";
+import VipAdvertPrimaryTable from "./VipAdvertPrimaryTable";
 
 function AdvertTableSection({
   sectionTitle,
   advertItems,
   approved,
   secondary,
+  vip,
 }) {
   const [loading, setLoading] = useState(true);
 
@@ -40,13 +43,28 @@ function AdvertTableSection({
               <>
                 {advertItems.length > 0 ? (
                   <>
-                    {secondary ? (
-                      <AdvertSecondaryTable
-                        advertItems={advertItems}
-                        approved={approved}
-                      />
+                    {vip ? (
+                      <>
+                        {secondary ? (
+                          <VipAdvertSecondaryTable
+                            advertItems={advertItems}
+                            approved={approved}
+                          />
+                        ) : (
+                          <VipAdvertPrimaryTable advertItems={advertItems} />
+                        )}
+                      </>
                     ) : (
-                      <AdvertPrimaryTable advertItems={advertItems} />
+                      <>
+                        {secondary ? (
+                          <AdvertSecondaryTable
+                            advertItems={advertItems}
+                            approved={approved}
+                          />
+                        ) : (
+                          <AdvertPrimaryTable advertItems={advertItems} />
+                        )}
+                      </>
                     )}
                   </>
                 ) : (

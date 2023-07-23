@@ -9,7 +9,7 @@ export default function AllAdverts() {
     <div>
       <div className=" ">
         <AdvertTableSection
-          sectionTitle="All Call Us Adverts"
+          sectionTitle="All Square Adverts"
           advertItems={allServiceItems}
           secondary={true}
           approved={false}

@@ -16,8 +16,10 @@ export default function Footer({ services }) {
     { name: "About Us", href: "about" },
     { name: "Features", href: "features" },
     { name: "Services", href: "services" },
-    { name: "Contact Us", href: "contact" },
-    { name: "Request a quote", href: "quote" },
+    { name: "Our Projects", href: "projects" },
+    { name: "Efficient Services", href: "advertise" },
+    { name: "Contact Us", href: "" },
+    { name: "Request a quote", href: "" },
   ];
 
   return (

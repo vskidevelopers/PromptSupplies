@@ -1,4 +1,5 @@
-import React from "react";
+/* eslint-disable react/prop-types */
+
 import { CheckCircleIcon } from "@heroicons/react/24/solid";
 import ChecklistItem from "./ChecklistItem";
 
@@ -10,7 +11,7 @@ export default function FloatingCards({
   basis,
 }) {
   return (
-    <div className={`${basis} h-64`}>
+    <div className={`${basis} `}>
       <div className="h-full border border-[#FDB715] bg-white p-4 shadow-xl sm:p-6 lg:p-8">
         <div className="flex items-end justify-center md:justify-start">
           {icon}
@@ -30,7 +31,7 @@ export default function FloatingCards({
             ))}
           </span>
         ) : (
-          <p className="mt-4 text-sm text-gray-900">{description}</p>
+          <p className="mt-4 text-sm  text-gray-900">{description}</p>
         )}
       </div>
     </div>

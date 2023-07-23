@@ -32,6 +32,12 @@ import FeaturedAdverts from "./components/admin/FeaturedAdverts";
 import OfferAdverts from "./components/admin/OfferAdverts";
 import SaleAdverts from "./components/admin/SaleAdverts";
 import React from "react";
+import AdminVipAdvertsUi from "./components/admin/AdminVipAdvertsUi";
+import AdminNormalAdvertsUi from "./components/admin/AdminNormalAdvertsUi";
+import AllVipAdverts from "./components/admin/AllVipAdverts";
+import ApprovedVipAdverts from "./components/admin/ApprovedVipAdverts";
+import PendingVipAdverts from "./components/admin/PendingVipAdverts";
+import FeaturedVipAdverts from "./components/admin/FeaturedVipAdverts";
 
 const serviceList = services;
 console.log("Service List from router >>>", serviceList);
@@ -61,14 +67,24 @@ const router = createBrowserRouter(
       <Route path="admin" element={<AdminUi />}>
         <Route index element={<AdminProfiles />} />
         <Route path="admin-adverts" element={<AdminAdvertsUi />}>
-          <Route index element={<AllAdverts />} />
-          <Route path="approved" element={<ApprovedAdverts />} />
-          <Route path="pending" element={<PendingAdverts />} />
-          <Route path="popular" element={<PopularAdverts />} />
-          <Route path="featured" element={<FeaturedAdverts />} />
-          <Route path="offer" element={<OfferAdverts />} />
-          <Route path="sale" element={<SaleAdverts />} />
+          <Route path="vip" element={<AdminVipAdvertsUi />}>
+            <Route index element={<AllVipAdverts />} />
+            <Route path="approved" element={<ApprovedVipAdverts />} />
+            <Route path="pending" element={<PendingVipAdverts />} />
+            <Route path="featured" element={<FeaturedVipAdverts />} />
+          </Route>
+
+          <Route path="normal" element={<AdminNormalAdvertsUi />}>
+            <Route index element={<AllAdverts />} />
+            <Route path="approved" element={<ApprovedAdverts />} />
+            <Route path="pending" element={<PendingAdverts />} />
+            <Route path="popular" element={<PopularAdverts />} />
+            <Route path="featured" element={<FeaturedAdverts />} />
+            <Route path="offer" element={<OfferAdverts />} />
+            <Route path="sale" element={<SaleAdverts />} />
+          </Route>
         </Route>
+
         <Route path="admin-services" element={<AdminServices />} />
         {/* Nested User Routes */}
       </Route>
