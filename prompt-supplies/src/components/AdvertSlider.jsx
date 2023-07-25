@@ -1,44 +1,31 @@
 import { motion } from "framer-motion";
 import { InView } from "react-intersection-observer";
-import { useDropzone } from "react-dropzone";
 import { Fragment, useState } from "react";
-import { useForm } from "react-hook-form";
 import { Dialog, Transition } from "@headlessui/react";
 import VipSlider from "./VipSlider";
+import AdvertForm from "./AdvertForm";
 
 export default function AdvertSlider() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    setValue,
-    getValues,
-  } = useForm();
-
-  const onSubmit = (data) => {
-    console.log(data);
-  };
-
-  const handleImageDrop = (acceptedFiles) => {
-    if (acceptedFiles && acceptedFiles.length > 0) {
-      const file = acceptedFiles[0];
-      setValue("imagePoster", file);
-    }
-  };
-
-  const { getRootProps, getInputProps } = useDropzone({
-    accept: "image/*",
-    multiple: false,
-    onDrop: handleImageDrop,
-  });
-
+  const [isApprovalModalOpen, setIsApprovalModalOpen] = useState(false);
+  const [isVipSelected, setIsVipSelected] = useState(false);
   let [isOpen, setIsOpen] = useState(false);
 
   function closeModal() {
     setIsOpen(false);
+    setIsApprovalModalOpen(false);
+    setIsVipSelected(false);
   }
 
-  function openModal() {
+  function handleOpenModal() {
+    setIsOpen(true);
+  }
+
+  function openApprovalModal() {
+    setIsApprovalModalOpen(true);
+  }
+
+  function handleOpenVipModal() {
+    setIsVipSelected(true);
     setIsOpen(true);
   }
 
@@ -46,55 +33,7 @@ export default function AdvertSlider() {
     <>
       <div className="container mx-auto px-5 md:px-20 py-10">
         {/* Title */}
-
-        <InView triggerOnce>
-          {({ inView, ref }) => (
-            <div
-              className="relative flex flex-col justify-center items-center py-10"
-              ref={ref}
-            >
-              <div className="flex flex-col md:flex-row">
-                <div className="w-full md:w-1/2 text-center my-2">
-                  <h2 className="text-[#FDB715] text-md font-semibold uppercase ">
-                    Advertise With Us
-                  </h2>
-                  <h1 className="text-xl md:text-3xl font-bold">
-                    Amplify Your Reach: Unlock Growth Opportunities with
-                    Effective Advertising
-                  </h1>
-                </div>
-
-                <div className="w-full md:w-1/2 flex justify-center md:justify-end items-center z-10">
-                  <button
-                    onClick={openModal}
-                    className="border border-[#FDB715] text-[#FDB715] hover:bg-[#FDB715] hover:text-white py-5 px-8"
-                  >
-                    Request Advert
-                  </button>
-                </div>
-              </div>
-              <div className="absolute top-0 left-0 h-full w-full flex justify-start items-center opacity-10">
-                <motion.h1
-                  initial={{ x: -500, opacity: 0 }}
-                  animate={inView ? { x: 0, opacity: 1 } : {}}
-                  transition={{
-                    type: "spring",
-                    bounce: 0.5,
-                    delay: 0.5,
-                    duration: 1.5,
-                    repeat: Infinity,
-                    repeatType: "reverse",
-                    repeatDelay: 3,
-                  }}
-                  className="text-7xl md:text-9xl font-bold"
-                >
-                  Advertise
-                </motion.h1>
-              </div>
-            </div>
-          )}
-        </InView>
-        <Transition appear show={isOpen} as={Fragment}>
+        <Transition appear show={isApprovalModalOpen} as={Fragment}>
           <Dialog as="div" className="relative z-50" onClose={closeModal}>
             <Transition.Child
               as={Fragment}
@@ -143,109 +82,87 @@ export default function AdvertSlider() {
                       </button>
                     </div>
 
-                    <Dialog.Title
-                      as="h3"
-                      className="text-lg font-medium leading-6 text-gray-900"
-                    >
-                      Submit an Advert
-                    </Dialog.Title>
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                      <div className="mb-4">
-                        <label
-                          className="block text-sm font-bold mb-2"
-                          htmlFor="name"
+                    {isOpen && <AdvertForm isVipSelected={isVipSelected} />}
+
+                    {!isOpen && (
+                      <>
+                        <Dialog.Title
+                          as="h3"
+                          className="text-lg font-medium leading-6 text-gray-900"
                         >
-                          Name:
-                        </label>
-                        <input
-                          type="text"
-                          id="name"
-                          {...register("name", { required: true })}
-                          className="w-full border border-yellow-400 rounded py-2 px-3"
-                        />
-                        {errors.name && <span>This field is required</span>}
-                      </div>
-                      <div className="mb-4">
-                        <label
-                          className="block text-sm font-bold mb-2"
-                          htmlFor="email"
-                        >
-                          Email:
-                        </label>
-                        <input
-                          type="email"
-                          id="email"
-                          {...register("email", { required: true })}
-                          className="w-full border border-yellow-400 rounded py-2 px-3"
-                        />
-                        {errors.email && <span>This field is required</span>}
-                      </div>
-                      <div className="mb-4">
-                        <label
-                          className="block text-sm font-bold mb-2"
-                          htmlFor="phoneNumber"
-                        >
-                          Phone Number:
-                        </label>
-                        <input
-                          type="tel"
-                          id="phoneNumber"
-                          {...register("phoneNumber", { required: true })}
-                          className="w-full border border-yellow-400 rounded py-2 px-3"
-                        />
-                        {errors.phoneNumber && (
-                          <span>This field is required</span>
-                        )}
-                      </div>
-                      <div className="mb-4">
-                        <label
-                          className="block text-sm font-bold mb-2"
-                          htmlFor="imagePoster"
-                        >
-                          Image Poster:
-                        </label>
-                        <div
-                          {...getRootProps()}
-                          className="w-full border border-yellow-400 rounded py-2 px-3 cursor-pointer"
-                        >
-                          <input {...getInputProps()} />
-                          <p>
-                            {getValues("imagePoster")?.name ||
-                              "Drag and drop an image here or click to browse"}
-                          </p>
+                          Choose the type of Advert you want to post
+                        </Dialog.Title>
+
+                        <div className="flex gap-5 w-full h-full py-6 px-5">
+                          <button
+                            onClick={handleOpenVipModal}
+                            className="h-32 flex justify-center items-center w-1/2 border border-dashed text-teal-500 border-teal-500 hover:bg-teal-600  hover:text-white"
+                          >
+                            LandScape Advert
+                          </button>
+                          <button
+                            onClick={handleOpenModal}
+                            className="h-32 flex justify-center items-center w-1/2 border border-dashed text-[#FDB715] border-[#FDB715] hover:bg-[#FDB715]  hover:text-white"
+                          >
+                            Square Advert
+                          </button>
                         </div>
-                      </div>
-                      <div className="mb-4">
-                        <label
-                          className="block text-sm font-bold mb-2"
-                          htmlFor="description"
-                        >
-                          Description:
-                        </label>
-                        <textarea
-                          id="description"
-                          {...register("description", { required: true })}
-                          className="w-full border border-yellow-400 rounded py-2 px-3"
-                        ></textarea>
-                        {errors.description && (
-                          <span>This field is required</span>
-                        )}
-                      </div>
-                      <div className="text-right">
-                        <button
-                          type="submit"
-                          className="bg-yellow-400 text-white py-2 px-4 rounded"
-                        >
-                          Submit
-                        </button>
-                      </div>
-                    </form>
+                      </>
+                    )}
                   </Dialog.Panel>
                 </Transition.Child>
               </div>
             </div>
           </Dialog>
         </Transition>
+
+        <InView triggerOnce>
+          {({ inView, ref }) => (
+            <div
+              className="relative flex flex-col justify-center items-center py-10"
+              ref={ref}
+            >
+              <div className="flex flex-col md:flex-row">
+                <div className="w-full md:w-1/2 text-center my-2">
+                  <h2 className="text-[#FDB715] text-md font-semibold uppercase ">
+                    Advertise With Us
+                  </h2>
+                  <h1 className="text-xl md:text-3xl font-bold">
+                    Amplify Your Reach: Unlock Growth Opportunities with
+                    Effective Advertising
+                  </h1>
+                </div>
+
+                <div className="w-full md:w-1/2 flex justify-center md:justify-end items-center z-10">
+                  <button
+                    onClick={openApprovalModal}
+                    className="border border-[#FDB715] text-[#FDB715] hover:bg-[#FDB715] hover:text-white py-5 px-8"
+                  >
+                    Request Advert
+                  </button>
+                </div>
+              </div>
+              <div className="absolute top-0 left-0 h-full w-full flex justify-start items-center opacity-10">
+                <motion.h1
+                  initial={{ x: -500, opacity: 0 }}
+                  animate={inView ? { x: 0, opacity: 1 } : {}}
+                  transition={{
+                    type: "spring",
+                    bounce: 0.5,
+                    delay: 0.5,
+                    duration: 1.5,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                    repeatDelay: 3,
+                  }}
+                  className="text-7xl md:text-9xl font-bold"
+                >
+                  Advertise
+                </motion.h1>
+              </div>
+            </div>
+          )}
+        </InView>
       </div>
 
       <section className="py-5 md:py-10 bg-slate-200">
