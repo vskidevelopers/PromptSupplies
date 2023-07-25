@@ -20,6 +20,8 @@ import {
   updateDoc,
 } from "firebase/firestore";
 
+import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -38,7 +40,8 @@ const firebaseConfig = {
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
-export const storage = getStorage();
+export const storage = getStorage(app);
+export const auth = getAuth(app);
 
 export const useCallUsServicesFunctions = () => {
   const [success, setSuccess] = useState(false);
@@ -566,4 +569,49 @@ export const useVipServicesFunctions = () => {
     handleApproveVipAdvert,
     handleMakeVipFeatured,
   };
+};
+
+// AUTHENTICATION
+export const useAuth = () => {
+  const [user, setUser] = useState(null);
+  const [authError, setAuthError] = useState();
+
+  useEffect(() => {
+    // Set up an observer to listen for authentication state changes
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        // User is signed in
+        setUser(user);
+      } else {
+        // User is signed out
+        setUser(null);
+      }
+    });
+
+    // Clean up the observer when the component unmounts
+    return () => unsubscribe();
+  }, []);
+
+  const login = async (email, password) => {
+    try {
+      // Authenticate the user with the provided email and password
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      setUser(userCredential.user);
+      // Optionally perform any additional actions after successful login
+    } catch (error) {
+      // Handle authentication errors
+      console.error("Login failed", error.code);
+      setAuthError(error.code);
+    }
+  };
+
+  const logout = async () => {
+    await signOut(auth);
+  };
+
+  return { user, authError, login, logout };
 };

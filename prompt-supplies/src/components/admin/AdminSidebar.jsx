@@ -7,8 +7,10 @@ import {
 } from "@heroicons/react/24/solid";
 import { Fragment, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../utils/firebase";
 
 const AdminSidebar = () => {
+  const { logout } = useAuth();
   const [showAdvertSubItems, setShowAdvertSubItems] = useState(false);
   const [activeSubItem, setActiveSubItem] = useState(null);
 
@@ -128,9 +130,14 @@ const AdminSidebar = () => {
 
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    localStorage.clear();
-    navigate("/");
+  const handleLogout = async () => {
+    try {
+      await logout();
+      localStorage.clear();
+      navigate("/", { replace: true });
+    } catch (error) {
+      console.log("the following error occured during logout", error);
+    }
   };
 
   return (
