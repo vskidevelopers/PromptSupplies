@@ -8,18 +8,29 @@
   padding-bottom: 50px;
 }
 
-.swiper-slide {
+/* .swiper-slide {
   background-position: center;
   background-size: cover;
   width: 300px !important;
   height: 300px !important;
-}
+} */
 
-.swiper-slide img {
+/* .swiper-slide img {
   display: block;
   width: 100%;
+} */
+
+.partner-slider,
+.swiper-slide {
+  width: 300px !important;
+  height: 300px !important;
 }
 
+.swiper-height,
+.swiper-slide {
+  width: 100% !important;
+  height: 100% !important;
+}
 .page-item:first-child .page-link {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;

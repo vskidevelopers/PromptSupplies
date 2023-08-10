@@ -2,8 +2,11 @@ import { motion } from "framer-motion";
 import { InView } from "react-intersection-observer";
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import VipSlider from "./VipSlider";
+// import VipSlider from "./VipSlider";
 import AdvertForm from "./AdvertForm";
+// import FeaturedVipSlider from "./FeaturedVipSlider";
+// import VipSlider from "./VipSlider";
+import FeaturedVipSwiper from "./featuredVipSwiper";
 
 export default function AdvertSlider() {
   const [isApprovalModalOpen, setIsApprovalModalOpen] = useState(false);
@@ -168,10 +171,10 @@ export default function AdvertSlider() {
       <section className="py-5 md:py-10 bg-slate-200">
         <div className="container max-full mx-auto">
           <div className="flex flex-col items-center w-full rounded-md lg:h-full   dark:text-gray-100">
-            <div className="h-[15rem] md:h-[30rem] w-full">
-              <div className="h-full w-full flex justify-center items-center">
-                <VipSlider />
-              </div>
+            <div className="!w-full">
+              {/* <VipSlider /> */}
+              {/* <FeaturedVipSlider /> */}
+              <FeaturedVipSwiper />
             </div>
           </div>
         </div>

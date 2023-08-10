@@ -1,18 +1,14 @@
 /* eslint-disable react/prop-types */
 import Slider from "react-slick";
-// import ServiceSliderCards from "./ServiceSliderCards";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import { createRef, useEffect, useState } from "react";
-import ServiceSliderCards from "./ServiceSliderCards";
+import EventCard from "./EventCard";
 
-function SectionServiceSlider({
+export default function EventsSectionSlider({
   sectionTitle,
   bgColor,
   sliderItems,
   dimentions,
-  sectionHeight,
-  slidesToDisplay,
-  popular,
 }) {
   const [loading, setLoading] = useState(true);
 
@@ -34,11 +30,14 @@ function SectionServiceSlider({
   }
 
   const settings = {
-    dots: false,
+    className: "center",
+    centerMode: true,
     infinite: true,
+    centerPadding: "60px",
+    slidesToShow: 1,
     speed: 500,
-    slidesToShow: slidesToDisplay,
-    slidesToScroll: 2,
+    dots: false,
+    slidesToScroll: 1,
     arrows: false,
     responsive: [
       {
@@ -66,11 +65,10 @@ function SectionServiceSlider({
   const gotoPrev = () => {
     sectionSliderRef.current.slickPrev();
   };
-
   return (
     <div className={`${bgColor}`}>
       <div className="container mx-auto  ">
-        <div className={`w-full h-[${sectionHeight}] flex flex-col`}>
+        <div className={`w-full h-full flex flex-col`}>
           <div className="container mx-auto flex justify-between my-10 px-5">
             <h3 className="text-2xl font-semibold font-mono text-gray-800 ">
               {sectionTitle}
@@ -105,10 +103,9 @@ function SectionServiceSlider({
               <Slider {...settings} ref={sectionSliderRef}>
                 {sliderItems?.map((sliderItem, index) => (
                   <div key={index}>
-                    <ServiceSliderCards
+                    <EventCard
                       sliderItem={sliderItem}
                       dimentions={dimentions}
-                      popular={popular}
                     />
                   </div>
                 ))}
@@ -120,5 +117,3 @@ function SectionServiceSlider({
     </div>
   );
 }
-
-export default SectionServiceSlider;

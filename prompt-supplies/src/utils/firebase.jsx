@@ -571,6 +571,199 @@ export const useVipServicesFunctions = () => {
   };
 };
 
+export const useUpcomingEventsFunctions = () => {
+  const [eventsSuccess, setEventsSuccess] = useState(false);
+  const [eventsError, setEventsError] = useState(null);
+  const [eventsLoading, setEventsLoading] = useState(false);
+  const [eventImageURL, setEventImageURL] = useState(null);
+  const [uploadEventProgress, setUploadEventProgress] = useState(null);
+
+  const [allUpcomingEvents, setAllUpcomingEvents] = useState([]);
+  const [approvedUpcomingEvents, setApprovedUpcomingEvents] = useState([]);
+  const [PendingUpcomingEvents, setPendingUpcomingEvents] = useState([]);
+  const [upcomingEventDetails, setUpcomingEventDetails] = useState([]);
+
+  // fetch data
+  const getUpcomingEventsData = async () => {
+    const upcomingEventsRef = collection(db, "UpcomingEvents");
+    const upcomingEventsSnapshot = await getDocs(upcomingEventsRef);
+
+    // fetch all events
+    const upcomingEventsData = upcomingEventsSnapshot.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    // fetch approved Events
+    const approvedEvents = query(
+      upcomingEventsRef,
+      where("approved", "==", true)
+    );
+    const approvedEventsQuerySnapshot = await getDocs(approvedEvents);
+    const approvedEventsData = approvedEventsQuerySnapshot.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    // fecth pending Events
+    const pendingEvents = query(
+      upcomingEventsRef,
+      where("approved", "==", false)
+    );
+    const pendingEventsQuerySnapshot = await getDocs(pendingEvents);
+    const pendingEventsData = pendingEventsQuerySnapshot.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    console.log("setting doc items into serviceItemsData. ..");
+    setAllUpcomingEvents(upcomingEventsData);
+    setApprovedUpcomingEvents(approvedEventsData);
+    setPendingUpcomingEvents(pendingEventsData);
+  };
+
+  useEffect(() => {
+    getUpcomingEventsData();
+  }, []);
+
+  const getUpcomingEventDetails = async (eventId) => {
+    const upcomingEventRef = doc(db, "UpcomingEvents", eventId);
+    const upcomingEventSnap = await getDoc(upcomingEventRef);
+    if (upcomingEventSnap.exists()) {
+      setUpcomingEventDetails(upcomingEventSnap.data());
+    } else {
+      console.log("No such document!");
+    }
+  };
+
+  useEffect(() => {
+    getUpcomingEventDetails();
+  }, []);
+
+  // Post Data
+
+  const uploadUpcomingEventPoster = async (file) => {
+    // Upload file and metadata to the object 'images/mountains.jpg'
+    const metadata = {
+      contentType: "image/jpeg",
+    };
+    const upcomingEventStorageRef = ref(storage, "eventposter/" + file.name);
+    try {
+      setEventsLoading(true);
+      const uploadTask = uploadBytesResumable(
+        upcomingEventStorageRef,
+        file,
+        metadata
+      );
+
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+          const upcomingEventProgress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + upcomingEventProgress + "% done");
+          setUploadEventProgress(
+            parseInt(parseFloat(upcomingEventProgress).toFixed(0))
+          );
+
+          switch (snapshot.state) {
+            case "paused":
+              console.log("Upload is paused");
+              break;
+            case "running":
+              console.log("Upload is running");
+              break;
+          }
+        },
+        (error) => {
+          // A full list of error codes is available at
+          // https://firebase.google.com/docs/storage/web/handle-errors
+          switch (error.code) {
+            case "storage/unauthorized":
+              // User doesn't have permission to access the object
+              break;
+            case "storage/canceled":
+              // User canceled the upload
+              break;
+
+            // ...
+
+            case "storage/unknown":
+              // Unknown error occurred, inspect error.serverResponse
+              break;
+          }
+        },
+        () => {
+          // Upload completed successfully, now we can get the download URL
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            console.log("File available at", downloadURL);
+            setEventImageURL(downloadURL);
+            setEventsLoading(false);
+          });
+        }
+      );
+    } catch (err) {
+      console.log("the folloing error occured >>", err);
+    }
+  };
+
+  const handlePostUpcomingEvent = async (data) => {
+    try {
+      setEventsLoading(true);
+      const upcomingEventsRef = doc(collection(db, "UpcomingEvents"));
+      await setDoc(upcomingEventsRef, data);
+      setEventsLoading(false);
+      setEventsSuccess(true);
+    } catch (err) {
+      setEventsError(err);
+      console.error("An Error Occurred >>", err);
+    }
+  };
+
+  const handleDeleteEvent = async (id) => {
+    try {
+      setEventsLoading(true);
+      await deleteDoc(doc(db, "UpcomingEvents", id));
+      setEventsLoading(false);
+      setEventsSuccess(true);
+    } catch (err) {
+      setEventsError(err);
+    }
+  };
+
+  const handleApproveUpcomingEvents = async (id) => {
+    try {
+      setEventsLoading(true);
+      const upcomingEventsRef = doc(db, "UpcomingEvents", id);
+      await updateDoc(upcomingEventsRef, {
+        approved: true,
+      });
+      setEventsLoading(false);
+    } catch (err) {
+      console.log("The folowing error occured >> ", err);
+      setEventsError(err);
+    }
+  };
+
+  return {
+    eventsSuccess,
+    eventsError,
+    eventsLoading,
+    eventImageURL,
+    uploadEventProgress,
+    allUpcomingEvents,
+    approvedUpcomingEvents,
+    PendingUpcomingEvents,
+    upcomingEventDetails,
+
+    uploadUpcomingEventPoster,
+    handlePostUpcomingEvent,
+    handleDeleteEvent,
+    handleApproveUpcomingEvents,
+  };
+};
+
 // AUTHENTICATION
 export const useAuth = () => {
   const [user, setUser] = useState(null);

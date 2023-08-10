@@ -2,12 +2,7 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { PhoneArrowUpRightIcon } from "@heroicons/react/24/outline";
 import { Fragment, useState } from "react";
-
-export default function ServiceSliderCards({
-  sliderItem,
-  dimentions,
-  popular,
-}) {
+function DealsAdCards({ sliderItem }) {
   let [isOpen, setIsOpen] = useState(false);
   let [modalData, setModalData] = useState({});
 
@@ -20,7 +15,6 @@ export default function ServiceSliderCards({
   function closeModal() {
     setIsOpen(false);
   }
-
   return (
     <div className="mr-5">
       <Transition appear show={isOpen} as={Fragment}>
@@ -121,13 +115,7 @@ export default function ServiceSliderCards({
         </Dialog>
       </Transition>
 
-      <div
-        className={
-          popular
-            ? `relative h-[${dimentions}] w-[${dimentions}]  mx-auto`
-            : " relative  h-64 w-64 mx-auto "
-        }
-      >
+      <div className="relative  h-[25rem] w-[25rem] mx-auto">
         <div
           className="absolute inset-0 h-full w-full bg-cover bg-center"
           style={{ backgroundImage: `url(${sliderItem?.poster})` }}
@@ -147,3 +135,5 @@ export default function ServiceSliderCards({
     </div>
   );
 }
+
+export default DealsAdCards;

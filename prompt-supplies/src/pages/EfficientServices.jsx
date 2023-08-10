@@ -11,11 +11,14 @@ import {
 import { Fragment, useState } from "react";
 import ServiceGrid from "../components/ServiceGrid";
 import AdvertForm from "../components/AdvertForm";
+import EventsSectionSlider from "../components/EventsSectionSlider";
+import UpcomingEventForm from "../components/UpcomingEventForm";
 
 export default function EfficientServices() {
   const [isApprovalModalOpen, setIsApprovalModalOpen] = useState(false);
   const [isVipSelected, setIsVipSelected] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [isEventModalOpen, setIsEventModalOpen] = useState(false);
 
   const {
     approvedServiceItems,
@@ -63,6 +66,10 @@ export default function EfficientServices() {
     setIsOpen(true);
   }
 
+  function handleOpenEventModal() {
+    setIsEventModalOpen(true);
+  }
+
   return (
     <div className="mt-16 relative">
       <div className="">
@@ -73,6 +80,10 @@ export default function EfficientServices() {
           sectionTitle="Popular Services"
           bgColor="bg-gray-100"
           sliderItems={popularServiceItems}
+          dimentions={"30rem"}
+          sectionHeight={"40rem"}
+          slidesToDisplay={2}
+          popular={true}
         />
 
         <div>
@@ -125,8 +136,9 @@ export default function EfficientServices() {
                         </button>
                       </div>
                       {isOpen && <AdvertForm isVipSelected={isVipSelected} />}
+                      {isEventModalOpen && <UpcomingEventForm />}
 
-                      {!isOpen && (
+                      {!isOpen && !isEventModalOpen && (
                         <>
                           <Dialog.Title
                             as="h3"
@@ -135,19 +147,30 @@ export default function EfficientServices() {
                             Choose the type of Advert you want to post
                           </Dialog.Title>
 
-                          <div className="flex gap-5 w-full h-full py-6 px-5">
-                            <button
-                              onClick={handleOpenVipModal}
-                              className="h-32 flex justify-center items-center w-1/2 border border-dashed text-teal-500 border-teal-500 hover:bg-teal-600  hover:text-white"
-                            >
-                              LandScape Advert
-                            </button>
-                            <button
-                              onClick={handleOpenModal}
-                              className="h-32 flex justify-center items-center w-1/2 border border-dashed text-[#FDB715] border-[#FDB715] hover:bg-[#FDB715]  hover:text-white"
-                            >
-                              Square Advert
-                            </button>
+                          <div className="flex flex-col gap-5 w-full h-full py-6 px-5">
+                            <div className="w-full flex gap-3">
+                              <button
+                                onClick={handleOpenVipModal}
+                                className="h-32 flex justify-center items-center w-1/2 border border-dashed text-teal-500 border-teal-500 hover:bg-teal-600  hover:text-white"
+                              >
+                                LandScape Advert
+                              </button>
+                              <button
+                                onClick={handleOpenModal}
+                                className="h-32 flex justify-center items-center w-1/2 border border-dashed text-[#FDB715] border-[#FDB715] hover:bg-[#FDB715]  hover:text-white"
+                              >
+                                Square Advert
+                              </button>
+                            </div>
+
+                            <div className="w-full flex justify-center">
+                              <button
+                                onClick={handleOpenEventModal}
+                                className="h-32 flex justify-center items-center w-1/2 border border-dashed text-[#FDB715] border-sky-900 hover:bg-sky-900  hover:text-white"
+                              >
+                                Upcoming Event
+                              </button>
+                            </div>
                           </div>
                         </>
                       )}
@@ -210,15 +233,21 @@ export default function EfficientServices() {
           </div>
         </div>
 
-        <SectionServiceSlider
-          sectionTitle="Featured Services"
+        <EventsSectionSlider
+          dimentions={"25rem"}
+          sectionHeight={"30rem"}
+          sectionTitle="Upcoming Events"
           bgColor="bg-gray-100"
           sliderItems={featuredServiceItems}
         />
 
-        <DealsSectionSlider sliderItems={dealsServiceItems} />
+        <DealsSectionSlider
+          sliderItems={dealsServiceItems[0]}
+          dimentions={"20rem"}
+          popular={true}
+        />
 
-        <ServiceGrid sliderItems={approvedServiceItems} />
+        <ServiceGrid sliderItems={approvedServiceItems} dimentions={"25rem"} />
       </div>
     </div>
   );

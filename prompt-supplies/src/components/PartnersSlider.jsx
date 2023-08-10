@@ -5,6 +5,7 @@ import { A11y, Autoplay } from "swiper";
 
 import "swiper/css";
 import "swiper/css/navigation";
+
 import PartnersCard from "./PartnersCard";
 import vista from "../assets/images/vista.jpg";
 import vski from "../assets/images/vski.png";
@@ -61,9 +62,10 @@ export default function PartnersSlider() {
             delay: 1000,
             disableOnInteraction: false,
           }}
+          className="!w-full !h-full"
         >
           {partnerLogos.map((logoSrc, index) => (
-            <SwiperSlide key={index}>
+            <SwiperSlide key={index} className="partner-slider">
               <PartnersCard logoSrc={logoSrc} />
             </SwiperSlide>
           ))}

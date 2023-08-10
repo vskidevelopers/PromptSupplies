@@ -3,7 +3,9 @@ import Slider from "react-slick";
 import VipSliderCard from "./VipSliderCard";
 import { createRef, useEffect, useState } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
-import SnackBar from "./SnackBar";
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function HeroSlider({ sliderItems }) {
   const [loading, setLoading] = useState(true);
@@ -24,7 +26,7 @@ function HeroSlider({ sliderItems }) {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 4000,
     pauseOnHover: true,
   };
@@ -39,8 +41,8 @@ function HeroSlider({ sliderItems }) {
 
   return (
     <div className=" ">
-      <div className="relative ">
-        <div className="absolute  h-96 w-full !flex items-center justify-between px-4 md:px-2">
+      <div className="relative h-96 w-full">
+        <div className="absolute h-full  w-full !flex items-center justify-between px-4 md:px-2">
           <button
             onClick={() => gotoNext()}
             className="z-10 bg-white py-2 px-2 md:py-4 md:px-4 rounded-full shadow-md text-black"
@@ -55,19 +57,23 @@ function HeroSlider({ sliderItems }) {
           </button>
         </div>
 
-        {loading ? (
-          <SnackBar status="loading" />
-        ) : (
-          <div>
-            <Slider {...settings} ref={vipSliderRef}>
-              {sliderItems?.map((sliderItem, index) => (
-                <div key={index} className="h-96 w-4/5">
-                  <VipSliderCard sliderItem={sliderItem} />
-                </div>
-              ))}
-            </Slider>
+        {loading && (
+          <div className="absolute inset-0 flex items-center justify-center bg-gray-200">
+            {/* Loading Spinner */}
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+              <div className="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-gray-900"></div>
+            </div>
           </div>
         )}
+        <div>
+          <Slider {...settings} ref={vipSliderRef}>
+            {sliderItems?.map((sliderItem, index) => (
+              <div key={index} className="h-96 w-4/5">
+                <VipSliderCard sliderItem={sliderItem} />
+              </div>
+            ))}
+          </Slider>
+        </div>
       </div>
     </div>
   );

@@ -10,6 +10,10 @@ import {
 import { createRef } from "react";
 
 function VipSlider() {
+  // const images = [
+  //   "https://img.freepik.com/free-psd/horizontal-banner-template-black-friday-clearance_23-2148745446.jpg?w=900&t=st=1686608963~exp=1686609563~hmac=ab842d50f5dcde032164ac300b7fb54935328fe0e0ae5e4b770603218aeeb02d",
+  // ];
+
   const images = [
     "https://img.freepik.com/free-psd/horizontal-banner-template-black-friday-clearance_23-2148745446.jpg?w=900&t=st=1686608963~exp=1686609563~hmac=ab842d50f5dcde032164ac300b7fb54935328fe0e0ae5e4b770603218aeeb02d",
     "https://img.freepik.com/free-psd/banner-corporate-ad-template_23-2148788938.jpg?w=900&t=st=1686609116~exp=1686609716~hmac=dc5c1b22d8386ac42b7f8e13ac7aa614c8c263f81d4ca2167b95229cade85761",
@@ -20,16 +24,23 @@ function VipSlider() {
   const featuredVipSliderRef = createRef();
 
   const settings = {
-    dots: true,
-    fade: true,
     infinite: true,
-    speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 5000,
     arrows: false,
+    // autoplay: true,
+    speed: 2000,
+    // autoplaySpeed: 2000,
+    cssEase: "linear",
   };
+  // const settings = {
+  //   dots: true,
+  //   fade: true,
+  //   infinite: true,
+  //   speed: 500,
+  //   slidesToShow: 1,
+  //   slidesToScroll: 1,
+  // };
 
   const gotoNext = () => {
     featuredVipSliderRef.current.slickNext();
@@ -40,32 +51,34 @@ function VipSlider() {
   };
 
   return (
-    <section className="">
-      <div className="relative h-full md:h-96 w-[90vw] md:w-[90vw] ">
-        <div className="absolute w-full h-48 md:h-96  flex justify-between my-6 px-5  z-10">
-          <div className="w-full flex items-center justify-between">
-            <button
-              onClick={() => gotoNext()}
-              className="mr-4 bg-white py-2 px-2 rounded-full shadow-md text-black"
-            >
-              <ChevronDoubleLeftIcon className="h-4 w-4  text-slate-950" />
-            </button>
-            <button
-              onClick={() => gotoPrev()}
-              className="mr-4 bg-white py-2 px-2 rounded-full shadow-md text-black"
-            >
-              <ChevronDoubleRightIcon className="h-4 w-4  text-slate-950" />
-            </button>
+    <section className="py-5 md:py-10 bg-slate-200">
+      <div className="container max-full mx-auto flex justify-center items-center">
+        <div className="relative h-[30rem] md:h-96 w-full">
+          <div className="absolute w-full h-48 md:h-96 flex justify-between my-6 px-5 z-10">
+            <div className="w-full flex items-center justify-between">
+              <button
+                onClick={() => gotoNext()}
+                className="mr-4 bg-white py-2 px-2 rounded-full shadow-md text-black"
+              >
+                <ChevronDoubleLeftIcon className="h-4 w-4  text-slate-950" />
+              </button>
+              <button
+                onClick={() => gotoPrev()}
+                className="mr-4 bg-white py-2 px-2 rounded-full shadow-md text-black"
+              >
+                <ChevronDoubleRightIcon className="h-4 w-4  text-slate-950" />
+              </button>
+            </div>
           </div>
-        </div>
-        <div>
-          <Slider {...settings} ref={featuredVipSliderRef}>
-            {images.map((image, index) => (
-              <div key={index}>
-                <img src={image} />
-              </div>
-            ))}
-          </Slider>
+          <div className="h-full w-full">
+            <Slider {...settings} ref={featuredVipSliderRef}>
+              {images.map((image, index) => (
+                <div key={index}>
+                  <img src={image} alt={`Slider ${index}`} />
+                </div>
+              ))}
+            </Slider>
+          </div>
         </div>
       </div>
     </section>
