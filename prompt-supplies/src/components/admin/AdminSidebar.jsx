@@ -114,6 +114,28 @@ const AdminSidebar = () => {
             },
           ],
         },
+        {
+          id: 33,
+          label: "Upcoming Events",
+          href: "admin-adverts/events",
+          subItems: [
+            {
+              id: 421,
+              label: "All",
+              href: "admin-adverts/events",
+            },
+            {
+              id: 422,
+              label: "Approved",
+              href: "admin-adverts/events/approved",
+            },
+            {
+              id: 423,
+              label: "Pending",
+              href: "admin-adverts/events/pending",
+            },
+          ],
+        },
       ],
     },
     {

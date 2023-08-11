@@ -40,6 +40,8 @@ import PendingVipAdverts from "./components/admin/PendingVipAdverts";
 import FeaturedVipAdverts from "./components/admin/FeaturedVipAdverts";
 import Login from "./auth/Login";
 import PrivateRoutes from "./auth/PrivateRoutes";
+import AllEvents from "./components/admin/AllEvents";
+import AdminEventsUi from "./components/admin/AdminEventsUi";
 
 const serviceList = services;
 console.log("Service List from router >>>", serviceList);
@@ -86,6 +88,10 @@ const router = createBrowserRouter(
               <Route path="featured" element={<FeaturedAdverts />} />
               <Route path="offer" element={<OfferAdverts />} />
               <Route path="sale" element={<SaleAdverts />} />
+            </Route>
+
+            <Route path="events" element={<AdminEventsUi />}>
+              <Route index element={<AllEvents />} />
             </Route>
           </Route>
 

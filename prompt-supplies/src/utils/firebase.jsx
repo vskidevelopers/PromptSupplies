@@ -616,6 +616,8 @@ export const useUpcomingEventsFunctions = () => {
       ...doc.data(),
     }));
 
+    // fetch passed events
+
     console.log("setting doc items into serviceItemsData. ..");
     setAllUpcomingEvents(upcomingEventsData);
     setApprovedUpcomingEvents(approvedEventsData);
