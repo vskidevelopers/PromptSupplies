@@ -1,8 +1,16 @@
 import { useForm } from "react-hook-form";
 import { useDropzone } from "react-dropzone";
-import { format } from "date-fns";
+import { format, parse } from "date-fns";
+import { useUpcomingEventsFunctions } from "../utils/firebase";
 
 export default function UpcomingEventForm() {
+  const {
+    eventImageURL,
+    eventsLoading,
+    uploadEventProgress,
+    handlePostUpcomingEvent,
+    uploadUpcomingEventPoster,
+  } = useUpcomingEventsFunctions();
   const {
     register,
     handleSubmit,
@@ -26,13 +34,45 @@ export default function UpcomingEventForm() {
   });
 
   const onSubmit = (data) => {
-    const formattedTime = format(new Date(data.time), "hh:mm a");
     console.log("upcoming event data >>", data);
-    console.log("formatted time >>", formattedTime);
+
+    const timeValue = data.time;
+    console.log("Original Time:", timeValue);
+
+    const dateObject = parse(timeValue, "HH:mm", new Date());
+    console.log("Date Object:", dateObject);
+
+    const formattedTime = format(dateObject, "hh:mm a");
+    console.log("Formatted Time:", formattedTime);
 
     // Your submission logic here
 
-    reset();
+    if (eventImageURL) {
+      console.log("Image Url >>", eventImageURL);
+      const eventData = {
+        author: data.author,
+        email: data.email,
+        phone: data.phoneNumber,
+        poster: eventImageURL,
+        description: data.description,
+        venue: data.venue,
+        title: data.title,
+        approved: false,
+        time: formattedTime,
+        startDate: data.startdate,
+        endDate: data.enddate,
+      };
+      console.log("service Data to upload >>", eventData);
+      handlePostUpcomingEvent(eventData);
+      alert("We have recieved your request. we'll be in touch shortly");
+      reset();
+    } else {
+      console.log("No Image  ");
+      alert("Uploading Files. Click Ok to continue");
+      if (data.imagePoster) {
+        uploadUpcomingEventPoster(data.imagePoster);
+      }
+    }
   };
 
   return (
@@ -55,18 +95,34 @@ export default function UpcomingEventForm() {
               />
               {errors.title && <span>This field is required</span>}
             </div>
-            <div className="mb-4">
-              <label className="block text-sm font-bold mb-2" htmlFor="date">
-                Date:
-              </label>
-              <input
-                type="date"
-                id="date"
-                {...register("date", { required: true })}
-                className="w-full border border-yellow-400 rounded py-2 px-3"
-              />
-              {errors.date && <span>This field is required</span>}
+
+            <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+              <div className="mb-4">
+                <label className="block text-sm font-bold mb-2" htmlFor="date">
+                  Start Date:
+                </label>
+                <input
+                  type="date"
+                  id="startdate"
+                  {...register("startdate", { required: true })}
+                  className="w-full border border-yellow-400 rounded py-2 px-3"
+                />
+                {errors.date && <span>This field is required</span>}
+              </div>
+              <div className="mb-4">
+                <label className="block text-sm font-bold mb-2" htmlFor="date">
+                  End Date:
+                </label>
+                <input
+                  type="date"
+                  id="enddate"
+                  {...register("enddate", { required: true })}
+                  className="w-full border border-yellow-400 rounded py-2 px-3"
+                />
+                {errors.date && <span>This field is required</span>}
+              </div>
             </div>
+
             <div className="mb-4">
               <label
                 className="block text-sm font-bold mb-2"
@@ -81,6 +137,7 @@ export default function UpcomingEventForm() {
               ></textarea>
               {errors.description && <span>This field is required</span>}
             </div>
+
             <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
               <div className="mb-4">
                 <label className="block text-sm font-bold mb-2" htmlFor="venue">
@@ -107,6 +164,7 @@ export default function UpcomingEventForm() {
                 {errors.time && <span>This field is required</span>}
               </div>
             </div>
+
             <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
               <div className="mb-4">
                 <label
@@ -174,7 +232,9 @@ export default function UpcomingEventForm() {
                 type="submit"
                 className="bg-yellow-400 text-white py-2 px-4 rounded"
               >
-                Submit
+                {eventsLoading
+                  ? `${uploadEventProgress} % Image uploading ...`
+                  : "Submit"}
               </button>
             </div>
           </form>

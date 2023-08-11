@@ -69,9 +69,7 @@ export default function AdvertForm({ isVipSelected }) {
         reset();
       } else {
         console.log("No Image  ");
-        alert(
-          "An error occured during image upload. Try submitting the form again"
-        );
+        alert("Uploading files... Click OK to continue");
         if (data.imagePoster) {
           uploadVipAdvertPoster(data.imagePoster);
         }
@@ -98,9 +96,7 @@ export default function AdvertForm({ isVipSelected }) {
       reset();
     } else {
       console.log("No Image  ");
-      alert(
-        "An error occured during image upload. Try submitting the form again"
-      );
+      alert("Uploading Files. Click Ok to continue");
       if (data.imagePoster) {
         uploadServicePoster(data.imagePoster);
       }

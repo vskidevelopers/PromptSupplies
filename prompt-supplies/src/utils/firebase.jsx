@@ -589,7 +589,7 @@ export const useUpcomingEventsFunctions = () => {
     const upcomingEventsSnapshot = await getDocs(upcomingEventsRef);
 
     // fetch all events
-    const upcomingEventsData = upcomingEventsSnapshot.map((doc) => ({
+    const upcomingEventsData = upcomingEventsSnapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
     }));
@@ -600,7 +600,7 @@ export const useUpcomingEventsFunctions = () => {
       where("approved", "==", true)
     );
     const approvedEventsQuerySnapshot = await getDocs(approvedEvents);
-    const approvedEventsData = approvedEventsQuerySnapshot.map((doc) => ({
+    const approvedEventsData = approvedEventsQuerySnapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
     }));
@@ -611,7 +611,7 @@ export const useUpcomingEventsFunctions = () => {
       where("approved", "==", false)
     );
     const pendingEventsQuerySnapshot = await getDocs(pendingEvents);
-    const pendingEventsData = pendingEventsQuerySnapshot.map((doc) => ({
+    const pendingEventsData = pendingEventsQuerySnapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
     }));
@@ -756,7 +756,6 @@ export const useUpcomingEventsFunctions = () => {
     approvedUpcomingEvents,
     PendingUpcomingEvents,
     upcomingEventDetails,
-
     uploadUpcomingEventPoster,
     handlePostUpcomingEvent,
     handleDeleteEvent,

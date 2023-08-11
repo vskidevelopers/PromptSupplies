@@ -6,6 +6,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { InView } from "react-intersection-observer";
 import {
   useCallUsServicesFunctions,
+  useUpcomingEventsFunctions,
   useVipServicesFunctions,
 } from "../utils/firebase";
 import { Fragment, useState } from "react";
@@ -27,6 +28,7 @@ export default function EfficientServices() {
     dealsServiceItems,
     allServiceItems,
   } = useCallUsServicesFunctions();
+  const { allUpcomingEvents } = useUpcomingEventsFunctions();
 
   const { allVipAdsItems } = useVipServicesFunctions();
 
@@ -238,7 +240,7 @@ export default function EfficientServices() {
           sectionHeight={"30rem"}
           sectionTitle="Upcoming Events"
           bgColor="bg-gray-100"
-          sliderItems={featuredServiceItems}
+          sliderItems={allUpcomingEvents}
         />
 
         <DealsSectionSlider

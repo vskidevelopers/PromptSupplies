@@ -8,7 +8,6 @@ export default function EventsSectionSlider({
   sectionTitle,
   bgColor,
   sliderItems,
-  dimentions,
 }) {
   const [loading, setLoading] = useState(true);
 
@@ -34,7 +33,7 @@ export default function EventsSectionSlider({
     centerMode: true,
     infinite: true,
     centerPadding: "60px",
-    slidesToShow: 1,
+    slidesToShow: 2,
     speed: 500,
     dots: false,
     slidesToScroll: 1,
@@ -103,10 +102,7 @@ export default function EventsSectionSlider({
               <Slider {...settings} ref={sectionSliderRef}>
                 {sliderItems?.map((sliderItem, index) => (
                   <div key={index}>
-                    <EventCard
-                      sliderItem={sliderItem}
-                      dimentions={dimentions}
-                    />
+                    <EventCard event={sliderItem} />
                   </div>
                 ))}
               </Slider>

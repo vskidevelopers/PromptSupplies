@@ -135,12 +135,12 @@ export default function ServiceSliderCards({
         <div className="absolute inset-0 bg-gray-900/40 hover:bg-gray-900/50 w-full h-full flex justify-center items-center transition duration-300">
           <button
             onClick={() => openModal(sliderItem)}
-            className="border border-[#FDB715] bg-[#fdb71481]  hover:bg-[#FDB714] py-4 px-6 grid grid-cols-2 text-white"
+            className="border border-[#FDB715] bg-[#fdb71481]  hover:bg-[#FDB714] py-4 px-6 flex gap-3 text-white"
           >
-            <div className="w-full h-full">
+            <div className="w-auto h-full">
               <PhoneArrowUpRightIcon className="h-5 w-5" />
             </div>
-            <div className="w-max">Call Us</div>
+            <div className="">Learn More</div>
           </button>
         </div>
       </div>
