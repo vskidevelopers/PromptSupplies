@@ -2,11 +2,10 @@ import { motion } from "framer-motion";
 import { InView } from "react-intersection-observer";
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-// import VipSlider from "./VipSlider";
+
 import AdvertForm from "./AdvertForm";
-// import FeaturedVipSlider from "./FeaturedVipSlider";
-// import VipSlider from "./VipSlider";
-import FeaturedVipSwiper from "./featuredVipSwiper";
+
+import FeaturedVipSwiper from "./FeaturedVipSwiper";
 
 export default function AdvertSlider() {
   const [isApprovalModalOpen, setIsApprovalModalOpen] = useState(false);
