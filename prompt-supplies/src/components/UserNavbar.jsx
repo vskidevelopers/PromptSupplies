@@ -7,7 +7,7 @@ export default function UserNavbar() {
   const navigation = [
     { name: "Home", href: "/", current: true },
     { name: "About Us", href: "about", current: false },
-    { name: "Insights", href: "features", current: false },
+    { name: "Blogs", href: "blogs", current: false },
     { name: "Services", href: "services", current: false },
     { name: "Our Projects", href: "projects", current: false },
   ];

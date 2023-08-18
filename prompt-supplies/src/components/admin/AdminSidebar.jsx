@@ -1,5 +1,6 @@
 import {
   ArrowLeftOnRectangleIcon,
+  ClipboardDocumentListIcon,
   HomeIcon,
   NewspaperIcon,
   ServerStackIcon,
@@ -12,10 +13,15 @@ import { useAuth } from "../../utils/firebase";
 const AdminSidebar = () => {
   const { logout } = useAuth();
   const [showAdvertSubItems, setShowAdvertSubItems] = useState(false);
+  const [showBlogsSubItems, setShowBlogsSubItems] = useState(false);
   const [activeSubItem, setActiveSubItem] = useState(null);
 
-  const handleShowAdvertSubItems = () => {
-    setShowAdvertSubItems(!showAdvertSubItems);
+  const handleShowAdvertSubItems = (itemLabel) => {
+    if (itemLabel === "Blogs") {
+      setShowBlogsSubItems(!showBlogsSubItems);
+    } else {
+      setShowAdvertSubItems(!showAdvertSubItems);
+    }
   };
 
   const handleShowAdvertLinks = (label) => {
@@ -140,11 +146,41 @@ const AdminSidebar = () => {
     },
     {
       id: 4,
+      label: "Blogs",
+      icon: (
+        <ClipboardDocumentListIcon className="h-4 w-auto mr-3 text-white" />
+      ),
+      href: "admin-blogs",
+      subItems: [
+        {
+          id: 41,
+          label: "All Blogs",
+          href: "admin-blogs",
+        },
+        {
+          id: 42,
+          label: "Published Blogs",
+          href: "admin-blogs/published",
+        },
+        {
+          id: 43,
+          label: "Featured Blogs",
+          href: "admin-blogs/featured",
+        },
+        {
+          id: 44,
+          label: "Unpublished Blogs",
+          href: "admin-blogs/unpublished",
+        },
+      ],
+    },
+    {
+      id: 5,
       label: "Services",
       icon: (
         <ServerStackIcon
           className="h-4 w-auto mr-3 text-white"
-          href="admin-services"
+          href="admin/admin-services"
         />
       ),
     },
@@ -172,7 +208,7 @@ const AdminSidebar = () => {
                 <Link to={item.href}>
                   <div
                     className="flex items-center py-2 pb-5 border-b border-b-white/30 bg-gray-700/10 hover:bg-gray-900"
-                    onClick={handleShowAdvertSubItems}
+                    onClick={() => handleShowAdvertSubItems(item.label)}
                   >
                     {item.icon}
 
@@ -202,6 +238,39 @@ const AdminSidebar = () => {
                                 to={linkItem.href}
                                 key={linkItem.id}
                                 className="flex items-center pl-4 py-2 hover:bg-gray-900"
+                              >
+                                <span>{linkItem.label}</span>
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {showBlogsSubItems && item.label === "Blogs" && (
+                  <div className="pl-6 py-2">
+                    {item.subItems.map((subItem) => (
+                      <div
+                        key={subItem.id}
+                        className=" items-center pl-4 py-2 hover:bg-gray-900"
+                      >
+                        <div
+                          onClick={() => handleShowAdvertLinks(subItem.label)}
+                          className="w-full h-full "
+                        >
+                          <Link to={subItem.href} className="w-full">
+                            <span>{subItem.label}</span>
+                          </Link>
+                        </div>
+                        {activeSubItem === subItem.label && (
+                          <div className="pl-6 py-2">
+                            {subItem.subItems?.map((linkItem) => (
+                              <Link
+                                to={linkItem.href}
+                                key={linkItem.id}
+                                className="flex w-full items-center pl-4 py-2 hover:bg-gray-900"
                               >
                                 <span>{linkItem.label}</span>
                               </Link>

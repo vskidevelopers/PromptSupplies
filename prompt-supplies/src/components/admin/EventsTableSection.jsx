@@ -22,7 +22,7 @@ export default function EventsTableSection({ sectionTitle, advertItems }) {
             {/* Header Details */}
             <h2 className="text-4xl font-bold ">{sectionTitle}</h2>
             <h6 className="text-md font-semibold text-gray-600 ">
-              {advertItems.length} total
+              {advertItems?.length} total
             </h6>
           </div>
 
@@ -32,12 +32,9 @@ export default function EventsTableSection({ sectionTitle, advertItems }) {
               <SnackBar status="loading" />
             ) : (
               <>
-                {advertItems.length > 0 ? (
+                {advertItems?.length > 0 ? (
                   <>
-                    <EventsTable
-                      advertItems={advertItems}
-                      sectionTitle="All Events"
-                    />
+                    <EventsTable advertItems={advertItems} />
                   </>
                 ) : (
                   <div className="w-full py-16">

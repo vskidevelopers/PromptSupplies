@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 import { InView } from "react-intersection-observer";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { A11y, Autoplay } from "swiper";
+import Slider from "react-slick";
+// import { Swiper, SwiperSlide } from "swiper/react";
+// import { A11y, Autoplay } from "swiper";
 
 import "swiper/css";
-import "swiper/css/navigation";
 
 import PartnersCard from "./PartnersCard";
 import vista from "../assets/images/vista.jpg";
@@ -15,6 +15,18 @@ import vista2 from "../assets/images/vista2.png";
 
 export default function PartnersSlider() {
   const partnerLogos = [vista, vista2, genize, vski, positivessl];
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 2000,
+    autoplaySpeed: 2000,
+    cssEase: "linear",
+  };
+
   return (
     <div className="container mx-auto px-5 md:px-20 my-5">
       {/* Title */}
@@ -54,10 +66,11 @@ export default function PartnersSlider() {
         )}
       </InView>
       <div>
-        <Swiper
+        {/* <Swiper
           modules={[Autoplay, A11y]}
-          slidesPerView={3}
-          spaceBetween={5}
+          slidesPerView={2}
+          spaceBetween={10}
+          centeredSlides={true}
           autoplay={{
             delay: 1000,
             disableOnInteraction: false,
@@ -69,7 +82,15 @@ export default function PartnersSlider() {
               <PartnersCard logoSrc={logoSrc} />
             </SwiperSlide>
           ))}
-        </Swiper>
+        </Swiper> */}
+
+        <Slider {...settings}>
+          {partnerLogos.map((logoSrc, index) => (
+            <div key={index} className="partner-slider">
+              <PartnersCard logoSrc={logoSrc} />
+            </div>
+          ))}
+        </Slider>
       </div>
     </div>
   );

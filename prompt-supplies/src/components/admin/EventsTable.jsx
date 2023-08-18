@@ -3,7 +3,7 @@ import { useState } from "react";
 import AdminAdvertViewModal from "./AdminAdvertViewModal";
 import AdminVipActionApprovalModel from "./AdminVipActionApprovalModel";
 
-export default function EventsTable({ advertItems, approved }) {
+export default function EventsTable({ advertItems }) {
   let [isViewModalOpen, setIsViewModalOpen] = useState(false);
   const [isApprovalModalOpen, setIsApprovalModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -52,7 +52,7 @@ export default function EventsTable({ advertItems, approved }) {
         <AdminVipActionApprovalModel
           item={modalData}
           action="approve"
-          message="Are You Sure You Want To Approve This Ad?"
+          message="Are You Sure You Want To Approve This Event?"
         />
       )}
 
@@ -60,7 +60,7 @@ export default function EventsTable({ advertItems, approved }) {
         <AdminVipActionApprovalModel
           action="delete"
           item={modalData}
-          message="Are You Sure You Want To Delete this Service?"
+          message="Are You Sure You Want To Delete This Event?"
         />
       )}
 
@@ -145,33 +145,20 @@ export default function EventsTable({ advertItems, approved }) {
               </td>
 
               <td className="whitespace-nowrap px-4 py-2 ">
-                {approved ? (
-                  <>
-                    <button
-                      disabled={true}
-                      className="rounded-full py-2 px-4 bg-slate-600 text-white"
-                    >
-                      Approved
-                    </button>
-                  </>
+                {item.approved ? (
+                  <button
+                    disabled={true}
+                    className="rounded-full py-2 px-4 bg-slate-600 text-white"
+                  >
+                    Approved
+                  </button>
                 ) : (
-                  <div className=" grid grid-cols-1 gap-2 ">
-                    {item.approved ? (
-                      <button
-                        disabled={true}
-                        className="rounded-full py-2 px-4 bg-slate-600 text-white"
-                      >
-                        Approved
-                      </button>
-                    ) : (
-                      <button
-                        onClick={() => handleApproveOnClick(item)}
-                        className="w-full py-2 px-4 border border-yellow-600 hover:bg-yellow-600 text-yellow-600 hover:text-white rounded-full "
-                      >
-                        Approve
-                      </button>
-                    )}
-                  </div>
+                  <button
+                    onClick={() => handleApproveOnClick(item)}
+                    className="w-full py-2 px-4 border border-yellow-600 hover:bg-yellow-600 text-yellow-600 hover:text-white rounded-full "
+                  >
+                    Approve
+                  </button>
                 )}
               </td>
             </tr>

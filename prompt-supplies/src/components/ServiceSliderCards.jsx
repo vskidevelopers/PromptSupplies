@@ -124,15 +124,15 @@ export default function ServiceSliderCards({
       <div
         className={
           popular
-            ? `relative h-[${dimentions}] w-[${dimentions}]  mx-auto`
-            : " relative  h-64 w-64 mx-auto "
+            ? `group relative h-[${dimentions}] w-[${dimentions}]  mx-auto`
+            : " group relative  h-64 w-64 mx-auto "
         }
       >
         <div
-          className="absolute inset-0 h-full w-full bg-cover bg-center"
+          className="absolute inset-0 h-full w-full bg-contain bg-center"
           style={{ backgroundImage: `url(${sliderItem?.poster})` }}
         ></div>
-        <div className="absolute inset-0 bg-gray-900/40 hover:bg-gray-900/50 w-full h-full flex justify-center items-center transition duration-300">
+        <div className="hidden group-hover:flex absolute inset-0 bg-gray-900/40 hover:bg-gray-900/50 w-full h-full justify-center items-center transition duration-300">
           <button
             onClick={() => openModal(sliderItem)}
             className="border border-[#FDB715] bg-[#fdb71481]  hover:bg-[#FDB714] py-4 px-6 flex gap-3 text-white"

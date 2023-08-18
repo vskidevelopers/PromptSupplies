@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation } from "swiper";
+import { Pagination, Navigation, Autoplay } from "swiper";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -24,8 +24,12 @@ export default function FeaturedVipSwiper() {
             dynamicBullets: true,
             clickable: true,
           }}
+          autoplay={{
+            delay: 1500,
+            disableOnInteraction: true,
+          }}
           navigation={true}
-          modules={[Pagination, Navigation]}
+          modules={[Pagination, Navigation, Autoplay]}
           className="mySwiper !w-full !h-full"
         >
           {images.map((logoSrc, index) => (

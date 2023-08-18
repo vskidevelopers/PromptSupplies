@@ -580,7 +580,7 @@ export const useUpcomingEventsFunctions = () => {
 
   const [allUpcomingEvents, setAllUpcomingEvents] = useState([]);
   const [approvedUpcomingEvents, setApprovedUpcomingEvents] = useState([]);
-  const [PendingUpcomingEvents, setPendingUpcomingEvents] = useState([]);
+  const [pendingUpcomingEvents, setPendingUpcomingEvents] = useState([]);
   const [upcomingEventDetails, setUpcomingEventDetails] = useState([]);
 
   // fetch data
@@ -756,12 +756,219 @@ export const useUpcomingEventsFunctions = () => {
     uploadEventProgress,
     allUpcomingEvents,
     approvedUpcomingEvents,
-    PendingUpcomingEvents,
+    pendingUpcomingEvents,
     upcomingEventDetails,
     uploadUpcomingEventPoster,
     handlePostUpcomingEvent,
     handleDeleteEvent,
     handleApproveUpcomingEvents,
+  };
+};
+
+export const useBlogFunctions = () => {
+  const [blogSuccess, setBlogSuccess] = useState(false);
+  const [blogError, setBlogError] = useState(null);
+  const [blogLoading, setBlogLoading] = useState(true);
+  const [blogImageURL, setBlogImageURL] = useState(null);
+  const [uploadBlogProgress, setUploadBlogProgress] = useState(null);
+
+  const [allBlogs, setAllBlogs] = useState([]);
+  const [publishedBlogs, setPublishedBlogs] = useState([]);
+  const [featuredBlogs, setFeaturedBlogs] = useState([]);
+  const [unpublishedBlogs, setUnpublishedBlogs] = useState([]);
+  const [blogDetails, setBlogDetails] = useState([]);
+
+  // fetch data
+  const getBlogsData = async () => {
+    const blogsRef = collection(db, "Blogs");
+    const blogsSnapshot = await getDocs(blogsRef);
+
+    // fetch all Blogs
+    const allBlogsData = blogsSnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    // fetch published blogs
+    const publishedBlogs = query(blogsRef, where("approved", "==", true));
+    const publishedBlogsSnapshot = await getDocs(publishedBlogs);
+    const publishedBlogsData = publishedBlogsSnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    // fetch featured blogs
+    const featuredBlogs = query(blogsRef, where("featured", "==", true));
+    const featuredBlogsSnapshot = await getDocs(featuredBlogs);
+    const featuredBlogsData = featuredBlogsSnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    // fecth unpublished Blogs
+    const unpublishedBlogs = query(blogsRef, where("approved", "==", false));
+    const unpublishedBlogsSnapshot = await getDocs(unpublishedBlogs);
+    const unpublishedBlogsData = unpublishedBlogsSnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    console.log("setting doc items into serviceItemsData. ..");
+    setAllBlogs(allBlogsData);
+    setPublishedBlogs(publishedBlogsData);
+    setFeaturedBlogs(featuredBlogsData);
+    setUnpublishedBlogs(unpublishedBlogsData);
+  };
+
+  useEffect(() => {
+    getBlogsData();
+  }, []);
+
+  const getBlogDetails = async (blogId) => {
+    const blogRef = doc(db, "Blogs", blogId);
+    const blogSnapshot = await getDoc(blogRef);
+    if (blogSnapshot.exists()) {
+      setBlogDetails(blogSnapshot.data());
+    } else {
+      console.log("No such document!");
+    }
+  };
+
+  useEffect(() => {
+    getBlogDetails();
+  }, []);
+
+  // Post Data
+
+  const uploadBlogPoster = async (file) => {
+    const metadata = {
+      contentType: "image/jpeg",
+    };
+    const blogsStorageRef = ref(storage, "blogposters/" + file.name);
+    try {
+      setBlogLoading(true);
+      const uploadTask = uploadBytesResumable(blogsStorageRef, file, metadata);
+
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+          const blogProgress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + blogProgress + "% done");
+          setUploadBlogProgress(parseInt(parseFloat(blogProgress).toFixed(0)));
+
+          switch (snapshot.state) {
+            case "paused":
+              console.log("Upload is paused");
+              break;
+            case "running":
+              console.log("Upload is running");
+              break;
+          }
+        },
+        (error) => {
+          // A full list of error codes is available at
+          // https://firebase.google.com/docs/storage/web/handle-errors
+          switch (error.code) {
+            case "storage/unauthorized":
+              // User doesn't have permission to access the object
+              break;
+            case "storage/canceled":
+              // User canceled the upload
+              break;
+
+            // ...
+
+            case "storage/unknown":
+              // Unknown error occurred, inspect error.serverResponse
+              break;
+          }
+        },
+        () => {
+          // Upload completed successfully, now we can get the download URL
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            console.log("File available at", downloadURL);
+            setBlogImageURL(downloadURL);
+            setBlogLoading(false);
+          });
+        }
+      );
+    } catch (err) {
+      console.log("the folloing error occured >>", err);
+    }
+  };
+
+  const handlePostBlog = async (data) => {
+    try {
+      setBlogLoading(true);
+      const blogRef = doc(collection(db, "Blogs"));
+      await setDoc(blogRef, data);
+      setBlogLoading(false);
+      setBlogSuccess(true);
+    } catch (err) {
+      setBlogError(err);
+      console.error("An Error Occurred >>", err);
+    }
+  };
+
+  const handleDeleteBlog = async (id) => {
+    try {
+      setBlogLoading(true);
+      await deleteDoc(doc(db, "Blogs", id));
+      setBlogLoading(false);
+      setBlogSuccess(true);
+    } catch (err) {
+      setBlogError(err);
+    }
+  };
+
+  const handlePublishBlog = async (id) => {
+    try {
+      setBlogLoading(true);
+      const blogsRef = doc(db, "Blogs", id);
+      await updateDoc(blogsRef, {
+        published: true,
+      });
+      setBlogLoading(false);
+    } catch (err) {
+      console.log("The folowing error occured >> ", err);
+      setBlogError(err);
+    }
+  };
+
+  const handleMakeBlogFeatured = async (id) => {
+    try {
+      setBlogLoading(true);
+      const blogsRef = doc(db, "Blogs", id);
+      await updateDoc(blogsRef, {
+        featured: true,
+      });
+      setBlogLoading(false);
+    } catch (err) {
+      console.log("The folowing error occured >> ", err);
+      setBlogError(err);
+    }
+  };
+
+  return {
+    blogSuccess,
+    blogError,
+    blogLoading,
+    blogImageURL,
+    uploadBlogProgress,
+    allBlogs,
+    publishedBlogs,
+    featuredBlogs,
+    unpublishedBlogs,
+    blogDetails,
+
+    uploadBlogPoster,
+    getBlogDetails,
+    handlePostBlog,
+    handlePublishBlog,
+    handleMakeBlogFeatured,
+    handleDeleteBlog,
   };
 };
 

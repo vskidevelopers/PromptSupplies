@@ -3,10 +3,10 @@ import { useUpcomingEventsFunctions } from "../../utils/firebase";
 import AdvertUiInfoCards from "./AdvertUiInfoCards";
 
 export default function AdminEventsUi() {
-  const { allUpcomingEvents, approvedUpcomingEvents, PendingUpcomingEvents } =
+  const { allUpcomingEvents, approvedUpcomingEvents, pendingUpcomingEvents } =
     useUpcomingEventsFunctions();
 
-  const advertStats = [
+  const eventsStats = [
     {
       title: "Total Events",
       value: allUpcomingEvents.length,
@@ -19,7 +19,7 @@ export default function AdminEventsUi() {
     },
     {
       title: "Pending Events",
-      value: PendingUpcomingEvents.length,
+      value: pendingUpcomingEvents.length,
       theme: "yellow-500",
     },
     // {
@@ -36,11 +36,11 @@ export default function AdminEventsUi() {
         <div className="w-full px-2 py-16 sm:px-0 bg-slate-900 rounded shadow ">
           <div className="px-14">
             <h2 className="font-mono text-center md:text-left text-4xl md:text-5xl font-semibold text-white">
-              Square Adverts
+              Events
             </h2>
           </div>
           <div className="py-10 px-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 ">
-            {advertStats.map((advert, index) => (
+            {eventsStats.map((advert, index) => (
               <AdvertUiInfoCards
                 key={index}
                 title={advert.title}

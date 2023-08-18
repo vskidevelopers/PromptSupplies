@@ -42,6 +42,14 @@ import Login from "./auth/Login";
 import PrivateRoutes from "./auth/PrivateRoutes";
 import AllEvents from "./components/admin/AllEvents";
 import AdminEventsUi from "./components/admin/AdminEventsUi";
+import ApprovedEvents from "./components/admin/ApprovedEvents";
+import PendingEvents from "./components/admin/PendingEvents";
+import AdminBlogsUi from "./components/admin/AdminBlogsUi";
+import AllBlogs from "./components/admin/AllBlogs";
+import PublishedBlogs from "./components/admin/PublishedBlogs";
+import FeaturedBlogs from "./components/admin/FeaturedBlogs";
+import UnpublishedBlogs from "./components/admin/UnpublishedBlogs";
+import BlogDetails from "./pages/BlogDetails";
 
 const serviceList = services;
 console.log("Service List from router >>>", serviceList);
@@ -53,7 +61,8 @@ const router = createBrowserRouter(
       <Route path="/" element={<UserUi />}>
         <Route index element={<Home services={serviceList} />} />
         <Route path="about" element={<About />} />
-        <Route path="features" element={<Features />} />
+        <Route path="blogs" element={<Features />} />
+        <Route path="blog/:id" element={<BlogDetails />} />
         <Route
           path="services"
           element={<Services serviceList={serviceList} />}
@@ -92,9 +101,17 @@ const router = createBrowserRouter(
 
             <Route path="events" element={<AdminEventsUi />}>
               <Route index element={<AllEvents />} />
+              <Route path="approved" element={<ApprovedEvents />} />
+              <Route path="pending" element={<PendingEvents />} />
             </Route>
           </Route>
 
+          <Route path="admin-blogs" element={<AdminBlogsUi />}>
+            <Route index element={<AllBlogs />} />
+            <Route path="published" element={<PublishedBlogs />} />
+            <Route path="featured" element={<FeaturedBlogs />} />
+            <Route path="unpublished" element={<UnpublishedBlogs />} />
+          </Route>
           <Route path="admin-services" element={<AdminServices />} />
           {/* Nested User Routes */}
         </Route>

@@ -16,6 +16,8 @@ export default function AdminVipActionApprovalModel({ message, item, action }) {
     handleMakeVipFeatured,
   } = useVipServicesFunctions();
 
+  // const {} = use
+
   const handleClick = (actionParameter) => {
     console.log("actionParameter >>", actionParameter);
     if (actionParameter === "approve") {

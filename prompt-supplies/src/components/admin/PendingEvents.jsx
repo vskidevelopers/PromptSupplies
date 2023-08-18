@@ -1,15 +1,14 @@
 import { useUpcomingEventsFunctions } from "../../utils/firebase";
-
 import EventsTableSection from "./EventsTableSection";
 
-export default function AllEvents() {
-  const { allUpcomingEvents } = useUpcomingEventsFunctions();
+export default function PendingEvents() {
+  const { pendingUpcomingEvents } = useUpcomingEventsFunctions();
   return (
     <div>
-      <div className=" ">
+      <div className="overflow-auto">
         <EventsTableSection
           sectionTitle="All Events"
-          advertItems={allUpcomingEvents}
+          advertItems={pendingUpcomingEvents}
         />
       </div>
     </div>
