@@ -1,36 +1,23 @@
 /* eslint-disable react/prop-types */
-import { useVipServicesFunctions } from "../../utils/firebase";
-import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import { Fragment, useState } from "react";
+import { useUpcomingEventsFunctions } from "../../utils/firebase";
 
-export default function AdminVipActionApprovalModel({ message, item, action }) {
+export default function AdminEventApprovalModal({ message, item, action }) {
   let [showModal, setShowModal] = useState(true);
   console.log("Action passed >>", action);
   const handleOnCancel = () => {
     setShowModal(false);
   };
 
-  const {
-    handleDeleteVipAdvert,
-    handleApproveVipAdvert,
-    handleMakeVipFeatured,
-  } = useVipServicesFunctions();
-
+  const { handleDeleteEvent, handleApproveUpcomingEvents } =
+    useUpcomingEventsFunctions();
   const handleClick = (actionParameter) => {
     console.log("actionParameter >>", actionParameter);
     if (actionParameter === "approve") {
       try {
         console.log("Approved Item#", item.id);
-        handleApproveVipAdvert(item.id);
-        setShowModal(false);
-      } catch (err) {
-        console.log("the following error ocuured >>", err);
-      }
-    } else if (actionParameter === "featured") {
-      try {
-        console.log("3. function to run is >>", actionParameter);
-        console.log("Featured Item#", item.id);
-        handleMakeVipFeatured(item.id);
+        handleApproveUpcomingEvents(item.id);
         setShowModal(false);
       } catch (err) {
         console.log("the following error ocuured >>", err);
@@ -38,8 +25,8 @@ export default function AdminVipActionApprovalModel({ message, item, action }) {
     } else if (actionParameter === "delete") {
       try {
         console.log("3. function to run is >>", actionParameter);
-        console.log("Delete Item#", item.id);
-        handleDeleteVipAdvert(item.id);
+        console.log("Deleting Item#", item.id);
+        handleDeleteEvent(item.id);
         setShowModal(false);
       } catch (err) {
         console.log("the following error ocuured >>", err);

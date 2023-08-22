@@ -1012,7 +1012,142 @@ export const useAuth = () => {
 
   const logout = async () => {
     await signOut(auth);
+    localStorage.clear();
   };
 
   return { user, authError, login, logout };
+};
+
+// PARTNERS
+export const usePartnersFunctions = () => {
+  const [partnersSuccess, setPartnersSuccess] = useState(false);
+  const [partnersError, setPartnersError] = useState(null);
+  const [partnersLoading, setPartnersLoading] = useState(false);
+  const [partnersImageURL, setPartnersImageURL] = useState(null);
+  const [uploadPartnersProgress, setUploadPartnersProgress] = useState(null);
+
+  const [allPartners, setAllPartners] = useState([]);
+
+  // fetch data
+  const getPartnersData = async () => {
+    const partnersRef = collection(db, "Partners");
+    const partnersSnapshot = await getDocs(partnersRef);
+
+    // fetch all Blogs
+    const allPartnersData = partnersSnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    console.log("setting doc items into serviceItemsData. ..");
+    setAllPartners(allPartnersData);
+  };
+
+  useEffect(() => {
+    getPartnersData();
+  }, []);
+
+  // Post Data
+
+  const uploadPartnersLogo = async (file) => {
+    const metadata = {
+      contentType: "image/jpeg",
+    };
+    const partnersStorageRef = ref(storage, "partnersLogos/" + file.name);
+    try {
+      setPartnersLoading(true);
+      const uploadTask = uploadBytesResumable(
+        partnersStorageRef,
+        file,
+        metadata
+      );
+
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+          const partnersProgress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + partnersProgress + "% done");
+          setUploadPartnersProgress(
+            parseInt(parseFloat(partnersProgress).toFixed(0))
+          );
+
+          switch (snapshot.state) {
+            case "paused":
+              console.log("Upload is paused");
+              break;
+            case "running":
+              console.log("Upload is running");
+              break;
+          }
+        },
+        (error) => {
+          // A full list of error codes is available at
+          // https://firebase.google.com/docs/storage/web/handle-errors
+          switch (error.code) {
+            case "storage/unauthorized":
+              // User doesn't have permission to access the object
+              break;
+            case "storage/canceled":
+              // User canceled the upload
+              break;
+
+            // ...
+
+            case "storage/unknown":
+              // Unknown error occurred, inspect error.serverResponse
+              break;
+          }
+        },
+        () => {
+          // Upload completed successfully, now we can get the download URL
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            console.log("File available at", downloadURL);
+            setPartnersImageURL(downloadURL);
+            setPartnersLoading(false);
+          });
+        }
+      );
+    } catch (err) {
+      console.log("the folloing error occured >>", err);
+    }
+  };
+
+  const handlePostParnersData = async (data) => {
+    try {
+      setPartnersLoading(true);
+      const partnersRef = doc(collection(db, "Partners"));
+      await setDoc(partnersRef, data);
+      setPartnersLoading(false);
+      setPartnersSuccess(true);
+    } catch (err) {
+      setPartnersError(err);
+      console.error("An Error Occurred >>", err);
+    }
+  };
+
+  const handleDeletePartnersData = async (id) => {
+    try {
+      setPartnersLoading(true);
+      await deleteDoc(doc(db, "Partners", id));
+      setPartnersLoading(false);
+      setPartnersSuccess(true);
+    } catch (err) {
+      setPartnersError(err);
+    }
+  };
+
+  return {
+    allPartners,
+    partnersSuccess,
+    partnersError,
+    partnersImageURL,
+    partnersLoading,
+    uploadPartnersProgress,
+
+    uploadPartnersLogo,
+    handlePostParnersData,
+    handleDeletePartnersData,
+  };
 };

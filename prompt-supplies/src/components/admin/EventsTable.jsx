@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import AdminAdvertViewModal from "./AdminAdvertViewModal";
-import AdminVipActionApprovalModel from "./AdminVipActionApprovalModel";
+import AdminEventApprovalModal from "./AdminEventApprovalModal";
 
 export default function EventsTable({ advertItems }) {
   let [isViewModalOpen, setIsViewModalOpen] = useState(false);
@@ -49,7 +49,7 @@ export default function EventsTable({ advertItems }) {
       )}
 
       {isApprovalModalOpen && (
-        <AdminVipActionApprovalModel
+        <AdminEventApprovalModal
           item={modalData}
           action="approve"
           message="Are You Sure You Want To Approve This Event?"
@@ -57,7 +57,7 @@ export default function EventsTable({ advertItems }) {
       )}
 
       {isDeleteModalOpen && (
-        <AdminVipActionApprovalModel
+        <AdminEventApprovalModal
           action="delete"
           item={modalData}
           message="Are You Sure You Want To Delete This Event?"

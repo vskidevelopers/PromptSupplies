@@ -1,21 +1,16 @@
 import { motion } from "framer-motion";
 import { InView } from "react-intersection-observer";
 import Slider from "react-slick";
-// import { Swiper, SwiperSlide } from "swiper/react";
-// import { A11y, Autoplay } from "swiper";
 
 import "swiper/css";
 
 import PartnersCard from "./PartnersCard";
-import vista from "../assets/images/vista.jpg";
-import vski from "../assets/images/vski.png";
-import genize from "../assets/images/genize.png";
-import positivessl from "../assets/images/positivessl.png";
-import vista2 from "../assets/images/vista2.png";
+
+import { usePartnersFunctions } from "../utils/firebase";
 
 export default function PartnersSlider() {
-  const partnerLogos = [vista, vista2, genize, vski, positivessl];
-
+  const { allPartners } = usePartnersFunctions();
+  console.log("allPartners >>", allPartners);
   const settings = {
     dots: false,
     infinite: true,
@@ -66,28 +61,10 @@ export default function PartnersSlider() {
         )}
       </InView>
       <div>
-        {/* <Swiper
-          modules={[Autoplay, A11y]}
-          slidesPerView={2}
-          spaceBetween={10}
-          centeredSlides={true}
-          autoplay={{
-            delay: 1000,
-            disableOnInteraction: false,
-          }}
-          className="!w-full !h-full"
-        >
-          {partnerLogos.map((logoSrc, index) => (
-            <SwiperSlide key={index} className="partner-slider">
-              <PartnersCard logoSrc={logoSrc} />
-            </SwiperSlide>
-          ))}
-        </Swiper> */}
-
         <Slider {...settings}>
-          {partnerLogos.map((logoSrc, index) => (
+          {allPartners?.map((partner, index) => (
             <div key={index} className="partner-slider">
-              <PartnersCard logoSrc={logoSrc} />
+              <PartnersCard partner={partner} />
             </div>
           ))}
         </Slider>

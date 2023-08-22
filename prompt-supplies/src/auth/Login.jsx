@@ -23,6 +23,7 @@ function Login() {
     console.log(data);
     try {
       await login(data.email, data.password);
+      localStorage.setItem("isAuth", true);
     } catch (error) {
       if (authError) {
         console.log("Auth Error:", authError);

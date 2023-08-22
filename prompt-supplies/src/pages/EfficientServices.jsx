@@ -14,6 +14,7 @@ import ServiceGrid from "../components/ServiceGrid";
 import AdvertForm from "../components/AdvertForm";
 import EventsSectionSlider from "../components/EventsSectionSlider";
 import UpcomingEventForm from "../components/UpcomingEventForm";
+import BackToTopButton from "../components/BackToTopButton";
 
 export default function EfficientServices() {
   const [isApprovalModalOpen, setIsApprovalModalOpen] = useState(false);
@@ -30,7 +31,7 @@ export default function EfficientServices() {
   } = useCallUsServicesFunctions();
   const { allUpcomingEvents } = useUpcomingEventsFunctions();
 
-  const { allVipAdsItems } = useVipServicesFunctions();
+  const { approvedVipAdsItems } = useVipServicesFunctions();
 
   console.log(
     "Approved Ads from the Efficient Page >>",
@@ -75,7 +76,7 @@ export default function EfficientServices() {
   return (
     <div className="mt-16 relative">
       <div className="">
-        <HeroSlider sliderItems={allVipAdsItems} />
+        <HeroSlider sliderItems={approvedVipAdsItems} />
       </div>
       <div>
         <SectionServiceSlider
@@ -251,6 +252,7 @@ export default function EfficientServices() {
 
         <ServiceGrid sliderItems={approvedServiceItems} dimentions={"25rem"} />
       </div>
+      <BackToTopButton />
     </div>
   );
 }

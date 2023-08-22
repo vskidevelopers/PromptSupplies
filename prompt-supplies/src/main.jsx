@@ -50,6 +50,8 @@ import PublishedBlogs from "./components/admin/PublishedBlogs";
 import FeaturedBlogs from "./components/admin/FeaturedBlogs";
 import UnpublishedBlogs from "./components/admin/UnpublishedBlogs";
 import BlogDetails from "./pages/BlogDetails";
+import AdminPartnersUi from "./components/admin/AdminPartnersUi";
+import AllPartners from "./components/admin/AllPartners";
 
 const serviceList = services;
 console.log("Service List from router >>>", serviceList);
@@ -111,6 +113,10 @@ const router = createBrowserRouter(
             <Route path="published" element={<PublishedBlogs />} />
             <Route path="featured" element={<FeaturedBlogs />} />
             <Route path="unpublished" element={<UnpublishedBlogs />} />
+          </Route>
+
+          <Route path="admin-partners" element={<AdminPartnersUi />}>
+            <Route index element={<AllPartners />} />
           </Route>
           <Route path="admin-services" element={<AdminServices />} />
           {/* Nested User Routes */}

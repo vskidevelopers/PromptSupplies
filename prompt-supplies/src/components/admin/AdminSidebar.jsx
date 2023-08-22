@@ -5,6 +5,7 @@ import {
   NewspaperIcon,
   ServerStackIcon,
   UserCircleIcon,
+  UserGroupIcon,
 } from "@heroicons/react/24/solid";
 import { Fragment, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -183,6 +184,12 @@ const AdminSidebar = () => {
           href="admin/admin-services"
         />
       ),
+    },
+    {
+      id: 6,
+      label: "Partners",
+      icon: <UserGroupIcon className="h-4 w-auto mr-3 text-white" />,
+      href: "admin-partners",
     },
   ];
 
