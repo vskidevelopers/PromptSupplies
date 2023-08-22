@@ -1,6 +1,13 @@
 /* eslint-disable react/prop-types */
 
-export default function ChecklistItem({ icon, listItem, py, list, social }) {
+export default function ChecklistItem({
+  hrefLink,
+  icon,
+  listItem,
+  py,
+  list,
+  social,
+}) {
   return (
     <div className={`flex items-center ${py ? py : ""}`}>
       <div className="mr-3">{icon}</div>
@@ -25,7 +32,15 @@ export default function ChecklistItem({ icon, listItem, py, list, social }) {
               ))}
             </div>
           ) : (
-            listItem
+            <>
+              {hrefLink ? (
+                <a href={hrefLink} target="_blank" rel="noreferrer">
+                  {listItem}
+                </a>
+              ) : (
+                <p>{listItem}</p>
+              )}
+            </>
           )}
         </div>
       )}

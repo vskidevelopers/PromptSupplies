@@ -20,6 +20,7 @@ export default function PartnersSlider() {
     speed: 2000,
     autoplaySpeed: 2000,
     cssEase: "linear",
+    centerPadding: "60px",
   };
 
   return (

@@ -41,8 +41,8 @@ export default function Footer({ services }) {
                   icon={<PhoneIcon className="h-4 text-white" />}
                 />
                 <ChecklistItem
+                  hrefLink="https://www.facebook.com/profile.php?id=100094320970455"
                   listItem="Prompt Supplies"
-                  social={true}
                   icon={<FacebookIcon fill="#fff" height="24px" />}
                 />
                 <ChecklistItem
