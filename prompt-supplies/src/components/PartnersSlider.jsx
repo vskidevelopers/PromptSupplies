@@ -21,6 +21,27 @@ export default function PartnersSlider() {
     autoplaySpeed: 2000,
     cssEase: "linear",
     centerPadding: "60px",
+    responsive: [
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+          speed: 2000,
+          autoplaySpeed: 3000,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          speed: 2000,
+          autoplaySpeed: 3000,
+        },
+      },
+    ],
   };
 
   return (

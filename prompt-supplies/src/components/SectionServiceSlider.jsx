@@ -36,10 +36,15 @@ function SectionServiceSlider({
   const settings = {
     dots: false,
     infinite: true,
-    speed: 500,
+
     slidesToShow: slidesToDisplay,
     slidesToScroll: 2,
     arrows: false,
+    autoplay: true,
+    speed: 2000,
+    autoplaySpeed: 4000,
+    cssEase: "linear",
+    centerPadding: "60px",
     responsive: [
       {
         breakpoint: 600,

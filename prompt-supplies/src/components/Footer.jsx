@@ -14,7 +14,7 @@ export default function Footer({ services }) {
   const links = [
     { name: "Home", href: "/" },
     { name: "About Us", href: "about" },
-    { name: "Features", href: "features" },
+    { name: "Blogs", href: "blogs" },
     { name: "Services", href: "services" },
     { name: "Our Projects", href: "projects" },
     { name: "Efficient Services", href: "advertise" },

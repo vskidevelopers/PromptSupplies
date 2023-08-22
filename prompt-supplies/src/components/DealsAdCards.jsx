@@ -115,7 +115,7 @@ function DealsAdCards({ sliderItem }) {
         </Dialog>
       </Transition>
 
-      <div className="group relative  h-[25rem] w-[25rem] mx-auto">
+      <div className="group relative w-[20rem] h-[20rem] md:h-[25rem] md:w-[25rem] mx-auto">
         <div
           className="absolute inset-0 h-full w-full bg-cover bg-center"
           style={{ backgroundImage: `url(${sliderItem?.poster})` }}

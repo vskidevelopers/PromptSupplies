@@ -29,13 +29,12 @@ export default function EventsSectionSlider({
   }
 
   const settings = {
-    className: "center",
-    centerMode: true,
     infinite: true,
     centerPadding: "60px",
     slidesToShow: 2,
     speed: 500,
     dots: false,
+    cssEase: "linear",
     slidesToScroll: 1,
     arrows: false,
     responsive: [

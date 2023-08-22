@@ -15,8 +15,8 @@ export default function Features() {
         <div className="my-4 w-full">
           <p className="text-2xl font-bold">Featured Posts</p>
         </div>
-        <div className="grid grid-cols-2 w-full gap-5">
-          <div>
+        <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-5">
+          <div className="flex flex-col gap-4">
             {allBlogs?.map((blogItem, index) => (
               <div key={index}>
                 <FeaturedBlogCard blogItem={blogItem} />

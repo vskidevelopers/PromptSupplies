@@ -36,8 +36,8 @@ function DealsSectionSlider(props) {
       </div>
 
       <div className=" container mx-auto  ">
-        <div className="w-full h-[400px] flex flex-col md:flex-row gap-2">
-          <div className="w-4/5 md:w-1/5 z-10 container mx-auto px-5 md:px-10 flex flex-col justify-center">
+        <div className="w-full h-[400px] flex flex-col px-2 md:flex-row gap-2">
+          <div className="text-center w-full md:w-1/5 z-10 container mx-auto px-5 md:px-10 flex flex-col justify-center">
             <h3 className="  text-2xl font-semibold font-mono text-gray-300  mb-4">
               Deal of the Day
             </h3>
@@ -46,7 +46,7 @@ function DealsSectionSlider(props) {
             </div>
           </div>
 
-          <div className="w-4/5 md:w-3/5 h-full overflow-y-hidden">
+          <div className="w-full  md:w-3/5 h-full overflow-y-hidden">
             <DealsAdCards sliderItem={props.sliderItems} />
           </div>
         </div>
