@@ -98,13 +98,22 @@ export default function EventsSectionSlider({
             )}
 
             <div className="h-[34rem] overflow-y-hidden">
-              <Slider {...settings} ref={sectionSliderRef}>
-                {sliderItems?.map((sliderItem, index) => (
-                  <div key={index}>
-                    <EventCard event={sliderItem} />
+              {sliderItems > 1 ? (
+                <Slider {...settings} ref={sectionSliderRef}>
+                  {sliderItems.map((sliderItem, index) => (
+                    <div key={index}>
+                      <EventCard event={sliderItem} />
+                    </div>
+                  ))}
+                </Slider>
+              ) : (
+                <div className="flex justify-center items-center h-full">
+                  <div className="absolute transform -translate-x-1/2 -translate-y-1/2">
+                    <div className="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-gray-900"></div>
                   </div>
-                ))}
-              </Slider>
+                  <p className="text-gray-400 text-lg">No upcoming events</p>
+                </div>
+              )}
             </div>
           </div>
         </div>
