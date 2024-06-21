@@ -56,6 +56,8 @@ import Skins from "./pages/Skins";
 import VistaUi from "./Layouts/VistaUi";
 import VistaWelcome from "./pages/VistaWelcome";
 import VistaHub from "./pages/VistaHub";
+import AdminMoviesUi from "./components/admin/AdminMoviesUi";
+import AllMovies from "./components/admin/AllMovies";
 
 const serviceList = services;
 console.log("Service List from router >>>", serviceList);
@@ -122,6 +124,9 @@ const router = createBrowserRouter(
 
           <Route path="admin-partners" element={<AdminPartnersUi />}>
             <Route index element={<AllPartners />} />
+          </Route>
+          <Route path="admin-movies" element={<AdminMoviesUi />}>
+            <Route index element={<AllMovies />} />
           </Route>
           <Route path="admin-services" element={<AdminServices />} />
           {/* Nested User Routes */}

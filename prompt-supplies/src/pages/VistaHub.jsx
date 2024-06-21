@@ -8,15 +8,19 @@ function VistaHub() {
       {/* Banner */}
       <HubBanner />
       {/* MovieRow */}
+
+      {/*
+        TODOS:
+      Vista top choices
+      Today's Top Picks
+       */}
+
       <MovieRow moviescategory={"Trending"} fetchUrl={requests.fetchTrending} />
       <MovieRow
         moviescategory={"Top Rated"}
         fetchUrl={requests.fetchTopRated}
       />
-      <MovieRow
-        moviescategory={"Netflix Originals"}
-        fetchUrl={requests.fetchNetflixOriginals}
-      />
+
       <MovieRow
         moviescategory={"Documentaries"}
         fetchUrl={requests.fetchDocumentaries}

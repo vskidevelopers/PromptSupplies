@@ -10,6 +10,7 @@ import {
 import { Fragment, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../utils/firebase";
+import { FilmIcon } from "@heroicons/react/24/outline";
 
 const AdminSidebar = () => {
   const { logout } = useAuth();
@@ -190,6 +191,12 @@ const AdminSidebar = () => {
       label: "Partners",
       icon: <UserGroupIcon className="h-4 w-auto mr-3 text-white" />,
       href: "admin-partners",
+    },
+    {
+      id: 7,
+      label: "Movies",
+      icon: <FilmIcon className="h-4 w-auto mr-3 text-white" />,
+      href: "admin-movies",
     },
   ];
 

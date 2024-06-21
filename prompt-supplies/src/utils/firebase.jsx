@@ -1151,3 +1151,82 @@ export const usePartnersFunctions = () => {
     handleDeletePartnersData,
   };
 };
+
+// MOVIES
+export const useMovieFunctions = () => {
+  //    addMovie
+  //    updateMovieStatus
+  //    fetchSingleMovie
+  //    getAllMoviesByType (e.g., genre)
+  //    getAllMovies
+
+  const addMovie = async (data) => {
+    const movieType = data?.genre;
+    const movieCollectionRef = collection(db, "Movies", movieType, movieType);
+    try {
+      const newMovieRef = doc(movieCollectionRef);
+      await setDoc(newMovieRef, data);
+      return { success: true, message: "Movie added successfully" };
+    } catch (error) {
+      return { success: false, message: "Failed to add the movie" };
+    }
+  };
+
+  const getAllMoviesByType = async (movieType) => {
+    const movieCollectionRef = collection(db, "Movies", movieType, movieType);
+    const movieQuery = query(movieCollectionRef);
+
+    const movieSnapshot = await getDocs(movieQuery);
+
+    if (movieSnapshot?.empty) {
+      console.log("No movie exists in the selected Category");
+      return {
+        success: false,
+        data: [],
+        message: `No movie exists in the selected Category >> ${movieType}`,
+      };
+    } else {
+      console.log("movieSnapshot from fetchMovie >> ", movieSnapshot);
+      const movieData = movieSnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      return {
+        success: true,
+        data: movieData,
+        message: "Movies exist in the selected category",
+      };
+    }
+  };
+
+  const updateMovieStatusById = async (id, status, movieType) => {
+    console.log(`movie_id : ${id} ||  Status : ${status}`);
+    const movieDocRef = doc(db, "Movies", movieType, movieType, id);
+    try {
+      const movieToUpdateSnapshot = await getDoc(movieDocRef);
+      if (movieToUpdateSnapshot.exists()) {
+        console.log(
+          "movie_found_and_ready_for_update >> ",
+          movieToUpdateSnapshot
+        );
+        await updateDoc(movieDocRef, {
+          status: status,
+        });
+        return {
+          success: true,
+          message: "Movie updated Successfully",
+          status: status,
+        };
+      }
+    } catch (error) {
+      console.log("error occurred trying to update a movie");
+      return {
+        success: false,
+        message: "Failed to update the movie",
+        error: error,
+      };
+    }
+  };
+
+  return { addMovie, getAllMoviesByType, updateMovieStatusById };
+};
