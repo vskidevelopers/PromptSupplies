@@ -111,3 +111,19 @@
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
+
+.movieRow::-webkit-scrollbar {
+  height: 10px;
+  padding-top: 19px;
+}
+
+.movieRow::-webkit-scrollbar-thumb {
+  background: rgba(48, 47, 47, 0.863);
+  border-radius: 10px;
+}
+
+.movieRow::-webkit-scrollbar-track {
+  margin: 10px;
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}

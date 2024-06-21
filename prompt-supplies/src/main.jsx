@@ -52,6 +52,10 @@ import UnpublishedBlogs from "./components/admin/UnpublishedBlogs";
 import BlogDetails from "./pages/BlogDetails";
 import AdminPartnersUi from "./components/admin/AdminPartnersUi";
 import AllPartners from "./components/admin/AllPartners";
+import Skins from "./pages/Skins";
+import VistaUi from "./Layouts/VistaUi";
+import VistaWelcome from "./pages/VistaWelcome";
+import VistaHub from "./pages/VistaHub";
 
 const serviceList = services;
 console.log("Service List from router >>>", serviceList);
@@ -71,6 +75,7 @@ const router = createBrowserRouter(
         />
         <Route path="contact" element={<Contact />} />
         <Route path="projects" element={<Projects projects={projects} />} />
+        <Route path="skins" element={<Skins />} />
         <Route path="advertise" element={<EfficientServices />} />
         <Route
           path="service-detail/:id"
@@ -121,6 +126,12 @@ const router = createBrowserRouter(
           <Route path="admin-services" element={<AdminServices />} />
           {/* Nested User Routes */}
         </Route>
+      </Route>
+
+      {/* Vista Videos Routes */}
+      <Route path="vista-videos" element={<VistaUi />}>
+        <Route index element={<VistaWelcome />} />
+        <Route path="hub" element={<VistaHub />} />
       </Route>
     </Route>
   )
