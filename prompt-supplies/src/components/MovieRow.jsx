@@ -84,8 +84,7 @@ export default function MovieRow({ moviescategory, fetchUrl }) {
                 className={`opacity-0 transition-opacity ${
                   hoveredMovie ? "opacity-100" : "opacity-0"
                 }`}
-                onClic
-                k={() => handleTrailers(movie)}
+                onClick={() => handleTrailers(movie)}
               >
                 <MovieDetail movie={movie} />{" "}
               </div>
