@@ -85,8 +85,8 @@ function AllMovies() {
     try {
       const endOffset = itemOffset + itemsPerPage;
       console.log(`Loading movies from ${itemOffset} to ${endOffset}`);
-      setCurrentItems(movies.slice(itemOffset, endOffset));
-      setPageCount(Math.ceil(movies.length / itemsPerPage));
+      setCurrentItems(movies?.slice(itemOffset, endOffset));
+      setPageCount(Math.ceil(movies?.length / itemsPerPage));
     } catch (error) {
       console.log("An error occurred while paginating movies:", error);
     }
@@ -97,11 +97,11 @@ function AllMovies() {
       return (
         <TableRow>
           <TableCell colSpan={8} className="text-center">
-            Fetching movies. Please wait...
+            Fetching movies?. Please wait...
           </TableCell>
         </TableRow>
       );
-    } else if (!movies || movies.length === 0) {
+    } else if (!movies || movies?.length === 0) {
       return (
         <TableRow>
           <TableCell colSpan={8} className="text-center">
@@ -110,7 +110,7 @@ function AllMovies() {
         </TableRow>
       );
     } else {
-      return movies.map((movie, index) => (
+      return movies?.map((movie, index) => (
         <TableRow key={index}>
           {/* # */}
           <TableCell>{index + 1}</TableCell>
@@ -154,11 +154,11 @@ function AllMovies() {
       return (
         <TableRow>
           <TableCell colSpan={8} className="text-center">
-            Fetching movies. Please wait...
+            Fetching movies?. Please wait...
           </TableCell>
         </TableRow>
       );
-    } else if (!movies || movies.length === 0) {
+    } else if (!movies || movies?.length === 0) {
       return (
         <TableRow>
           <TableCell colSpan={8} className="text-center">
@@ -167,7 +167,7 @@ function AllMovies() {
         </TableRow>
       );
     } else {
-      return topPickMovies.map((movie, index) => (
+      return topPickMovies?.map((movie, index) => (
         <TableRow key={index}>
           {/* # */}
           <TableCell>{index + 1}</TableCell>
@@ -211,11 +211,11 @@ function AllMovies() {
       return (
         <TableRow>
           <TableCell colSpan={8} className="text-center">
-            Fetching movies. Please wait...
+            Fetching movies?. Please wait...
           </TableCell>
         </TableRow>
       );
-    } else if (!movies || movies.length === 0) {
+    } else if (!movies || movies?.length === 0) {
       return (
         <TableRow>
           <TableCell colSpan={8} className="text-center">
@@ -350,7 +350,7 @@ function AllMovies() {
                 Showing{" "}
                 <strong>
                   {itemOffset + 1}–
-                  {lastCount > movies?.length ? movies.length : lastCount}
+                  {lastCount > movies?.length ? movies?.length : lastCount}
                 </strong>{" "}
                 of <strong>{movies?.length}</strong> movies
               </div>
@@ -403,7 +403,7 @@ function AllMovies() {
                 Showing{" "}
                 <strong>
                   {itemOffset + 1}–
-                  {lastCount > movies?.length ? movies.length : lastCount}
+                  {lastCount > movies?.length ? movies?.length : lastCount}
                 </strong>{" "}
                 of <strong>{movies?.length}</strong> movies
               </div>
@@ -456,7 +456,7 @@ function AllMovies() {
                 Showing{" "}
                 <strong>
                   {itemOffset + 1}–
-                  {lastCount > movies?.length ? movies.length : lastCount}
+                  {lastCount > movies?.length ? movies?.length : lastCount}
                 </strong>{" "}
                 of <strong>{movies?.length}</strong> movies
               </div>
