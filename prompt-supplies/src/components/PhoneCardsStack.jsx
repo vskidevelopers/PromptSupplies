@@ -22,14 +22,22 @@ export default function PhoneCardsStack() {
     },
   ];
   return (
-    <div className="relative h-96 w-64 mx-auto">
+    <div className="relative group h-96 w-64 mx-auto">
       {cards.map((card, index) => (
         <div
           key={index}
-          className={`absolute  w-full transform transition-transform duration-300 hover:scale-105
+          className={`absolute  w-full transform transition-transform duration-300 
           ${index === 0 ? "rotate-0 z-30 top-0 left-0" : ""}
-          ${index === 1 ? "rotate-3 z-20 top-0 left-6" : ""}
-          ${index === 2 ? "-rotate-3 z-10 top-0 left-10" : ""}`}
+          ${
+            index === 1
+              ? "rotate-0 group-hover:rotate-6 z-20 top-0 left-0 group-hover:right-10"
+              : ""
+          }
+          ${
+            index === 2
+              ? "rotate-0 group-hover:-rotate-3 z-10 top-0 left-0 group-hover:left-10"
+              : ""
+          }`}
         >
           <PhoneCards
             image={card.image}

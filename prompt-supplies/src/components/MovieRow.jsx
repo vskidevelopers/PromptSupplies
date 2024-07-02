@@ -11,18 +11,17 @@ export default function MovieRow({ moviescategory, fetchUrl }) {
 
   console.log("hoveredMovie >>", hoveredMovie);
 
-  useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        const data = await fetchInstance(fetchUrl);
-        setMovies(data.results);
-      } catch (error) {
-        console.error("Error fetching movies:", error);
-      }
-    };
+  const fetchMovies = async () => {
+    try {
+      const data = await fetchInstance(fetchUrl);
+      setMovies(data.results);
+    } catch (error) {
+      console.error("Error fetching movies:", error);
+    }
+  };
 
+  useEffect(() => {
     fetchMovies();
-    console.log("Movies >>", movies);
   }, []);
 
   function handleMovieHover(movie) {

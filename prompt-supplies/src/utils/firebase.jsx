@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { useState, useEffect } from "react";
@@ -1154,26 +1155,112 @@ export const usePartnersFunctions = () => {
 
 // MOVIES
 export const useMovieFunctions = () => {
+  const [moviePosterUploadProgress, setMoviePosterUploadProgress] = useState(0);
+  const [moviePosterURL, setMoviePosterURL] = useState(null);
+  const [loading, setLoading] = useState(false);
   //    addMovie
   //    updateMovieStatus
   //    fetchSingleMovie
   //    getAllMoviesByType (e.g., genre)
   //    getAllMovies
 
+  const uploadMoviePoster = (file) => {
+    const result = {
+      data: null,
+      status: "pending",
+    };
+
+    console.log("uploading_product_image >>", file);
+
+    // Upload file and metadata to the object 'images/mountains.jpg'
+    const metadata = {
+      contentType: "image/jpeg",
+    };
+    const storageRef = ref(storage, "moviePosters/" + file.name);
+
+    try {
+      setLoading(true);
+      const uploadTask = uploadBytesResumable(storageRef, file, metadata);
+
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("upload_is " + progress + "% done");
+          setMoviePosterUploadProgress(
+            parseInt(parseFloat(progress).toFixed(0))
+          );
+
+          switch (snapshot.state) {
+            case "paused":
+              console.log("upload_is_paused");
+              break;
+            case "running":
+              console.log("upload_is_running");
+              break;
+          }
+        },
+        (error) => {
+          // Handle errors
+          result.status = "error";
+          result.error = error;
+        },
+        () => {
+          // Upload completed successfully, now we can get the download URL
+          getDownloadURL(uploadTask.snapshot.ref)
+            .then((downloadURL) => {
+              console.log("File available at", downloadURL);
+              setMoviePosterURL(downloadURL);
+              setLoading(false);
+              // Update the result object with the download URL and status
+              result.data = downloadURL;
+              result.status = "success";
+            })
+            .catch((error) => {
+              // Handle errors when getting the download URL
+              result.status = "error";
+              result.error = error;
+            });
+        }
+      );
+    } catch (err) {
+      // Handle any other errors that may occur
+      console.log("the_following_error_occurred >>", err);
+      result.status = "error";
+      result.error = err;
+    }
+
+    return result;
+  };
+
   const addMovie = async (data) => {
-    const movieType = data?.genre;
-    const movieCollectionRef = collection(db, "Movies", movieType, movieType);
+    const movieCategory = data?.category;
+    const movieCollectionRef = collection(
+      db,
+      "Movies",
+      movieCategory,
+      movieCategory
+    );
     try {
       const newMovieRef = doc(movieCollectionRef);
       await setDoc(newMovieRef, data);
+      alert(`movie ${data?.name} added successfully`);
       return { success: true, message: "Movie added successfully" };
     } catch (error) {
+      console.log("Error in adding product >>> ", error);
       return { success: false, message: "Failed to add the movie" };
     }
   };
 
-  const getAllMoviesByType = async (movieType) => {
-    const movieCollectionRef = collection(db, "Movies", movieType, movieType);
+  const getAllMoviesByCategory = async (movieCategory) => {
+    const movieCollectionRef = collection(
+      db,
+      "Movies",
+      movieCategory,
+      movieCategory
+    );
     const movieQuery = query(movieCollectionRef);
 
     const movieSnapshot = await getDocs(movieQuery);
@@ -1183,7 +1270,7 @@ export const useMovieFunctions = () => {
       return {
         success: false,
         data: [],
-        message: `No movie exists in the selected Category >> ${movieType}`,
+        message: `No movie exists in the selected Category >> ${movieCategory}`,
       };
     } else {
       console.log("movieSnapshot from fetchMovie >> ", movieSnapshot);
@@ -1228,5 +1315,12 @@ export const useMovieFunctions = () => {
     }
   };
 
-  return { addMovie, getAllMoviesByType, updateMovieStatusById };
+  return {
+    moviePosterUploadProgress,
+    moviePosterURL,
+    addMovie,
+    getAllMoviesByCategory,
+    updateMovieStatusById,
+    uploadMoviePoster,
+  };
 };

@@ -1,0 +1,30 @@
+export const skinsMockData = [
+  {
+    id: "1",
+    name: "skin1",
+    image: "https://via.placeholder.com/450x450",
+    description: "description example 1",
+    type: "laptopSkin",
+    availability: "inStock",
+    tags: "anime laptop skins,full body laptop skin, full panel laptop skin",
+  },
+  {
+    id: "2",
+    name: "skin2",
+    image: "https://via.placeholder.com/450x450",
+    description: "description example 2",
+    type: "phoneSkin",
+    availability: "inStock",
+    additionalInfo:"additional info",
+    tags: "anime phone skins,",
+  },
+  {
+    id: "3",
+    name: "skin3",
+    image: "https://via.placeholder.com/450x450",
+    description: "description example 3",
+    type: "cameraSkin",
+    availability: "inStock",
+    tags: "anime camera skins,full body camera skin, full lens camera skin",
+  },
+];

@@ -39,18 +39,28 @@ import {
 import { useEffect, useState } from "react";
 import Pagination from "../Pagination";
 import { useMovieFunctions } from "@/utils/firebase";
+import AddMovieForm from "./AddMovieForm";
 
 function AllMovies() {
   const [loading, setLoading] = useState(false);
   const [movies, setMovies] = useState([]);
+  const [topPickMovies, setTopPicksMovies] = useState([]);
+  const [moviesOfTheWeek, setMoviesOfTheWeek] = useState([]);
 
-  const { fetchAllMovies } = useMovieFunctions();
+  const { getAllMoviesByCategory } = useMovieFunctions();
+
+  const categories = ["vista-top-picks", "top-movies-of-the-week"];
   const fetchAllMoviesInStore = async () => {
     setLoading(true);
     try {
-      const fetchAllMoviesResponse = await fetchAllMovies();
+      const topPicks = await getAllMoviesByCategory(categories[0]);
+      const topMovies = await getAllMoviesByCategory(categories[1]);
+
+      const fetchAllMoviesResponse = [...topPicks.data, ...topMovies.data];
       console.log("fetch_all_movies_response >> ", fetchAllMoviesResponse);
       setMovies(fetchAllMoviesResponse?.data);
+      setTopPicksMovies(topPicks);
+      setMoviesOfTheWeek(topMovies);
       setLoading(false);
     } catch (error) {
       console.error("error_response_fetching_all_movies >> ", error);
@@ -82,7 +92,7 @@ function AllMovies() {
     }
   }, [itemOffset, itemsPerPage, movies]);
 
-  const renderMovies = () => {
+  const renderAllMovies = () => {
     if (loading) {
       return (
         <TableRow>
@@ -100,7 +110,121 @@ function AllMovies() {
         </TableRow>
       );
     } else {
-      return currentItems.map((movie, index) => (
+      return movies.map((movie, index) => (
+        <TableRow key={index}>
+          {/* # */}
+          <TableCell>{index + 1}</TableCell>
+
+          {/* Poster Image */}
+          <TableCell className="hidden sm:table-cell">
+            <img
+              alt="Movie poster"
+              className="aspect-square rounded-md object-cover"
+              height="64"
+              src={movie.poster || "/placeholder.svg"}
+              width="64"
+            />
+          </TableCell>
+
+          {/* Name */}
+          <TableCell className="font-medium">{movie.name}</TableCell>
+
+          {/* Rating */}
+          <TableCell>{movie.rating}</TableCell>
+
+          {/* Description */}
+          <TableCell>{truncate(movie.description, 100)}</TableCell>
+
+          {/* Release Date */}
+          <TableCell className="hidden md:table-cell">
+            {movie.releaseDate}
+          </TableCell>
+
+          {/* Type */}
+          <TableCell className="hidden md:table-cell">{movie.type}</TableCell>
+
+          {/* Trailer Link */}
+          <TableCell>{movie?.trailer}</TableCell>
+        </TableRow>
+      ));
+    }
+  };
+  const renderTopPicksMovies = () => {
+    if (loading) {
+      return (
+        <TableRow>
+          <TableCell colSpan={8} className="text-center">
+            Fetching movies. Please wait...
+          </TableCell>
+        </TableRow>
+      );
+    } else if (!movies || movies.length === 0) {
+      return (
+        <TableRow>
+          <TableCell colSpan={8} className="text-center">
+            No movies available
+          </TableCell>
+        </TableRow>
+      );
+    } else {
+      return topPickMovies.map((movie, index) => (
+        <TableRow key={index}>
+          {/* # */}
+          <TableCell>{index + 1}</TableCell>
+
+          {/* Poster Image */}
+          <TableCell className="hidden sm:table-cell">
+            <img
+              alt="Movie poster"
+              className="aspect-square rounded-md object-cover"
+              height="64"
+              src={movie.poster || "/placeholder.svg"}
+              width="64"
+            />
+          </TableCell>
+
+          {/* Name */}
+          <TableCell className="font-medium">{movie.name}</TableCell>
+
+          {/* Rating */}
+          <TableCell>{movie.rating}</TableCell>
+
+          {/* Description */}
+          <TableCell>{truncate(movie.description, 100)}</TableCell>
+
+          {/* Release Date */}
+          <TableCell className="hidden md:table-cell">
+            {movie.releaseDate}
+          </TableCell>
+
+          {/* Type */}
+          <TableCell className="hidden md:table-cell">{movie.type}</TableCell>
+
+          {/* Trailer Link */}
+          <TableCell>{movie?.trailer}</TableCell>
+        </TableRow>
+      ));
+    }
+  };
+  const renderMoviesOfTheWeek = () => {
+    if (loading) {
+      return (
+        <TableRow>
+          <TableCell colSpan={8} className="text-center">
+            Fetching movies. Please wait...
+          </TableCell>
+        </TableRow>
+      );
+    } else if (!movies || movies.length === 0) {
+      return (
+        <TableRow>
+          <TableCell colSpan={8} className="text-center">
+            No movies available
+          </TableCell>
+        </TableRow>
+      );
+    } else {
+      return moviesOfTheWeek.map((movie, index) => (
         <TableRow key={index}>
           {/* # */}
           <TableCell>{index + 1}</TableCell>
@@ -149,8 +273,8 @@ function AllMovies() {
       <div className="flex items-center">
         <TabsList>
           <TabsTrigger value="all">All</TabsTrigger>
-          <TabsTrigger value="sale">Vista Top Picks</TabsTrigger>
-          <TabsTrigger value="new">{`Today's Top Choices`}</TabsTrigger>
+          <TabsTrigger value="vista-top-picks">Vista Top Picks</TabsTrigger>
+          <TabsTrigger value="top-movies-of-the-week">{`Top Movies of The Week`}</TabsTrigger>
         </TabsList>
         <div className="ml-auto flex items-center gap-2">
           <Button
@@ -184,7 +308,7 @@ function AllMovies() {
               <DialogHeader>
                 <DialogTitle>Add a New Movie</DialogTitle>
 
-                {/* <AddProductForm /> */}
+                <AddMovieForm />
               </DialogHeader>
             </DialogContent>
           </Dialog>
@@ -217,7 +341,113 @@ function AllMovies() {
                   </TableHead>
                 </TableRow>
               </TableHeader>
-              <TableBody>{renderMovies()}</TableBody>
+              <TableBody>{renderAllMovies()}</TableBody>
+            </Table>
+          </CardContent>
+          <CardFooter>
+            <div className="flex justify-between items-baseline w-full">
+              <div className="text-xs text-muted-foreground">
+                Showing{" "}
+                <strong>
+                  {itemOffset + 1}–
+                  {lastCount > movies?.length ? movies.length : lastCount}
+                </strong>{" "}
+                of <strong>{movies?.length}</strong> movies
+              </div>
+              <div className=" flex justify-end my-4">
+                <Pagination
+                  items={movies}
+                  pageCount={pageCount}
+                  setItemOffset={setItemOffset}
+                  itemsPerPage={itemsPerPage}
+                />
+              </div>
+            </div>
+          </CardFooter>
+        </Card>
+      </TabsContent>
+
+      <TabsContent value="vista-top-picks">
+        <Card x-chunk="dashboard-06-chunk-0">
+          <CardHeader>
+            <CardTitle>Vista Top Picks</CardTitle>
+            <CardDescription>
+              Manage your Custom Top Movies, series, animations etc .
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="hidden w-[100px] sm:table-cell">
+                    <span className="sr-only">Image</span>
+                  </TableHead>
+                  <TableHead>Name</TableHead>
+                  <TableHead>Status</TableHead>
+                  <TableHead className="hidden md:table-cell">Price</TableHead>
+
+                  <TableHead className="hidden md:table-cell">
+                    Created at
+                  </TableHead>
+                  <TableHead>
+                    <span className="sr-only">Actions</span>
+                  </TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>{renderTopPicksMovies()}</TableBody>
+            </Table>
+          </CardContent>
+          <CardFooter>
+            <div className="flex justify-between items-baseline w-full">
+              <div className="text-xs text-muted-foreground">
+                Showing{" "}
+                <strong>
+                  {itemOffset + 1}–
+                  {lastCount > movies?.length ? movies.length : lastCount}
+                </strong>{" "}
+                of <strong>{movies?.length}</strong> movies
+              </div>
+              <div className=" flex justify-end my-4">
+                <Pagination
+                  items={movies}
+                  pageCount={pageCount}
+                  setItemOffset={setItemOffset}
+                  itemsPerPage={itemsPerPage}
+                />
+              </div>
+            </div>
+          </CardFooter>
+        </Card>
+      </TabsContent>
+
+      <TabsContent value="top-movies-of-the-week">
+        <Card x-chunk="dashboard-06-chunk-0">
+          <CardHeader>
+            <CardTitle>Vista Top Movies of the Week</CardTitle>
+            <CardDescription>
+              {`Manage This week's Top Movies, series, animations etc .`}
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="hidden w-[100px] sm:table-cell">
+                    <span className="sr-only">Image</span>
+                  </TableHead>
+                  <TableHead>Name</TableHead>
+                  <TableHead>Status</TableHead>
+                  <TableHead className="hidden md:table-cell">Price</TableHead>
+
+                  <TableHead className="hidden md:table-cell">
+                    Created at
+                  </TableHead>
+                  <TableHead>
+                    <span className="sr-only">Actions</span>
+                  </TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>{renderMoviesOfTheWeek()}</TableBody>
             </Table>
           </CardContent>
           <CardFooter>

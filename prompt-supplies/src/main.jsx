@@ -58,6 +58,11 @@ import VistaWelcome from "./pages/VistaWelcome";
 import VistaHub from "./pages/VistaHub";
 import AdminMoviesUi from "./components/admin/AdminMoviesUi";
 import AllMovies from "./components/admin/AllMovies";
+import SkinsCollection from "./pages/SkinsCollection";
+import SkinsUi from "./Layouts/SkinsUi";
+import SkinsCategory from "./pages/SkinsCategory";
+import SkinDetails from "./pages/SkinDetails";
+import Checkout from "./pages/Checkout";
 
 const serviceList = services;
 console.log("Service List from router >>>", serviceList);
@@ -77,7 +82,7 @@ const router = createBrowserRouter(
         />
         <Route path="contact" element={<Contact />} />
         <Route path="projects" element={<Projects projects={projects} />} />
-        <Route path="skins" element={<Skins />} />
+
         <Route path="advertise" element={<EfficientServices />} />
         <Route
           path="service-detail/:id"
@@ -131,6 +136,15 @@ const router = createBrowserRouter(
           <Route path="admin-services" element={<AdminServices />} />
           {/* Nested User Routes */}
         </Route>
+      </Route>
+
+      {/* Skins Routes */}
+      <Route path="skins" element={<SkinsUi />}>
+        <Route index element={<Skins />} />
+        <Route path="collections" element={<SkinsCollection />} />
+        <Route path="collections/:category" element={<SkinsCategory />} />
+        <Route path="collections/:category/:id" element={<SkinDetails />} />
+        <Route path="checkout" element={<Checkout />} />
       </Route>
 
       {/* Vista Videos Routes */}

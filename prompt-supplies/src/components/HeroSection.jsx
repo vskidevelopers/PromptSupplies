@@ -3,7 +3,7 @@
 import { Link } from "react-router-dom";
 import Typewriter from "typewriter-effect";
 
-const HeroSection = ({ tagline, image, title }) => {
+const HeroSection = ({ tagline, image, title, skins }) => {
   return (
     <div className="relative h-96">
       {/* Background Image */}
@@ -34,6 +34,20 @@ const HeroSection = ({ tagline, image, title }) => {
           <Link to="/" className="text-white">
             Home
           </Link>{" "}
+          |{" "}
+          {skins ? (
+            <>
+              <Link to="/skins" className="text-white">
+                Skins
+              </Link>{" "}
+              |{" "}
+              <Link to="/skins/collections" className="text-white">
+                Collections
+              </Link>
+            </>
+          ) : (
+            ""
+          )}{" "}
           | {title}
         </div>
       </div>

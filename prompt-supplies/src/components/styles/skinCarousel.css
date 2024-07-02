@@ -1,0 +1,14 @@
+/* Custom styles for the 3D carousel */
+.scope {
+  transform-style: preserve-3d;
+  animation: slid 30s linear infinite;
+}
+
+@keyframes slid {
+  from {
+    transform: perspective(1000px) rotateX(-16deg) rotateY(0deg);
+  }
+  to {
+    transform: perspective(1000px) rotateX(-16deg) rotateY(360deg);
+  }
+}
