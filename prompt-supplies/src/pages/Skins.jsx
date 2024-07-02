@@ -7,14 +7,14 @@ import SkinCarousel from "@/components/SkinCarousel";
 export default function Skins() {
   const alignCenter = { display: "flex", alignItems: "center", width: "100vw" };
   const images = [
-    "https://i.postimg.cc/BQcRL38F/pexels-photo-761963.jpg",
-    "https://i.postimg.cc/1RWVB11x/pexels-photo-941693.jpg",
-    "https://i.postimg.cc/CMfHRKfP/woman-2003647-960-720.jpg",
-    "https://i.postimg.cc/T1rDCpVT/beautiful-1274056-960-720.jpg",
-    "https://i.postimg.cc/SNf99YQr/woman-1807533-960-720.jpg",
-    "https://i.postimg.cc/2SHBcpZL/pexels-photo-4664520.jpg",
-    "https://i.postimg.cc/CxBzNcjw/Opera-Snapshot-2020-07-03-162022-www-freepik-com.png",
-    "https://i.postimg.cc/0QckxSpt/Opera-Snapshot-2020-07-03-161422-www-freepik-com.png",
+    "https://i.pinimg.com/736x/ff/08/03/ff0803c75b942fa5bf4380559f8292d1.jpg",
+    "https://i.pinimg.com/564x/4b/73/7d/4b737d486767049b10fe05f6a248c6f8.jpg",
+    "https://i.pinimg.com/564x/15/52/cd/1552cddf58de9cfccc8dc214733346cc.jpg",
+    "https://i.pinimg.com/564x/c9/65/40/c965404ea4227cfe9cc9d992b925da89.jpg",
+    "https://i.pinimg.com/564x/56/d2/4a/56d24a603df2d5cfacd5dff371c9de46.jpg",
+    "https://i.pinimg.com/564x/71/3c/74/713c74d362003e18c70327c667474998.jpg",
+    "https://i.pinimg.com/564x/c3/c9/37/c3c937798c8eca1b19b52fbbe3353a22.jpg",
+    "https://i.pinimg.com/564x/4a/fe/47/4afe473cf41a74f8f5687a157abec750.jpg",
   ];
 
   return (

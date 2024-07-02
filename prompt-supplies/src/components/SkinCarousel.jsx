@@ -7,7 +7,7 @@ function SkinCarousel({ images }) {
 
   return (
     <div
-      className="scope relative w-[200px] h-80 transform-style-3d animate-slid"
+      className="scope relative w-[300px] h-80 transform-style-3d animate-slid"
       role="region"
       aria-label="3D rotating image carousel"
     >
