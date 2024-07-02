@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import "./styles/SkinDetails.css";
+import "./styles/skinDetails.css";
 import { Heart } from "lucide-react";
 
 function SkinDetails() {
