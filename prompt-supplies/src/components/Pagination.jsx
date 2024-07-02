@@ -4,10 +4,10 @@ import ReactPaginate from "react-paginate";
 import "./styles/pagination.css";
 
 const Pagination = ({ items, itemsPerPage, pageCount, setItemOffset }) => {
-  console.log("items in pagination >> ", items.length);
+  console.log("items in pagination >> ", items?.length);
   const handlePageClick = (event) => {
     console.log("event >> ", event);
-    const newOffset = (event.selected * itemsPerPage) % items.length;
+    const newOffset = (event.selected * itemsPerPage) % items?.length;
     console.log(
       `User requested page number ${event.selected}, which is offset ${newOffset}`
     );
