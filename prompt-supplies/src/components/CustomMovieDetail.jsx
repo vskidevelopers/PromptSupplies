@@ -62,7 +62,7 @@ function CustomMovieDetail({ movie }) {
         <div>
           <h2>
             Rerelease_date :{" "}
-            {movie.releaseDate ? movie.release_date : movie.first_air_date}
+            {movie?.releaseDate ? movie.releaseDate : movie.first_air_date}
           </h2>
         </div>
         <DialogTrigger
