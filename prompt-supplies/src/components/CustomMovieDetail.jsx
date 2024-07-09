@@ -50,10 +50,10 @@ function CustomMovieDetail({ movie }) {
             <h2 className="ml-2">{movie?.ratings}</h2>
           </div>
           <div className="w-1/2 flex justify-end">
-            {movie?.type ? (
+            {movie?.genre ? (
               <div className="bg-yellow-700 w-max px-2 rounded-full">
                 {" "}
-                <h2>{movie?.type || `movie`}</h2>
+                <h2>{movie?.genre || `movie`}</h2>
               </div>
             ) : null}
           </div>

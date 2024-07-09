@@ -164,8 +164,18 @@ const AddMovieForm = () => {
             {...register("genre", { required: true })}
             className="block w-full border-b border-sky-400 p-2 rounded-md shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-400 focus:ring-opacity-50"
           >
-            <option value="animation">Animation</option>
-            <option value="reality">Reality</option>
+            <option value="action">Action</option>
+            <option value="adventure">Adventure</option>
+            <option value="comedy">Comedy</option>
+            <option value="crime">Crime</option>
+            <option value="historical">Historical</option>
+            <option value="fantasy">Fantasy</option>
+            <option value="science-fiction">Science Fiction</option>
+            <option value="horror">Horror</option>
+            <option value="romance">Romance</option>
+            <option value="thriller">Thriller</option>
+            <option value="western">Western</option>
+            <option value="drama">Drama</option>
           </select>
           {errors.type && (
             <span className="text-red-500">This field is required</span>
