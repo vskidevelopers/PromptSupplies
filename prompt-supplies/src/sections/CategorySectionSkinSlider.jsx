@@ -9,7 +9,7 @@ function CategorySectionSkinSlider({ title, sliderskins }) {
   console.log("sliderskins for sliders >> ", sliderskins);
   const settings = {
     dots: false,
-    infinite: true,
+    infinite: false,
     slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
@@ -42,7 +42,7 @@ function CategorySectionSkinSlider({ title, sliderskins }) {
 
   return (
     <div className="w-full flex flex-col my-6 container mx-auto py-10">
-      <div className="py-4 pl-10 font-semibold text-xl">
+      <div className="py-4 pl-10 font-semibold text-xl md:text-2xl lg:text-3xl text-gray-800">
         <h1>{title}</h1>
       </div>
 

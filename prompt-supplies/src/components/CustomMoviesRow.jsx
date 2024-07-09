@@ -16,9 +16,11 @@ export default function CustomMoviesRow({ moviescategory }) {
   console.log("hoveredMovie >>", hoveredMovie);
 
   const fetchMovies = async () => {
+    console.log("movies category to fetch from >> ", moviescategory);
     try {
       const data = await getAllMoviesByCategory(moviescategory);
-      setMovies(data.results);
+      console.log("data recieved from fetch movies >> ", data);
+      setMovies(data?.data);
     } catch (error) {
       console.error("Error fetching movies:", error);
     }

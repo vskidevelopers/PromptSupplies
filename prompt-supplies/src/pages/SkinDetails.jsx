@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
 import { useNavigate, useParams } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import "./styles/skinDetails.css";
 import { Heart } from "lucide-react";
+import { useState } from "react";
 
 function SkinDetails() {
   const navigate = useNavigate();
@@ -11,7 +13,8 @@ function SkinDetails() {
   const skinCoverage = ["Top Skin Only", "Full Panel", "Full Body"];
 
   const skin = {
-    image: "https://via.placeholder.com/450x450", // Replace with actual image URL
+    image:
+      "https://www.skinslegend.com/cdn/shop/products/1O3VApc2eUFSl4FRrw0VJlImlIEGc6Jtx.jpg", // Replace with actual image URL
     title: "Awesome Skin",
     price: "$49.99",
     description: "This is a detailed description of the awesome skin.",
@@ -20,13 +23,27 @@ function SkinDetails() {
     quantity: 1,
   };
 
+  const [quantity, setQuantity] = useState(skin.quantity || 1);
+
+  const handleQuantityChange = (e) => {
+    setQuantity(e.target.value);
+  };
+
+  const handleIncrease = () => {
+    setQuantity((prev) => prev + 1);
+  };
+
+  const handleDecrease = () => {
+    setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
+  };
+
   const handleSubmit = () => {
     console.log("submitting form to order of active:false, fulfilled:false");
 
     // handle sum submit logics and return an orderID
     // Store thr returned orderId in the localstorage
     // handle navigation to checkOut
-    navigate("/skins/checkout");
+    // navigate("/skins/checkout");
   };
   return (
     <div className="mt-16 py-16">
@@ -77,36 +94,45 @@ function SkinDetails() {
             ) : (
               ""
             )}
-            <label htmlFor="quantity" className="block mb-1 font-bold">
-              Quantity
-            </label>
-            <div className="flex justify-around w-full md:w-3/5">
-              <div className="w-1/5 mr-2 h-full flex justify-center items-center">
-                <input
-                  type="number"
-                  id="quantity"
-                  name="quantity"
-                  defaultValue={skin.quantity}
-                  className="w-full p-2 border border-gray-300 rounded"
-                />
-              </div>
-              <div className="w-3/5 mr-2 flex items-center justify-center">
+            <div className="flex justify-around items-center w-full lg:w-3/4 space-x-4">
+              <div className="flex items-center space-x-2 bg-slate-800 text-white rounded-full px-2 py-1">
                 <button
-                  onClick={handleSubmit}
-                  className=" bg-blue-500 text-white py-2 rounded w-5/6"
+                  onClick={handleDecrease}
+                  className="w-8 h-8 flex justify-center items-center rounded-full"
                 >
-                  Order this skin
+                  -
+                </button>
+                <span className="font-bold">{quantity}</span>
+                <button
+                  onClick={handleIncrease}
+                  className="w-8 h-8 flex justify-center items-center rounded-full"
+                >
+                  +
                 </button>
               </div>
-
-              {/* Todo: 
-                  wishlist
-              */}
-              <div className="w-1/5 flex justify-center items-center">
-                <button className="content bg-slate-800 text-white py-4 px-4 rounded-full">
-                  <Heart className="h-5 w-auto" />
-                </button>
-              </div>
+              <button
+                onClick={handleSubmit}
+                className="bg-blue-500 text-white py-2 px-6 rounded-full flex items-center"
+              >
+                <svg
+                  className="w-5 h-5 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M3 3h2l.4 2M7 13h10l1.6 8H6.4l1.6-8zM7 13L5.4 5H19l-1.6 8H7zm-1 8h14v2H6v-2z"
+                  ></path>
+                </svg>
+                <p>Order this skin</p>
+              </button>
+              <button className="bg-slate-800 text-white py-2 px-4 rounded-full flex justify-center items-center">
+                <Heart className="h-5 w-auto" />
+              </button>
             </div>
           </div>
         </div>
