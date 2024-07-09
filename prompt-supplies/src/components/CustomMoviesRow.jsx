@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-undef */
 import { useEffect, useState } from "react";
-import MovieCard from "./MovieCard";
+import CustomMovieCard from "./CustomMovieCard";
 import MovieDetail from "./MovieDetail";
 import { useMovieFunctions } from "@/utils/firebase";
 import background from "../assets/videos/background.mp4";
@@ -90,7 +90,7 @@ export default function CustomMoviesRow({ moviescategory }) {
               onMouseEnter={() => handleMovieHover(movie)}
               onMouseLeave={handleMouseLeave}
             >
-              <MovieCard movie={movie} key={movie.id} no={i} />
+              <CustomMovieCard movie={movie} key={movie.id} no={i} />
               {hoveredMovie && hoveredMovie.id === movie.id && (
                 <div
                   className={`opacity-0 transition-opacity ${
