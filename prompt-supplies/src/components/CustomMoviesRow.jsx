@@ -2,9 +2,9 @@
 /* eslint-disable no-undef */
 import { useEffect, useState } from "react";
 import CustomMovieCard from "./CustomMovieCard";
-import MovieDetail from "./MovieDetail";
 import { useMovieFunctions } from "@/utils/firebase";
 import background from "../assets/videos/background.mp4";
+import CustomMovieDetail from "./CustomMovieDetail";
 
 export default function CustomMoviesRow({ moviescategory }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -97,7 +97,7 @@ export default function CustomMoviesRow({ moviescategory }) {
                     hoveredMovie ? "opacity-100" : "opacity-0"
                   }`}
                 >
-                  <MovieDetail movie={movie} />{" "}
+                  <CustomMovieDetail movie={movie} />{" "}
                 </div>
               )}
             </div>
