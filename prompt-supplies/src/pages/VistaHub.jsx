@@ -1,14 +1,14 @@
 import CustomMoviesRow from "@/components/CustomMoviesRow";
-import HubBanner from "../components/HubBanner";
 import MovieRow from "../components/MovieRow";
 import requests from "../utils/requests";
+import VistaHubBanner from "@/components/VistaHubBanner";
 
 function VistaHub() {
   const categories = ["vista-top-picks", "top-movies-of-the-week"];
   return (
     <div>
       {/* Banner */}
-      <HubBanner />
+      <VistaHubBanner />
       {/* MovieRow */}
 
       {/*
