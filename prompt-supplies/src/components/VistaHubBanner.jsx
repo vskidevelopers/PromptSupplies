@@ -99,6 +99,11 @@ export default function VistaHubBanner() {
     objectFit: "cover",
   };
 
+  const getFormattedDate = () => {
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    return new Date().toLocaleDateString(undefined, options);
+  };
+
   return (
     <div className="relative">
       <div
@@ -112,6 +117,14 @@ export default function VistaHubBanner() {
         <div className="absolute inset-0 bg-black/15"></div>
         <div className="flex flex-col justify-end md:justify-end h-4/5 w-full md:w-3/4 mx-2 ">
           {/* Title */}
+          <div className="pt-10 md:p-0 relative z-20 my-8">
+            <h1 className="text-2xl md:text-4xl font-medium pt-3">
+              Latest Releases :{" "}
+              <span className="font-bold text-yellow-500 rounded-2xl py-1 px-4 bg-white">
+                {getFormattedDate()}{" "}
+              </span>
+            </h1>
+          </div>
           <div className="pt-10 md:p-0 relative z-20">
             <h1 className="text-3xl md:text-5xl font-medium pt-3">
               {currentMovie?.title ||

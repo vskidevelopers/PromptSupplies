@@ -82,6 +82,9 @@ export default function PartnersSlider() {
           </div>
         )}
       </InView>
+
+
+      
       <div>
         <Slider {...settings}>
           {allPartners?.map((partner, index) => (
