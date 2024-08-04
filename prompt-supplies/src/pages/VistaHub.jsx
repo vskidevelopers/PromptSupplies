@@ -4,11 +4,18 @@ import requests from "../utils/requests";
 import VistaHubBanner from "@/components/VistaHubBanner";
 
 function VistaHub() {
-  const categories = ["vista-top-picks", "top-movies-of-the-week"];
+  const categories = [
+    "vista-top-picks",
+    "top-movies-of-the-week",
+    "latest-realease",
+  ];
   return (
     <div>
       {/* Banner */}
-      <VistaHubBanner />
+      <VistaHubBanner
+        fetchUrl={requests.fetchActionMovies}
+        moviescategory={categories[2]}
+      />
       {/* MovieRow */}
 
       {/*

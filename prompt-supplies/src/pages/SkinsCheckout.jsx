@@ -11,7 +11,7 @@ import {
 import FloatingOrderSummary from "@/components/FloatingOrderSummary";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-function Checkout() {
+function SkinsCheckout() {
   const title = "Shop | Checkout";
   const image =
     "https://images.pexels.com/photos/1181415/pexels-photo-1181415.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
@@ -117,4 +117,4 @@ function Checkout() {
   );
 }
 
-export default Checkout;
+export default SkinsCheckout;

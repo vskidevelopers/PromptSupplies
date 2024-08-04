@@ -77,7 +77,7 @@ export default function Skins() {
         </Link>
 
         <ParallaxLayer
-          offset={2.5}
+          offset={2}
           speed={1.5}
           className=" bg-black"
           style={{ ...alignCenter, justifyContent: "flex-end" }}

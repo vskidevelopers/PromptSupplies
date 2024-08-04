@@ -63,6 +63,9 @@ import SkinsUi from "./Layouts/SkinsUi";
 import SkinsCategory from "./pages/SkinsCategory";
 import SkinDetails from "./pages/SkinDetails";
 import Checkout from "./pages/Checkout";
+import ShopUi from "./Layouts/ShopUi";
+import Shop from "./pages/Shop";
+import SkinsCheckout from "./pages/SkinsCheckout";
 
 const serviceList = services;
 console.log("Service List from router >>>", serviceList);
@@ -144,6 +147,15 @@ const router = createBrowserRouter(
         <Route path="collections" element={<SkinsCollection />} />
         <Route path="collections/:category" element={<SkinsCategory />} />
         <Route path="collections/:category/:id" element={<SkinDetails />} />
+        <Route path="checkout" element={<SkinsCheckout />} />
+      </Route>
+
+      {/* Shop Routes */}
+      <Route path="shop" element={<ShopUi />}>
+        <Route index element={<Shop />} />
+        {/* <Route path="collections" element={<ShopCollection />} />
+        <Route path="collections/:category" element={<ShopCategory />} />
+        <Route path="collections/:category/:id" element={<ProductDetails />} /> */}
         <Route path="checkout" element={<Checkout />} />
       </Route>
 

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import { PlayIcon, StopIcon } from "@heroicons/react/24/solid";
@@ -15,25 +16,51 @@ import "swiper/css/pagination";
 
 // import required modules
 import { EffectCube, Pagination, Autoplay } from "swiper/modules";
+import { useMovieFunctions } from "@/utils/firebase";
 
-export default function VistaHubBanner() {
+export default function VistaHubBanner({ fetchUrl, moviescategory }) {
   const [movies, setMovies] = useState([]);
+  const [imdbMovies, setImdbMovies] = useState(false);
+
   const [trailerUrl, setTrailerUrl] = useState("");
   const [currentMovie, setCurrentMovie] = useState(null);
+  const { getAllMoviesByCategory } = useMovieFunctions();
 
   const truncate = (str, n) => {
     return str?.length > n ? str.substr(0, n - 1) + "..." : str;
   };
 
+  const fetchImdbMovies = async () => {
+    console.log("initiating imbd backup fetch request ... ");
+
+    try {
+      const data = await fetchInstance(fetchUrl);
+      const fetchedMovies = data.results.slice(0, 10);
+      console.log("Imdb fetch request >> ", fetchedMovies);
+      setMovies(fetchedMovies);
+      setImdbMovies(true);
+    } catch (error) {
+      console.error("Error fetching movies:", error);
+    }
+  };
+
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const data = await fetchInstance(requests.fetchTopRated);
-        const fetchedMovies = data.results.slice(0, 10); // Select the first 10 movies
-
-        setMovies(fetchedMovies);
-        console.log("10 movies from fetch result >> ", fetchedMovies); // Save the 10 movies into the state
-        setCurrentMovie(fetchedMovies[0]);
+        const data = await getAllMoviesByCategory(moviescategory);
+        console.log(
+          "data recieved from fetch movies fromvista hub banner >> ",
+          data
+        );
+        if (data.success) {
+          setMovies(data.data);
+        } else {
+          console.error(
+            "Error fetching movies from store, switching to IMDB",
+            data.message
+          );
+          fetchImdbMovies();
+        }
       } catch (error) {
         console.error("Error fetching movies:", error);
       }
@@ -54,12 +81,25 @@ export default function VistaHubBanner() {
     if (trailerUrl) {
       setTrailerUrl("");
     } else {
-      movieTrailer(movie?.title || "")
-        .then((url) => {
-          const urlParams = new URLSearchParams(new URL(url).search);
-          setTrailerUrl(urlParams.get("v"));
-        })
-        .catch((error) => console.log(error));
+      if (imdbMovies) {
+        movieTrailer(movie?.title || movie?.name)
+          .then((url) => {
+            const urlParams = new URLSearchParams(new URL(url).search);
+            const newTrailerUrl = urlParams.get("v");
+            setTrailerUrl(newTrailerUrl);
+            console.log("new trailerr url >> ", newTrailerUrl);
+          })
+          .catch((error) => console.log(error));
+      } else {
+        const trailerLink = movie?.trailerLink;
+        console.log("movie trailer url >> ", trailerLink);
+
+        const urlParams = new URLSearchParams(new URL(trailerLink).search);
+        const newTrailerUrl = urlParams.get("v");
+
+        setTrailerUrl(newTrailerUrl);
+        console.log("new trailerr url >> ", newTrailerUrl);
+      }
     }
   };
 
@@ -110,8 +150,14 @@ export default function VistaHubBanner() {
         className="h-96 md:h-[32rem] bg-cyan-900 bg-cover bg-center text-white"
         style={{
           backgroundImage: `url(
-                        "https://image.tmdb.org/t/p/original/${currentMovie?.backdrop_path}"
-                        )`,
+                          ${
+                            imdbMovies
+                              ? `
+                              "https://image.tmdb.org/t/p/original/${currentMovie?.backdrop_path}"
+                              `
+                              : currentMovie?.poster
+                          }
+                          )`,
         }}
       >
         <div className="absolute inset-0 bg-black/15"></div>
@@ -190,7 +236,7 @@ export default function VistaHubBanner() {
             pagination={true}
             speed={2000}
             autoplay={{
-              delay: 3500,
+              delay: 4500,
               disableOnInteraction: false,
             }}
             modules={[EffectCube, Pagination, Autoplay]}
@@ -199,15 +245,31 @@ export default function VistaHubBanner() {
               setCurrentMovie(movies[swiper.activeIndex])
             }
           >
-            {movies.map((movie, index) => (
-              <SwiperSlide key={movie.id} style={swiperSlideStyle}>
-                <img
-                  src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`}
-                  alt={movie.title}
-                  style={swiperSlideImgStyle}
-                />
-              </SwiperSlide>
-            ))}
+            {imdbMovies ? (
+              <div>
+                {movies?.map((movie, index) => (
+                  <SwiperSlide key={movie.id} style={swiperSlideStyle}>
+                    <img
+                      src={`https://image.tmdb.org/t/p/original/${currentMovie?.backdrop_path}`}
+                      alt={movie.name || movie?.title}
+                      style={swiperSlideImgStyle}
+                    />
+                  </SwiperSlide>
+                ))}
+              </div>
+            ) : (
+              <div>
+                {movies?.map((movie, index) => (
+                  <SwiperSlide key={movie.id} style={swiperSlideStyle}>
+                    <img
+                      src={movie?.poster}
+                      alt={movie.name}
+                      style={swiperSlideImgStyle}
+                    />
+                  </SwiperSlide>
+                ))}
+              </div>
+            )}
           </Swiper>
         </div>
       </>

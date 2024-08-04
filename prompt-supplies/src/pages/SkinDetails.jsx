@@ -39,6 +39,7 @@ function SkinDetails() {
 
   const handleSubmit = () => {
     console.log("submitting form to order of active:false, fulfilled:false");
+    navigate("/skins/checkout");
 
     // handle sum submit logics and return an orderID
     // Store thr returned orderId in the localstorage

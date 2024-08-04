@@ -15,6 +15,7 @@ export default function MovieRow({ moviescategory, fetchUrl }) {
     try {
       const data = await fetchInstance(fetchUrl);
       setMovies(data.results);
+      console.log(`category : ${moviescategory} || movies : `, data?.results);
     } catch (error) {
       console.error("Error fetching movies:", error);
     }
