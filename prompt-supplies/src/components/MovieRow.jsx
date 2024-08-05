@@ -21,6 +21,8 @@ export default function MovieRow({ moviescategory, fetchUrl }) {
     }
   };
 
+  // Import Swiper styles
+
   useEffect(() => {
     fetchMovies();
   }, []);
