@@ -191,7 +191,8 @@ const AddMovieForm = () => {
             <option value="top-movies-of-the-week">
               Top Movies of the Week
             </option>
-            <option value="latest-realease">latest release</option>
+            <option value="latest-realease">latest release</option>{" "}
+            {/* Do not rename to release ! */}
           </select>
           {errors.category && (
             <span className="text-red-500">This field is required</span>

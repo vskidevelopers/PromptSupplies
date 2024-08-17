@@ -145,9 +145,9 @@ export default function VistaHubBanner({ fetchUrl, moviescategory }) {
   };
 
   return (
-    <div className="relative">
+    <div className="relative rounded-2xl overflow-hidden">
       <div
-        className="h-96 md:h-[32rem] bg-cyan-900 bg-cover bg-center text-white"
+        className="h-96 md:h-[32rem] bg-cyan-900 bg-cover bg-center text-white "
         style={{
           backgroundImage: `url(
                           ${
@@ -160,7 +160,7 @@ export default function VistaHubBanner({ fetchUrl, moviescategory }) {
                           )`,
         }}
       >
-        <div className="absolute inset-0 bg-black/15"></div>
+        <div className="absolute inset-0 bg-black/50"></div>
         <div className="flex flex-col justify-end md:justify-end h-4/5 w-full md:w-3/4 mx-2 ">
           {/* Title */}
           <div className="pt-10 md:p-0 relative z-20 my-8">

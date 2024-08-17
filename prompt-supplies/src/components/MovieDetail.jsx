@@ -16,20 +16,6 @@ import movieTrailer from "movie-trailer";
 function MovieDetail({ movie }) {
   const [trailerUrl, setTrailerUrl] = useState(null);
 
-  // useEffect(() => {
-  //   if (trailerUrl != null) {
-  //     setTrailerUrl("");
-  //   } else if (movie?.title || movie?.name) {
-  //     movieTrailer(movie.title || movie?.name)
-  //       .then((url) => {
-  //         const urlParams = new URLSearchParams(new URL(url).search);
-  //         const newTrailerUrl = urlParams.get("v");
-  //         setTrailerUrl(newTrailerUrl);
-  //         console.log("new trailerr url >> ", newTrailerUrl);
-  //       })
-  //       .catch((error) => console.log(error));
-  //   }
-  // }, []);
   const handleTrailers = (movie) => {
     if (trailerUrl != null) {
       setTrailerUrl("");
