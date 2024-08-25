@@ -11,7 +11,7 @@ function VistaHub() {
     "latest-realease", // *** do not rename to release ***
   ];
   return (
-    <div className="flex flex-col md:flex-row justify-between px-10 pt-16">
+    <div className="flex flex-col md:flex-row justify-between px-5 md:px-10 pt-16">
       {/* Hub side trailers */}
       <div className="w-full md:w-2/6 ">
         <HubSideTrailers
